@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "config.h"
+#include "commat.h"
 
 
 typedef struct variable{
@@ -19,5 +20,6 @@ int main(int argc,char *argv[]) {
 	
 	
 	freeConfig(conf->head);
+	functionTestCommat();
 	return 0;
 }

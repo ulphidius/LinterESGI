@@ -1,6 +1,6 @@
 DEBUG=yes
 CC=gcc
-EXEC=../bin/Template
+EXEC=../bin/LinterESGI
 SRC= $(wildcard ../sources/*)
 OBJ= $(wildcard ../bin/*.o)
 LIB= $(wildcard ../ext/*)
