@@ -1,0 +1,23 @@
+/bin
+	contient l'execcutable
+
+/documentation
+	contient la doc
+
+/ext
+	repertoire contenant les librairies du projet
+	/lib_1
+		stockés dans leur propre sous repertoire
+		/include
+			contient les .h
+		/lib
+			contient les autres fichiers
+
+/INSTALL
+	contient les fichiers necessaire à l'installation
+	
+/resources
+	contient les ressources du projet (image, videos etc)
+	
+/sources
+	contient les fichiers source du projet
