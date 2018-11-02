@@ -5,7 +5,8 @@
 	<stdlib.h>
 	"config.h"
 
-1541152396 f:\esgi\codeblocks\linteresgi\sources\config.h
+1541153611 f:\esgi\codeblocks\linteresgi\sources\config.h
+	"error.h"
 
 1541152396 source:f:\esgi\codeblocks\linteresgi\sources\fileutils.c
 	"fileUtils.h"
@@ -21,11 +22,8 @@
 	<stdlib.h>
 	<string.h>
 
-1541153264 source:f:\esgi\codeblocks\linteresgi\sources\main.c
-	<stdio.h>
-	<string.h>
-	<stdlib.h>
-	"config.h"
+1541153621 source:f:\esgi\codeblocks\linteresgi\sources\main.c
+	"file.h"
 
 1541152396 source:f:\esgi\codeblocks\linteresgi\sources\operator.c
 	"operator.h"
@@ -39,4 +37,19 @@
 
 1541152396 source:f:\esgi\codeblocks\linteresgi\sources\stringutils.c
 	"stringUtils.h"
+
+1541153542 source:f:\esgi\codeblocks\linteresgi\sources\error.c
+	"error.h"
+
+1541153507 f:\esgi\codeblocks\linteresgi\sources\error.h
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+
+1541153597 source:f:\esgi\codeblocks\linteresgi\sources\file.c
+	"file.h"
+
+1541153577 f:\esgi\codeblocks\linteresgi\sources\file.h
+	"config.h"
+	<dirent.h>
 
