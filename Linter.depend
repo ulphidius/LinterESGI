@@ -1,11 +1,8 @@
 # depslib dependency file v1.0
-1541152396 source:f:\esgi\codeblocks\linteresgi\sources\config.c
-	<stdio.h>
-	<string.h>
-	<stdlib.h>
+1541153757 source:f:\esgi\codeblocks\linteresgi\sources\config.c
 	"config.h"
 
-1541153611 f:\esgi\codeblocks\linteresgi\sources\config.h
+1541153757 f:\esgi\codeblocks\linteresgi\sources\config.h
 	"error.h"
 
 1541152396 source:f:\esgi\codeblocks\linteresgi\sources\fileutils.c
@@ -22,7 +19,7 @@
 	<stdlib.h>
 	<string.h>
 
-1541153621 source:f:\esgi\codeblocks\linteresgi\sources\main.c
+1541153757 source:f:\esgi\codeblocks\linteresgi\sources\main.c
 	"file.h"
 
 1541152396 source:f:\esgi\codeblocks\linteresgi\sources\operator.c
@@ -38,18 +35,18 @@
 1541152396 source:f:\esgi\codeblocks\linteresgi\sources\stringutils.c
 	"stringUtils.h"
 
-1541153542 source:f:\esgi\codeblocks\linteresgi\sources\error.c
+1541153757 source:f:\esgi\codeblocks\linteresgi\sources\error.c
 	"error.h"
 
-1541153507 f:\esgi\codeblocks\linteresgi\sources\error.h
+1541153757 f:\esgi\codeblocks\linteresgi\sources\error.h
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
 
-1541153597 source:f:\esgi\codeblocks\linteresgi\sources\file.c
+1541153757 source:f:\esgi\codeblocks\linteresgi\sources\file.c
 	"file.h"
 
-1541153577 f:\esgi\codeblocks\linteresgi\sources\file.h
+1541153757 f:\esgi\codeblocks\linteresgi\sources\file.h
 	"config.h"
 	<dirent.h>
 
