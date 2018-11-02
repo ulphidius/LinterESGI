@@ -12,12 +12,12 @@ typedef struct variable{
 int main(int argc,char *argv[]) {
     /** Load Config explained in #documentation **/
 	ConfigKey *conf;
-	conf = loadConfig("\n");
-	
-	
-	
-	
-	
-	freeConfig(conf->head);
+	//conf = loadConfig("\n");
+
+
+
+
+
+	//freeConfig(conf->head);
 	return 0;
 }

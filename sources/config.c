@@ -10,6 +10,10 @@
 #include <stdlib.h>
 #include "config.h"
 
+char *strtok_r(char * n , const char * c , char ** ce){
+return NULL;}
+
+
 /**
  * Use as FILE* .lconf for test
  **/
@@ -20,7 +24,7 @@ char* myInput(int choice){
             case 1 :
                 sprintf(val, "=rules\n- rule4 = on\n- rule5 = off\n- rule6 = 50\n\n=excludedFiles\n- bonjour.c\n- test.c\n\n=recursive\nfalse");
                 break;
-            
+
             default :
                 sprintf(val, "=extends\nmain.lconf\n\n=rules\n- rule1 = on\n- rule2 = off\n- rule3 = 50\n\n=excludedFiles\n- bonjour.c\n- test.c\n\n=recursive\ntrue");
                 break;
@@ -28,7 +32,7 @@ char* myInput(int choice){
     return val;
 }
 
-/** 
+/**
  * Get the size of the file for allocation
  **/
 int getFileSize(FILE *fp){
@@ -39,28 +43,28 @@ int getFileSize(FILE *fp){
     return (int)size;
 }
 
-/** 
+/**
  * Get the first key of the text given, and reduce him
  **/
 char* getKey(char** text){
     char *key;
 	char *first;
 	char *last;
-	
+
     if(strstr(*text, "\n\n=") == NULL){//               remove the "\n\n=" string
         return NULL;
     }
-    *text = strstr(*text, "\n\n=") + sizeof(char) * 3; 
-    
+    *text = strstr(*text, "\n\n=") + sizeof(char) * 3;
+
 	first = malloc(strlen(*text) + 1);
 	strcpy(first, *text);//                             To prevent strtok to cut the original string
     last = strtok(first, "\n");
-    
+
     key = malloc(sizeof(char) * (strlen(last) + 1));
     strcpy(key, last);
     *text += strlen(last) + 1;//                        remove the KEY and '\n'
     free(first);
-    
+
     return key;
 }
 
@@ -75,10 +79,10 @@ int getValue(char* text, ConfigKey* key){
     ConfigValue* vHead = NULL;
     ConfigBasicValue* bvHead = NULL;
     ConfigContentValue* cvHead = NULL;
-    
+
     temp = malloc(strlen(text) + 1);
 	strcpy(temp, text);
-    
+
 	stock = strtok_r(temp, "\n", &temp); //                             strtok_r can cut multiple string in a row
 	while( stock != NULL && strlen(stock) > 2){
 	    if(stock[0] == '=' || stock[0] == '\n'){
@@ -103,7 +107,7 @@ int getValue(char* text, ConfigKey* key){
 				}
 			}else{  //                                                  is a value
 				sprintf(rValue, "%s",stock);
-				separateContent(&rValue, &eValue); 
+				separateContent(&rValue, &eValue);
 				if(cvHead == NULL){
 				    key->cValue = initConfigContentValue(rValue, eValue);
 				}else{
@@ -117,7 +121,7 @@ int getValue(char* text, ConfigKey* key){
 				    key->cValue->next->head = key->cValue->head;
 				    key->cValue = key->cValue->next;
 				}
-				
+
 			}
 		}else{  //                                                      is a bValue
 			sprintf(rValue, "%s",stock);
@@ -133,9 +137,9 @@ int getValue(char* text, ConfigKey* key){
 			    key->bValue->next->head = key->bValue->head;
 			    key->bValue = key->bValue->next;
 			}
-			
+
 		}
-		
+
 		stock = strtok_r(NULL, "\n", &temp);
 		free(rValue);
 	}
@@ -144,7 +148,7 @@ int getValue(char* text, ConfigKey* key){
 	key->value = vHead;
 	key->bValue = bvHead;
 	key->cValue = cvHead;
-	
+
     return 0;
 }
 
@@ -190,7 +194,7 @@ ConfigKey* getConfiguration(char* ctext){
 ConfigKey* getConfigKey(char* name,ConfigKey* conf){
     ConfigKey *head;
     ConfigKey *found;
-    
+
     head = conf;
     while(conf != NULL){
         if(strcmp(conf->name, name) == 0){
@@ -229,10 +233,10 @@ char* asConfigKey(char* name, ConfigKey* conf, int type){
     ConfigValue *vFound;
     ConfigContentValue *cvHead;
     ConfigContentValue *cvFound;
-    
+
     conf = conf->head;
     switch (type){
-        
+
         case BVALUE :
             bvHead = conf->bValue;
             while(conf->bValue != NULL){
@@ -245,7 +249,7 @@ char* asConfigKey(char* name, ConfigKey* conf, int type){
             }
             conf->bValue = bvHead;
             break;
-        
+
         case VALUE :
             vHead = conf->value;
             while(conf->value != NULL){
@@ -258,7 +262,7 @@ char* asConfigKey(char* name, ConfigKey* conf, int type){
             }
             conf->value = vHead;
             break;
-        
+
         case CVALUE :
             cvHead = conf->cValue;
             while(conf->cValue != NULL){
@@ -271,8 +275,8 @@ char* asConfigKey(char* name, ConfigKey* conf, int type){
             }
             conf->cValue = cvHead;
             break;
-        
-        default : 
+
+        default :
             bvHead = conf->bValue;
             while(conf->bValue != NULL){
                 if(strcmp(conf->bValue->content, name) == 0){
@@ -304,9 +308,9 @@ char* asConfigKey(char* name, ConfigKey* conf, int type){
             }
             conf->cValue = cvHead;
             break;
-        
+
     }
-    
+
     return NULL;
 }
 
@@ -315,7 +319,7 @@ char* asConfigKey(char* name, ConfigKey* conf, int type){
  **/
 ConfigKey* asConfigKeyName(char* name, ConfigKey* conf){
     ConfigKey* head = conf;
-    
+
     conf = conf->head;
     while(conf != NULL){
         if(strcmp(conf->name, name) == 0){
@@ -323,7 +327,7 @@ ConfigKey* asConfigKeyName(char* name, ConfigKey* conf){
         }
         conf = conf->next;
     }
-    
+
     conf = head;
     return NULL;
 }
@@ -334,7 +338,7 @@ ConfigKey* asConfigKeyName(char* name, ConfigKey* conf){
 void separateContent(char **value, char **content){
     char *tmp;
     char *stock;
-    
+
     stock = malloc(sizeof(char) * strlen(*value));
     sprintf(stock, "%s", *value);
     tmp = strtok(stock, " ");
@@ -354,7 +358,7 @@ int fusionKey(ConfigKey* conf,ConfigKey* conf2){
     ConfigKey *headConf;
     ConfigKey *headConf2;
     ConfigKey *current;
-    
+
     conf = conf->head;
     conf2 = conf2->head;
     headConf = conf;
@@ -370,7 +374,7 @@ int fusionKey(ConfigKey* conf,ConfigKey* conf2){
             }
             if(conf2->cValue != NULL){
                 addCValueKey(current, conf2);
-                
+
             }
             current = NULL;
         }else{
@@ -403,7 +407,7 @@ ConfigKey* copyKey(ConfigKey* conf){
     ConfigValue *vFound;
     ConfigContentValue *cvHead;
     ConfigContentValue *cvFound;
-    
+
     cpy = initConfigKey(conf->name);
     bvHead = conf->bValue;
     while(conf->bValue != NULL){
@@ -418,7 +422,7 @@ ConfigKey* copyKey(ConfigKey* conf){
         conf->bValue = conf->bValue->next;
     }
     conf->bValue = bvHead;
-    
+
     vHead = conf->value;
     while(conf->value != NULL){
         if(cpy->value == NULL){
@@ -432,7 +436,7 @@ ConfigKey* copyKey(ConfigKey* conf){
         conf->value = conf->value->next;
     }
     conf->value = vHead;
-    
+
     cvHead = conf->cValue;
     while(conf->cValue != NULL){
         if(cpy->cValue == NULL){
@@ -446,7 +450,7 @@ ConfigKey* copyKey(ConfigKey* conf){
         conf->cValue = conf->cValue->next;
     }
     conf->cValue = cvHead;
-    
+
     return cpy;
 }
 
@@ -458,7 +462,7 @@ int addBValueKey(ConfigKey* conf, ConfigKey* conf2){
     ConfigKey *tempConf;
     ConfigKey *endConf;
     int empty = 0;
-    
+
     endConf = conf;
     if(conf->bValue == NULL){
         empty = 1;
@@ -494,7 +498,7 @@ int addValueKey(ConfigKey* conf, ConfigKey* conf2){
     ConfigKey *tempConf;
     ConfigKey *endConf;
     int empty = 0;
-    
+
     endConf = conf;
     if(conf->value == NULL){
         empty = 1;
@@ -530,7 +534,7 @@ int addCValueKey(ConfigKey* conf, ConfigKey* conf2){
     ConfigKey *tempConf;
     ConfigKey *endConf;
     int empty = 0;
-    
+
     endConf = conf;
     if(conf->cValue == NULL){
         empty = 1;
@@ -555,7 +559,7 @@ int addCValueKey(ConfigKey* conf, ConfigKey* conf2){
         conf2->cValue = conf2->cValue->next;
     }
     conf->cValue = conf->cValue->head;
-    
+
     return 1;
 }
 
@@ -571,11 +575,11 @@ void freeConfigKey(ConfigKey* key){
         if(key->value != NULL){
             freeConfigValue(key->value);
         }
-        
+
         if(key->cValue != NULL){
             freeConfigContentValue(key->cValue);
         }
-        
+
         free(key);
     }
 }
@@ -597,7 +601,7 @@ void freeConfig(ConfigKey* key){
     if(key->value != NULL){
         freeConfigValue(key->value->head);
     }
-    
+
     if(key->cValue != NULL){
         freeConfigContentValue(key->cValue->head);
     }
@@ -645,7 +649,7 @@ void freeConfigContentValue(ConfigContentValue* val){
  **/
 ConfigKey* initConfigKey(char* nameKey){
 	ConfigKey* ll;
-	
+
 	ll = malloc(sizeof(ConfigKey));
 	ll->name = malloc(sizeof(char) * (strlen(nameKey) + 2));
 	sprintf(ll->name, "%s", nameKey);
@@ -654,7 +658,7 @@ ConfigKey* initConfigKey(char* nameKey){
     ll->cValue = NULL;
     ll->next = NULL;
     ll->head = NULL;
-    
+
     return ll;
 }
 
@@ -663,7 +667,7 @@ ConfigKey* initConfigKey(char* nameKey){
  **/
 ConfigBasicValue* initConfigBasicValue(char* name){
 	ConfigBasicValue* ll;
-	
+
 	ll = malloc(sizeof(ConfigBasicValue));
 	ll->content = malloc(strlen(name));
 	sprintf(ll->content, "%s", name);
@@ -677,7 +681,7 @@ ConfigBasicValue* initConfigBasicValue(char* name){
  **/
 ConfigValue* initConfigValue(char* name){
 	ConfigValue* ll;
-	
+
 	ll = malloc(sizeof(ConfigValue));
 	ll->content = malloc(strlen(name));
 	sprintf(ll->content, "%s", name);
@@ -691,7 +695,7 @@ ConfigValue* initConfigValue(char* name){
  **/
 ConfigContentValue* initConfigContentValue(char* name, char* value){
 	ConfigContentValue* ll;
-	
+
 	ll = malloc(sizeof(ConfigContentValue));
 	ll->content = malloc(strlen(name));
 	sprintf(ll->content, "%s", name);
@@ -733,7 +737,7 @@ ConfigKey *loadConfig(char *fp){
 	fclose(configFile);
 	free(ctext);
 	free(text);
-	
+
 	return conf;
 }
 
@@ -746,10 +750,10 @@ void printConfig(ConfigKey* key){
     ConfigBasicValue* bvHead;
     ConfigValue* vHead;
     ConfigContentValue* cvHead;
-    
+
     kHead = key;
-    
-    
+
+
     printf("/---------------------------\n");
     while(key != NULL){
         printKey(key);
@@ -757,7 +761,7 @@ void printConfig(ConfigKey* key){
         key = key->next;
     }
     printf("\\---------------------------\n");
-    
+
     key = kHead;
 }
 
@@ -768,7 +772,7 @@ void printKey(ConfigKey* key){
     ConfigBasicValue* bvHead;
     ConfigValue* vHead;
     ConfigContentValue* cvHead;
-    
+
     printf("|=%s\n", key->name);
     bvHead = key->bValue;
     while(key->bValue != NULL){ //bValue

@@ -1,0 +1,42 @@
+# depslib dependency file v1.0
+1541152396 source:f:\esgi\codeblocks\linteresgi\sources\config.c
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"config.h"
+
+1541152396 f:\esgi\codeblocks\linteresgi\sources\config.h
+
+1541152396 source:f:\esgi\codeblocks\linteresgi\sources\fileutils.c
+	"fileUtils.h"
+	"stringUtils.h"
+
+1541152396 f:\esgi\codeblocks\linteresgi\sources\fileutils.h
+	<stdlib.h>
+	<stdio.h>
+	"stringUtils.h"
+
+1541152396 f:\esgi\codeblocks\linteresgi\sources\stringutils.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1541153264 source:f:\esgi\codeblocks\linteresgi\sources\main.c
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"config.h"
+
+1541152396 source:f:\esgi\codeblocks\linteresgi\sources\operator.c
+	"operator.h"
+
+1541152396 f:\esgi\codeblocks\linteresgi\sources\operator.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"stringUtils.h"
+	"fileUtils.h"
+
+1541152396 source:f:\esgi\codeblocks\linteresgi\sources\stringutils.c
+	"stringUtils.h"
+
