@@ -1,6 +1,6 @@
 /*
 	Creator : LAURENT Louis 20181027
-	Last change : LAURENT Louis 20181029
+	Last change : LAURENT Louis 20181105
 
 	Fichier utilitaire pour la manipulation des fichiers.
 
@@ -14,7 +14,7 @@ int countNumberLines(FILE * file){
 	char character = 0;
 
 	if(file == NULL){
-		fprintf(stdout, "Un des paramètres est incorrect\n");
+		fprintf(stderr, "Un des paramètres est incorrect\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -32,22 +32,39 @@ int* countNumberChar(FILE * file, int linesNumber){
 	int* result = NULL;
 	int cpt = 0;
 	int cpt2 = 0;
+	char trigger = 0;
 	char character = 0;
 
 	if(file == NULL || linesNumber <= 0){
-		fprintf(stdout, "Un des paramètres est incorrect\n");
+		fprintf(stderr, "Un des paramètres est incorrect\n");
 		exit(EXIT_FAILURE);
 	}
 
 	result = initArray("int", linesNumber);
 	fseek(file, 0, SEEK_SET);
 	while((character = fgetc(file)) != EOF){
-		cpt++;
+		if(character == '/' && fgetc(file) == '*')
+			trigger = 1;
+		fseek(file, -1, SEEK_CUR);
+		
+		if(character == '*' && fgetc(file) == '/')
+			trigger = 0;
+		fseek(file, -1, SEEK_CUR);
+
+		if(trigger == 0)
+			cpt++;
+
 		if(character == '\n'){
 			result[cpt2] = cpt;
 			cpt = 0;
 			cpt2++;
+		}else if(character == '/' && fgetc(file) == '/'){
+			cpt--;
+			result[cpt2] = cpt;
+			cpt = 0;
+			cpt2++;
 		}
+		fseek(file, -1, SEEK_CUR);
 	}
 
 	return result;
@@ -61,7 +78,7 @@ char** readLines(FILE* file, int numberOfLines){
 	char character = 0;
 
 	if(file == NULL || numberOfLines <= 0){
-		fprintf(stdout, "Un des paramètres est incorrect\n");
+		fprintf(stderr, "Un des paramètres est incorrect\n");
 		exit(EXIT_FAILURE);
 	}
 
