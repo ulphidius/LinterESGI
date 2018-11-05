@@ -39,17 +39,19 @@ int* countNumberChar(FILE * file, int linesNumber){
 		fprintf(stderr, "Un des paramètres est incorrect\n");
 		exit(EXIT_FAILURE);
 	}
-
 	result = initArray("int", linesNumber);
+	
 	fseek(file, 0, SEEK_SET);
 	while((character = fgetc(file)) != EOF){
-		if(character == '/' && fgetc(file) == '*')
+		if(fgetc(file) == '*' && character == '/')
 			trigger = 1;
 		fseek(file, -1, SEEK_CUR);
+		fprintf(stdout, "%d\n", SEEK_CUR);
 		
-		if(character == '*' && fgetc(file) == '/')
+		if(fgetc(file) == '/' && character == '*')
 			trigger = 0;
 		fseek(file, -1, SEEK_CUR);
+		fprintf(stdout, "%d\n", SEEK_CUR);
 
 		if(trigger == 0)
 			cpt++;
@@ -58,13 +60,14 @@ int* countNumberChar(FILE * file, int linesNumber){
 			result[cpt2] = cpt;
 			cpt = 0;
 			cpt2++;
-		}else if(character == '/' && fgetc(file) == '/'){
+		}else if(fgetc(file) == '/' && character == '/'){
 			cpt--;
 			result[cpt2] = cpt;
 			cpt = 0;
 			cpt2++;
 		}
 		fseek(file, -1, SEEK_CUR);
+		fprintf(stdout, "%d\n", SEEK_CUR);
 	}
 
 	return result;
