@@ -22,6 +22,9 @@ int main(){
 	a &&b;
 	a&&b;
 	a&& b;
+
+	test, test,test;
+	,test, test,,;
 	return 0;
 }
 /*
