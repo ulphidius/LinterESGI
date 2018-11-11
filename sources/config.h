@@ -9,8 +9,9 @@
 /**
  * Lib
  **/
+#include <stdio.h>
 
-#include "error.h"
+extern char *strtok_r(char *, const char *, char **);
 
 /**
  * Define
@@ -56,12 +57,11 @@ typedef struct configKey{
 /**
  * Functions
  **/
-char *strtok_r(char *str, const char *delim, char **save);
 char *myInput(int choice);
 int getFileSize(FILE *fp);
 char *getKey(char **text);
-int getValue(char* text, ConfigKey* key, Error *error);
-ConfigKey *getConfiguration(char *cvalue, Error *error);
+int getValue(char *text, ConfigKey *key);
+ConfigKey *getConfiguration(char *name);
 ConfigKey *getConfigKey(char *name,ConfigKey *conf);
 char *isExtending(ConfigKey *conf);
 char *asConfigKey(char *name, ConfigKey *conf, int type);
@@ -84,4 +84,3 @@ ConfigContentValue *initConfigContentValue(char *name, char *value);
 ConfigKey *loadConfig(char *fp);
 void printConfig(ConfigKey *key);
 void printKey(ConfigKey *key);
-void printBasic(ConfigKey *key);

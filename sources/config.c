@@ -5,27 +5,14 @@
 **
 **  Description : Used to load the configuration from lconf files
 */
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include "config.h"
 
-char *strtok_r(char *str, const char *delim, char **save)
-{
-    char *res, *last;
+char *strtok_r(char * n , const char * c , char ** ce){
+return NULL;}
 
-    if( !save )
-        return strtok(str, delim);
-    if( !str && !(str = *save) )
-        return NULL;
-    last = str + strlen(str);
-    if( (*save = res = strtok(str, delim)) )
-    {
-        *save += strlen(res);
-        if( *save < last )
-            (*save)++;
-        else
-            *save = NULL;
-    }
-    return res;
-}
 
 /**
  * Use as FILE* .lconf for test
@@ -84,7 +71,7 @@ char* getKey(char** text){
 /**
  * get all values of the top key
  **/
-int getValue(char* text, ConfigKey* key, Error *error){
+int getValue(char* text, ConfigKey* key){
     char *rValue;
     char *stock;
     char *temp;
@@ -168,7 +155,7 @@ int getValue(char* text, ConfigKey* key, Error *error){
 /**
  * get a specific configuration parameter
  **/
-ConfigKey* getConfiguration(char* ctext, Error *error){
+ConfigKey* getConfiguration(char* ctext){
     char *key;
     char *param;
     char *val;
@@ -180,12 +167,12 @@ ConfigKey* getConfiguration(char* ctext, Error *error){
     	//printf("\nclé : %s\n", key);
     	if(head == NULL){
 	        kl = initConfigKey(key);
-	        if(getValue(ctext, kl, error) == 1){
+	        if(getValue(ctext, kl) == 1){
         	    return NULL;
         	}
 		}else{
 	        kl->next = initConfigKey(key);
-	        if(getValue(ctext, kl->next, error) == 1){
+	        if(getValue(ctext, kl->next) == 1){
         	    return NULL;
         	}
 		}
@@ -721,36 +708,32 @@ ConfigContentValue* initConfigContentValue(char* name, char* value){
 
 
 ConfigKey *loadConfig(char *fp){
-    Error *error;
     ConfigKey* conf;
     char *ctext;
     char *text;
     FILE *configFile;
-    error = initError();
     //
     if(fp[0] == '\n'){ //debug
         text = myInput(0);
         ctext = malloc(sizeof(char) * (strlen(text) + 3));
     	sprintf(ctext, "\n\n%s", text);
-	    conf = getConfiguration(ctext, error);
+	    conf = getConfiguration(ctext);
 	    return conf;
     }
     if(fp[0] == '\t'){ //debug
         text = myInput(1);
         ctext = malloc(sizeof(char) * (strlen(text) + 3));
     	sprintf(ctext, "\n\n%s", text);
-	    conf = getConfiguration(ctext, error);
+	    conf = getConfiguration(ctext);
 	    return conf;
     }
     //
     configFile = fopen(fp, "r");
     text = malloc(sizeof(char) * (getFileSize(configFile) + 1));
-    if (fgets(text, strlen(text) ,configFile) == NULL){
-        return NULL;
-    }
+    fgets(text, strlen(text) ,configFile);
     ctext = malloc(sizeof(char) * (strlen(text) + 3));
 	sprintf(ctext, "\n\n%s", text);
-	conf = getConfiguration(ctext, error);
+	conf = getConfiguration(ctext);
 	fclose(configFile);
 	free(ctext);
 	free(text);
@@ -773,8 +756,7 @@ void printConfig(ConfigKey* key){
 
     printf("/---------------------------\n");
     while(key != NULL){
-        //printKey(key);
-        printBasic(key);
+        printKey(key);
         printf("\n\n");
         key = key->next;
     }
@@ -811,42 +793,6 @@ void printKey(ConfigKey* key){
     cvHead = key->cValue;
     while(key->cValue != NULL){ //cValue
         printf("|- %s = %s\n", key->cValue->content, key->cValue->value);
-        key->cValue = key->cValue->next;
-    }
-    if(cvHead != NULL){
-        key->cValue = cvHead;
-    }
-
-}
-
-/**
- * Print the current key
- **/
-void printBasic(ConfigKey* key){
-    ConfigBasicValue* bvHead;
-    ConfigValue* vHead;
-    ConfigContentValue* cvHead;
-
-    printf("key : %s\n", key->name);
-    bvHead = key->bValue;
-    while(key->bValue != NULL){ //bValue
-        printf("bval : %s\n", key->bValue->content);
-        key->bValue = key->bValue->next;
-    }
-    if(bvHead != NULL){
-        key->bValue = bvHead;
-    }
-    vHead = key->value;
-    while(key->value != NULL){ //value
-        printf("val : %s\n", key->value->content);
-        key->value = key->value->next;
-    }
-    if(vHead != NULL){
-        key->value = vHead;
-    }
-    cvHead = key->cValue;
-    while(key->cValue != NULL){ //cValue
-        printf("cVal : %s c : %s\n", key->cValue->content, key->cValue->value);
         key->cValue = key->cValue->next;
     }
     if(cvHead != NULL){
