@@ -5,10 +5,27 @@
 **
 **  Description : Used to load the configuration from lconf files
 */
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 #include "config.h"
+
+char *strtok_r(char *str, const char *delim, char **save)
+{
+    char *res, *last;
+
+    if( !save )
+        return strtok(str, delim);
+    if( !str && !(str = *save) )
+        return NULL;
+    last = str + strlen(str);
+    if( (*save = res = strtok(str, delim)) )
+    {
+        *save += strlen(res);
+        if( *save < last )
+            (*save)++;
+        else
+            *save = NULL;
+    }
+    return res;
+}
 
 /**
  * Use as FILE* .lconf for test
@@ -20,7 +37,7 @@ char* myInput(int choice){
             case 1 :
                 sprintf(val, "=rules\n- rule4 = on\n- rule5 = off\n- rule6 = 50\n\n=excludedFiles\n- bonjour.c\n- test.c\n\n=recursive\nfalse");
                 break;
-            
+
             default :
                 sprintf(val, "=extends\nmain.lconf\n\n=rules\n- rule1 = on\n- rule2 = off\n- rule3 = 50\n\n=excludedFiles\n- bonjour.c\n- test.c\n\n=recursive\ntrue");
                 break;
@@ -28,7 +45,7 @@ char* myInput(int choice){
     return val;
 }
 
-/** 
+/**
  * Get the size of the file for allocation
  **/
 int getFileSize(FILE *fp){
@@ -39,35 +56,35 @@ int getFileSize(FILE *fp){
     return (int)size;
 }
 
-/** 
+/**
  * Get the first key of the text given, and reduce him
  **/
 char* getKey(char** text){
     char *key;
 	char *first;
 	char *last;
-	
+
     if(strstr(*text, "\n\n=") == NULL){//               remove the "\n\n=" string
         return NULL;
     }
-    *text = strstr(*text, "\n\n=") + sizeof(char) * 3; 
-    
+    *text = strstr(*text, "\n\n=") + sizeof(char) * 3;
+
 	first = malloc(strlen(*text) + 1);
 	strcpy(first, *text);//                             To prevent strtok to cut the original string
     last = strtok(first, "\n");
-    
+
     key = malloc(sizeof(char) * (strlen(last) + 1));
     strcpy(key, last);
     *text += strlen(last) + 1;//                        remove the KEY and '\n'
     free(first);
-    
+
     return key;
 }
 
 /**
  * get all values of the top key
  **/
-int getValue(char* text, ConfigKey* key){
+int getValue(char* text, ConfigKey* key, Error *error){
     char *rValue;
     char *stock;
     char *temp;
@@ -75,10 +92,10 @@ int getValue(char* text, ConfigKey* key){
     ConfigValue* vHead = NULL;
     ConfigBasicValue* bvHead = NULL;
     ConfigContentValue* cvHead = NULL;
-    
+
     temp = malloc(strlen(text) + 1);
 	strcpy(temp, text);
-    
+
 	stock = strtok_r(temp, "\n", &temp); //                             strtok_r can cut multiple string in a row
 	while( stock != NULL && strlen(stock) > 2){
 	    if(stock[0] == '=' || stock[0] == '\n'){
@@ -103,7 +120,7 @@ int getValue(char* text, ConfigKey* key){
 				}
 			}else{  //                                                  is a value
 				sprintf(rValue, "%s",stock);
-				separateContent(&rValue, &eValue); 
+				separateContent(&rValue, &eValue);
 				if(cvHead == NULL){
 				    key->cValue = initConfigContentValue(rValue, eValue);
 				}else{
@@ -117,7 +134,7 @@ int getValue(char* text, ConfigKey* key){
 				    key->cValue->next->head = key->cValue->head;
 				    key->cValue = key->cValue->next;
 				}
-				
+
 			}
 		}else{  //                                                      is a bValue
 			sprintf(rValue, "%s",stock);
@@ -133,9 +150,9 @@ int getValue(char* text, ConfigKey* key){
 			    key->bValue->next->head = key->bValue->head;
 			    key->bValue = key->bValue->next;
 			}
-			
+
 		}
-		
+
 		stock = strtok_r(NULL, "\n", &temp);
 		free(rValue);
 	}
@@ -144,14 +161,14 @@ int getValue(char* text, ConfigKey* key){
 	key->value = vHead;
 	key->bValue = bvHead;
 	key->cValue = cvHead;
-	
+
     return 0;
 }
 
 /**
  * get a specific configuration parameter
  **/
-ConfigKey* getConfiguration(char* ctext){
+ConfigKey* getConfiguration(char* ctext, Error *error){
     char *key;
     char *param;
     char *val;
@@ -163,12 +180,12 @@ ConfigKey* getConfiguration(char* ctext){
     	//printf("\nclé : %s\n", key);
     	if(head == NULL){
 	        kl = initConfigKey(key);
-	        if(getValue(ctext, kl) == 1){
+	        if(getValue(ctext, kl, error) == 1){
         	    return NULL;
         	}
 		}else{
 	        kl->next = initConfigKey(key);
-	        if(getValue(ctext, kl->next) == 1){
+	        if(getValue(ctext, kl->next, error) == 1){
         	    return NULL;
         	}
 		}
@@ -190,7 +207,7 @@ ConfigKey* getConfiguration(char* ctext){
 ConfigKey* getConfigKey(char* name,ConfigKey* conf){
     ConfigKey *head;
     ConfigKey *found;
-    
+
     head = conf;
     while(conf != NULL){
         if(strcmp(conf->name, name) == 0){
@@ -229,10 +246,10 @@ char* asConfigKey(char* name, ConfigKey* conf, int type){
     ConfigValue *vFound;
     ConfigContentValue *cvHead;
     ConfigContentValue *cvFound;
-    
+
     conf = conf->head;
     switch (type){
-        
+
         case BVALUE :
             bvHead = conf->bValue;
             while(conf->bValue != NULL){
@@ -245,7 +262,7 @@ char* asConfigKey(char* name, ConfigKey* conf, int type){
             }
             conf->bValue = bvHead;
             break;
-        
+
         case VALUE :
             vHead = conf->value;
             while(conf->value != NULL){
@@ -258,7 +275,7 @@ char* asConfigKey(char* name, ConfigKey* conf, int type){
             }
             conf->value = vHead;
             break;
-        
+
         case CVALUE :
             cvHead = conf->cValue;
             while(conf->cValue != NULL){
@@ -271,8 +288,8 @@ char* asConfigKey(char* name, ConfigKey* conf, int type){
             }
             conf->cValue = cvHead;
             break;
-        
-        default : 
+
+        default :
             bvHead = conf->bValue;
             while(conf->bValue != NULL){
                 if(strcmp(conf->bValue->content, name) == 0){
@@ -304,9 +321,9 @@ char* asConfigKey(char* name, ConfigKey* conf, int type){
             }
             conf->cValue = cvHead;
             break;
-        
+
     }
-    
+
     return NULL;
 }
 
@@ -315,7 +332,7 @@ char* asConfigKey(char* name, ConfigKey* conf, int type){
  **/
 ConfigKey* asConfigKeyName(char* name, ConfigKey* conf){
     ConfigKey* head = conf;
-    
+
     conf = conf->head;
     while(conf != NULL){
         if(strcmp(conf->name, name) == 0){
@@ -323,7 +340,7 @@ ConfigKey* asConfigKeyName(char* name, ConfigKey* conf){
         }
         conf = conf->next;
     }
-    
+
     conf = head;
     return NULL;
 }
@@ -334,7 +351,7 @@ ConfigKey* asConfigKeyName(char* name, ConfigKey* conf){
 void separateContent(char **value, char **content){
     char *tmp;
     char *stock;
-    
+
     stock = malloc(sizeof(char) * strlen(*value));
     sprintf(stock, "%s", *value);
     tmp = strtok(stock, " ");
@@ -354,7 +371,7 @@ int fusionKey(ConfigKey* conf,ConfigKey* conf2){
     ConfigKey *headConf;
     ConfigKey *headConf2;
     ConfigKey *current;
-    
+
     conf = conf->head;
     conf2 = conf2->head;
     headConf = conf;
@@ -370,7 +387,7 @@ int fusionKey(ConfigKey* conf,ConfigKey* conf2){
             }
             if(conf2->cValue != NULL){
                 addCValueKey(current, conf2);
-                
+
             }
             current = NULL;
         }else{
@@ -403,7 +420,7 @@ ConfigKey* copyKey(ConfigKey* conf){
     ConfigValue *vFound;
     ConfigContentValue *cvHead;
     ConfigContentValue *cvFound;
-    
+
     cpy = initConfigKey(conf->name);
     bvHead = conf->bValue;
     while(conf->bValue != NULL){
@@ -418,7 +435,7 @@ ConfigKey* copyKey(ConfigKey* conf){
         conf->bValue = conf->bValue->next;
     }
     conf->bValue = bvHead;
-    
+
     vHead = conf->value;
     while(conf->value != NULL){
         if(cpy->value == NULL){
@@ -432,7 +449,7 @@ ConfigKey* copyKey(ConfigKey* conf){
         conf->value = conf->value->next;
     }
     conf->value = vHead;
-    
+
     cvHead = conf->cValue;
     while(conf->cValue != NULL){
         if(cpy->cValue == NULL){
@@ -446,7 +463,7 @@ ConfigKey* copyKey(ConfigKey* conf){
         conf->cValue = conf->cValue->next;
     }
     conf->cValue = cvHead;
-    
+
     return cpy;
 }
 
@@ -458,7 +475,7 @@ int addBValueKey(ConfigKey* conf, ConfigKey* conf2){
     ConfigKey *tempConf;
     ConfigKey *endConf;
     int empty = 0;
-    
+
     endConf = conf;
     if(conf->bValue == NULL){
         empty = 1;
@@ -494,7 +511,7 @@ int addValueKey(ConfigKey* conf, ConfigKey* conf2){
     ConfigKey *tempConf;
     ConfigKey *endConf;
     int empty = 0;
-    
+
     endConf = conf;
     if(conf->value == NULL){
         empty = 1;
@@ -530,7 +547,7 @@ int addCValueKey(ConfigKey* conf, ConfigKey* conf2){
     ConfigKey *tempConf;
     ConfigKey *endConf;
     int empty = 0;
-    
+
     endConf = conf;
     if(conf->cValue == NULL){
         empty = 1;
@@ -555,7 +572,7 @@ int addCValueKey(ConfigKey* conf, ConfigKey* conf2){
         conf2->cValue = conf2->cValue->next;
     }
     conf->cValue = conf->cValue->head;
-    
+
     return 1;
 }
 
@@ -571,11 +588,11 @@ void freeConfigKey(ConfigKey* key){
         if(key->value != NULL){
             freeConfigValue(key->value);
         }
-        
+
         if(key->cValue != NULL){
             freeConfigContentValue(key->cValue);
         }
-        
+
         free(key);
     }
 }
@@ -597,7 +614,7 @@ void freeConfig(ConfigKey* key){
     if(key->value != NULL){
         freeConfigValue(key->value->head);
     }
-    
+
     if(key->cValue != NULL){
         freeConfigContentValue(key->cValue->head);
     }
@@ -645,7 +662,7 @@ void freeConfigContentValue(ConfigContentValue* val){
  **/
 ConfigKey* initConfigKey(char* nameKey){
 	ConfigKey* ll;
-	
+
 	ll = malloc(sizeof(ConfigKey));
 	ll->name = malloc(sizeof(char) * (strlen(nameKey) + 2));
 	sprintf(ll->name, "%s", nameKey);
@@ -654,7 +671,7 @@ ConfigKey* initConfigKey(char* nameKey){
     ll->cValue = NULL;
     ll->next = NULL;
     ll->head = NULL;
-    
+
     return ll;
 }
 
@@ -663,7 +680,7 @@ ConfigKey* initConfigKey(char* nameKey){
  **/
 ConfigBasicValue* initConfigBasicValue(char* name){
 	ConfigBasicValue* ll;
-	
+
 	ll = malloc(sizeof(ConfigBasicValue));
 	ll->content = malloc(strlen(name));
 	sprintf(ll->content, "%s", name);
@@ -677,7 +694,7 @@ ConfigBasicValue* initConfigBasicValue(char* name){
  **/
 ConfigValue* initConfigValue(char* name){
 	ConfigValue* ll;
-	
+
 	ll = malloc(sizeof(ConfigValue));
 	ll->content = malloc(strlen(name));
 	sprintf(ll->content, "%s", name);
@@ -691,7 +708,7 @@ ConfigValue* initConfigValue(char* name){
  **/
 ConfigContentValue* initConfigContentValue(char* name, char* value){
 	ConfigContentValue* ll;
-	
+
 	ll = malloc(sizeof(ConfigContentValue));
 	ll->content = malloc(strlen(name));
 	sprintf(ll->content, "%s", name);
@@ -704,36 +721,40 @@ ConfigContentValue* initConfigContentValue(char* name, char* value){
 
 
 ConfigKey *loadConfig(char *fp){
+    Error *error;
     ConfigKey* conf;
     char *ctext;
     char *text;
     FILE *configFile;
+    error = initError();
     //
     if(fp[0] == '\n'){ //debug
         text = myInput(0);
         ctext = malloc(sizeof(char) * (strlen(text) + 3));
     	sprintf(ctext, "\n\n%s", text);
-	    conf = getConfiguration(ctext);
+	    conf = getConfiguration(ctext, error);
 	    return conf;
     }
     if(fp[0] == '\t'){ //debug
         text = myInput(1);
         ctext = malloc(sizeof(char) * (strlen(text) + 3));
     	sprintf(ctext, "\n\n%s", text);
-	    conf = getConfiguration(ctext);
+	    conf = getConfiguration(ctext, error);
 	    return conf;
     }
     //
     configFile = fopen(fp, "r");
     text = malloc(sizeof(char) * (getFileSize(configFile) + 1));
-    fgets(text, strlen(text) ,configFile);
+    if (fgets(text, strlen(text) ,configFile) == NULL){
+        return NULL;
+    }
     ctext = malloc(sizeof(char) * (strlen(text) + 3));
 	sprintf(ctext, "\n\n%s", text);
-	conf = getConfiguration(ctext);
+	conf = getConfiguration(ctext, error);
 	fclose(configFile);
 	free(ctext);
 	free(text);
-	
+
 	return conf;
 }
 
@@ -746,18 +767,19 @@ void printConfig(ConfigKey* key){
     ConfigBasicValue* bvHead;
     ConfigValue* vHead;
     ConfigContentValue* cvHead;
-    
+
     kHead = key;
-    
-    
+
+
     printf("/---------------------------\n");
     while(key != NULL){
-        printKey(key);
+        //printKey(key);
+        printBasic(key);
         printf("\n\n");
         key = key->next;
     }
     printf("\\---------------------------\n");
-    
+
     key = kHead;
 }
 
@@ -768,7 +790,7 @@ void printKey(ConfigKey* key){
     ConfigBasicValue* bvHead;
     ConfigValue* vHead;
     ConfigContentValue* cvHead;
-    
+
     printf("|=%s\n", key->name);
     bvHead = key->bValue;
     while(key->bValue != NULL){ //bValue
@@ -789,6 +811,42 @@ void printKey(ConfigKey* key){
     cvHead = key->cValue;
     while(key->cValue != NULL){ //cValue
         printf("|- %s = %s\n", key->cValue->content, key->cValue->value);
+        key->cValue = key->cValue->next;
+    }
+    if(cvHead != NULL){
+        key->cValue = cvHead;
+    }
+
+}
+
+/**
+ * Print the current key
+ **/
+void printBasic(ConfigKey* key){
+    ConfigBasicValue* bvHead;
+    ConfigValue* vHead;
+    ConfigContentValue* cvHead;
+
+    printf("key : %s\n", key->name);
+    bvHead = key->bValue;
+    while(key->bValue != NULL){ //bValue
+        printf("bval : %s\n", key->bValue->content);
+        key->bValue = key->bValue->next;
+    }
+    if(bvHead != NULL){
+        key->bValue = bvHead;
+    }
+    vHead = key->value;
+    while(key->value != NULL){ //value
+        printf("val : %s\n", key->value->content);
+        key->value = key->value->next;
+    }
+    if(vHead != NULL){
+        key->value = vHead;
+    }
+    cvHead = key->cValue;
+    while(key->cValue != NULL){ //cValue
+        printf("cVal : %s c : %s\n", key->cValue->content, key->cValue->value);
         key->cValue = key->cValue->next;
     }
     if(cvHead != NULL){
