@@ -1,6 +1,6 @@
 /*
 	Creator : LAURENT Louis 20181027
-	Last change : LAURENT Louis 20181111
+	Last change : LAURENT Louis 20181117
 
 	Fichier utilitaire pour la manipulation des fichiers.
 
@@ -45,13 +45,13 @@ int* countNumberChar(FILE * file, int linesNumber){
 	while((character = fgetc(file)) != EOF){
 		if(fgetc(file) == '*' && character == '/')
 			trigger = 1;
-		fseek(file, SEEK_CUR - 1, SEEK_CUR);
-		fprintf(stdout, "%d\n", SEEK_CUR);
+		fseek(file, -1, ftell(file));
+		fprintf(stdout, "%ld\n", ftell(file));
 		
 		if(fgetc(file) == '/' && character == '*')
 			trigger = 0;
-		fseek(file, SEEK_CUR - 1, SEEK_CUR);
-		fprintf(stdout, "%d\n", SEEK_CUR);
+		fseek(file, -1, ftell(file));
+		fprintf(stdout, "%ld\n", ftell(file));
 
 		if(trigger == 0)
 			cpt++;
@@ -66,8 +66,8 @@ int* countNumberChar(FILE * file, int linesNumber){
 			cpt = 0;
 			cpt2++;
 		}
-		fseek(file, SEEK_CUR - 1, SEEK_CUR);
-		fprintf(stdout, "%d\n", SEEK_CUR);
+		fseek(file, -1, ftell(file));
+		fprintf(stdout, "%ld\n", ftell(file));
 	}
 
 	return result;

@@ -2,19 +2,24 @@
 
 int main(){
 	//processOperators("../resources/testFileOperator");
-	FILE* file = NULL;
-	char character = 0;
-	file = fopen("../resources/testFileOperator", "rb");
-	if(file == NULL){
-		fprintf(stderr, "Erreur ouverture du fichier \n");
-	}
-	while((character = fgetc(file)) != EOF){
-		fprintf(stdout, "Position du curseur : %d %c \n", SEEK_CUR, character);
-		fgetc(file);
-		//fprintf(stdout, "Position du curseur 2 : %d %c \n", SEEK_CUR, character = fgetc(file));
-		fseek(file, -1, SEEK_CUR);
-	}
-	
-	fclose(file);
+	// FILE* file = NULL;
+	// char character = 0;
+	// file = fopen("../resources/testFileOperator", "rb");
+	// if(file == NULL){
+	// 	fprintf(stderr, "Erreur ouverture du fichier \n");
+	// }
+	// fseek(file, 0, SEEK_SET);
+	// while(fgetc(file) != EOF){
+		
+	// 	printf("%ld\n", ftell(file));
+	// 	fgetc(file);
+	// 	printf("%ld\n", ftell(file));
+	// 	fseek(file, -1, ftell(file));
+	// 	printf("%ld\n", ftell(file));
+	// }
+
+	// fclose(file);
+	char * string = "../resources/testFileOperator"
+
 	exit(EXIT_SUCCESS);
 }

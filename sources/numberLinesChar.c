@@ -1,6 +1,6 @@
 /*
 	Creator : LAURENT Louis 20181111
-	Last change : LAURENT Louis 20181111
+	Last change : LAURENT Louis 20181117
 
 	Fichier pour les erreurs de nombre de lignes dans le fichier et de caractères par ligne.
 
@@ -26,7 +26,7 @@ void checkLinesNumbers(char* path, int limit){
 	}
 
 	if(result > limit){
-		printf("Erreur le nombre de lignes dans le fichier est : %d et la limite est %d \n", result, limit);
+		printf("Erreur le nombre de lignes dans le fichier : %s est : %d et la limite est %d \n", path, result, limit);
 	}
 
 	fclose(file);
@@ -48,7 +48,7 @@ void checkCharactersNumbers(char* path, int limit){
 		result++;
 
 		if(result > limit){
-			printf("Erreur le nombre de caractères sur la ligne est : %d et la limite est : %d", result, limit);
+			printf("Erreur le nombre de caractères sur la ligne est : %d et la limite est : %d dans le fichier : %s", result, limit, path);
 		
 		}
 
