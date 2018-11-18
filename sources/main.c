@@ -19,7 +19,14 @@ int main(){
 	// }
 
 	// fclose(file);
-	char * string = "../resources/testFileOperator"
+	// char * string = "../resources/testFileOperator";
+	// int test1 = 0;
 
+	// test1 = countNumberLines(file);
+	// countNumberChar(file, test1);
+
+	// fclose(file);
+	processOperators("../resources/testFileOperator");
+	functionTestCommat("../resources/testFileOperator");
 	exit(EXIT_SUCCESS);
 }

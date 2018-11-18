@@ -37,26 +37,26 @@ void functionTestCommat(char* path){
 
 }
 
-void checkCommats(char* string, int sizeLine, int numberLignes, char* path){
+void checkCommats(char* string, int sizeLine, int numberLines, char* path){
 	int y = 0;
 	const char toCheck = ',';
 
 	for(y = 0; y < sizeLine; y++){
 		if(y == (sizeLine - 1) && string[y] == toCheck){
-			fprintf(stdout, "Syntaxe error on line with operator : %c on file : %s at line : %d on character number : %d\n", toCheck, path, numberLignes + 1, y + 1);
+			fprintf(stdout, "Syntaxe error on line with operator : %c on file : %s at line : %d on character number : %d\n", toCheck, path, numberLines + 1, y + 1);
 		}else{
 			if(string[y] == toCheck && string[y + 1] != ' '){
-				fprintf(stdout, "Syntaxe error on line with operator : %c on file : %s at line : %d on character number : %d\n", toCheck, path, numberLignes + 1, y + 1);
+				fprintf(stdout, "Syntaxe error on line with operator : %c on file : %s at line : %d on character number : %d\n", toCheck, path, numberLines + 1, y + 1);
 			}
 		}
 	}
 
 }
 
-void processCommats(char** strings, int* sizeLine, int numberLignes, char* path){
+void processCommats(char** strings, int* sizeLine, int numberLines, char* path){
 	int i = 0;
 
-	for(i = 0; i < numberLignes; i++){
+	for(i = 0; i < numberLines; i++){
 		checkCommats(strings[i], sizeLine[i], i, path);
 	}	
 }

@@ -140,103 +140,29 @@
 	"buffers":
 	[
 		{
-			"file": "sources/commat.c",
+			"contents": "{\n  \"fruits\": [\n    {\n      \"kiwis\": 3,\n      \"mangues\": 4,\n      \"pommes\": null\n    },\n    {\n      \"panier\": true\n    }\n  ],\n  \"legumes\": {\n    \"patates\": \"amandine\",\n    \"poireaux\": false\n  },\n  \"viandes\": [\n    \"poisson\",\n    \"poulet\",\n    \"boeuf\"\n  ]\n}",
 			"settings":
 			{
-				"buffer_size": 1605,
-				"encoding": "UTF-8",
+				"buffer_size": 256,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "sources/fileUtils.c",
+			"file": "/home/ulphidius/.config/sublime-text-3/Packages/Pretty JSON/Pretty JSON.sublime-settings",
 			"settings":
 			{
-				"buffer_size": 2216,
-				"encoding": "UTF-8",
+				"buffer_size": 303,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "sources/main.c",
+			"contents": "",
+			"file": "/home/ulphidius/.config/sublime-text-3/Packages/User/Pretty JSON.sublime-settings",
+			"file_size": -1,
+			"file_write_time": -1,
 			"settings":
 			{
-				"buffer_size": 596,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "sources/numberLinesChar.c",
-			"settings":
-			{
-				"buffer_size": 1256,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "sources/operator.c",
-			"settings":
-			{
-				"buffer_size": 4942,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "/*\n\tCreator : LAURENT Louis 20181117\n\tLast change : LAURENT Louis 20181117\n\n\tFichier pour l'erreur de l'espace à la fin de ligne.\n\n*/\n\n",
-			"file": "sources/trailingSpace.c",
-			"file_size": 135,
-			"file_write_time": 131869569558607867,
-			"settings":
-			{
-				"buffer_size": 135,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "sources/commat.h",
-			"settings":
-			{
-				"buffer_size": 873,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "sources/fileUtils.h",
-			"settings":
-			{
-				"buffer_size": 787,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "sources/numberLinesChar.h",
-			"settings":
-			{
-				"buffer_size": 618,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "sources/operator.h",
-			"settings":
-			{
-				"buffer_size": 668,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "sources/trailingSpace.h",
-			"settings":
-			{
-				"buffer_size": 218,
-				"encoding": "UTF-8",
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		}
@@ -310,16 +236,21 @@
 	],
 	"file_history":
 	[
-		"/home/ulphidius/Project/C/LinterESGI/sources/config.c",
-		"/home/ulphidius/Project/C/LinterESGI/sources/fileUtils.h",
-		"/home/ulphidius/Project/C/LinterESGI/resources/testFileOperator",
+		"/home/ulphidius/.config/sublime-text-3/Packages/Pretty JSON/Pretty JSON.sublime-settings",
+		"/home/ulphidius/Project/C/LinterESGI/sources/trailingSpace.h",
 		"/home/ulphidius/Project/C/LinterESGI/sources/operator.h",
 		"/home/ulphidius/Project/C/LinterESGI/sources/numberLinesChar.h",
+		"/home/ulphidius/Project/C/LinterESGI/sources/commat.h",
+		"/home/ulphidius/Project/C/LinterESGI/sources/fileUtils.h",
+		"/home/ulphidius/Project/C/LinterESGI/sources/trailingSpace.c",
 		"/home/ulphidius/Project/C/LinterESGI/sources/operator.c",
 		"/home/ulphidius/Project/C/LinterESGI/sources/numberLinesChar.c",
-		"/home/ulphidius/Project/C/LinterESGI/sources/config.h",
 		"/home/ulphidius/Project/C/LinterESGI/sources/main.c",
 		"/home/ulphidius/Project/C/LinterESGI/sources/fileUtils.c",
+		"/home/ulphidius/Project/C/LinterESGI/sources/commat.c",
+		"/home/ulphidius/Project/C/LinterESGI/sources/config.c",
+		"/home/ulphidius/Project/C/LinterESGI/resources/testFileOperator",
+		"/home/ulphidius/Project/C/LinterESGI/sources/config.h",
 		"/home/ulphidius/Documents/Cours/Théories des langages/Exercices/CFGgram.py",
 		"/home/ulphidius/.config/sublime-text-3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
 		"/home/ulphidius/.config/sublime-text-3/Packages/User/SublimeLinter.sublime-settings",
@@ -327,8 +258,6 @@
 		"/home/ulphidius/Project/Python/exerciceTheorie.py",
 		"/home/ulphidius/.config/sublime-text-3/Packages/Package Control/Package Control.sublime-settings",
 		"/home/ulphidius/Project/C/LinterESGI/sources/stringUtils.c",
-		"/home/ulphidius/Project/C/LinterESGI/sources/commat.c",
-		"/home/ulphidius/Project/C/LinterESGI/sources/commat.h",
 		"/home/ulphidius/Project/C/LinterESGI/.gitignore",
 		"/home/ulphidius/Project/C/LinterESGI/sources/.h\"",
 		"/home/ulphidius/Documents/Cours/RO IA/cours1.txt",
@@ -377,76 +306,60 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "sources/commat.c",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1605,
+						"buffer_size": 256,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								74,
-								74
+								148,
+								148
 							]
 						],
 						"settings":
 						{
-							"SL.50.region_keys":
-							[
-								"sublime_linter.protected_regions"
-							],
-							"syntax": "Packages/C++/C.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "sources/fileUtils.c",
+					"file": "/home/ulphidius/.config/sublime-text-3/Packages/Pretty JSON/Pretty JSON.sublime-settings",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2216,
+						"buffer_size": 303,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								74,
-								74
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"SL.15.region_keys":
-							[
-								"SL.gcc.Highlights.|ca4169db480d221fa5c13a747a02baaaa2ee03712c85c6e075810f29119bf818|region.yellowish markup.warning.sublime_linter|32",
-								"sublime_linter.protected_regions",
-								"SL.gcc.Highlights.|fbc18baa7082f7ec62ca10b2175c75460f145516b9a22a7a99d844d4fb98fca7|region.yellowish markup.warning.sublime_linter|32",
-								"SL.gcc.Gutter.|region.yellowish markup.warning.sublime_linter|dot",
-								"SL.gcc.Highlights.|b7c87e1efdf6e9ca74096e6e13b97eea4b7adff4066a063db82dcdd27a091d9d|region.redish markup.error.sublime_linter|32",
-								"SL.gcc.Gutter.|region.redish markup.error.sublime_linter|dot"
-							],
-							"SL.30.region_keys":
-							[
-								"sublime_linter.protected_regions"
-							],
-							"syntax": "Packages/C++/C.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -457,81 +370,11 @@
 				},
 				{
 					"buffer": 2,
-					"file": "sources/main.c",
+					"file": "/home/ulphidius/.config/sublime-text-3/Packages/User/Pretty JSON.sublime-settings",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 596,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								572,
-								572
-							]
-						],
-						"settings":
-						{
-							"SL.51.region_keys":
-							[
-								"sublime_linter.protected_regions",
-								"SL.gcc.Highlights.|233600ef4ffae8170db23b7b77180faef846f68a4a7adf67db1623d074b99b75|region.yellowish markup.warning.sublime_linter|32",
-								"SL.gcc.Highlights.|afa1420ed8881090fefd61ae1980a94d636e48a05f341e14468a2d3538f00b3b|region.redish markup.error.sublime_linter|32",
-								"SL.gcc.Gutter.|region.redish markup.error.sublime_linter|dot",
-								"SL.gcc.Gutter.|region.yellowish markup.warning.sublime_linter|dot"
-							],
-							"syntax": "Packages/C++/C.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "sources/numberLinesChar.c",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1256,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								74,
-								74
-							]
-						],
-						"settings":
-						{
-							"SL.32.region_keys":
-							[
-								"sublime_linter.protected_regions"
-							],
-							"syntax": "Packages/C++/C.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "sources/operator.c",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4942,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
@@ -544,115 +387,7 @@
 						],
 						"settings":
 						{
-							"SL.48.region_keys":
-							[
-							],
-							"syntax": "Packages/C++/C.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "sources/trailingSpace.c",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 135,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"SL.52.region_keys":
-							[
-							],
-							"syntax": "Packages/C++/C.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 1,
-			"sheets":
-			[
-				{
-					"buffer": 6,
-					"file": "sources/commat.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 873,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								74,
-								74
-							]
-						],
-						"settings":
-						{
-							"SL.28.region_keys":
-							[
-								"sublime_linter.protected_regions"
-							],
-							"syntax": "Packages/C++/C++.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "sources/fileUtils.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 787,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								787,
-								787
-							]
-						],
-						"settings":
-						{
-							"SL.21.region_keys":
-							[
-							],
-							"SL.31.region_keys":
-							[
-								"sublime_linter.protected_regions"
-							],
-							"syntax": "Packages/C++/C++.sublime-syntax"
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -660,101 +395,12 @@
 					},
 					"stack_index": 0,
 					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "sources/numberLinesChar.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 618,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"SL.47.region_keys":
-							[
-							],
-							"syntax": "Packages/C++/C++.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "sources/operator.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 668,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"SL.49.region_keys":
-							[
-							],
-							"syntax": "Packages/C++/C++.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "sources/trailingSpace.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 218,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								209,
-								209
-							]
-						],
-						"settings":
-						{
-							"SL.53.region_keys":
-							[
-								"sublime_linter.protected_regions"
-							],
-							"syntax": "Packages/C++/C++.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
 				}
+			]
+		},
+		{
+			"sheets":
+			[
 			]
 		}
 	],
@@ -822,12 +468,12 @@
 	},
 	"select_project":
 	{
-		"height": 0.0,
+		"height": 500.0,
 		"last_filter": "",
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 380.0
 	},
 	"select_symbol":
 	{
@@ -838,7 +484,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},
