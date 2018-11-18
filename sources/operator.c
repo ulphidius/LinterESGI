@@ -24,10 +24,10 @@ void checkOperators(char* string, int sizeChaine, int lineNumber){
 					// "<<=", ">>=", "||", "&&", "+=", "-=", "*=", "/=", "%=", "==", "^=", "<<", ">>", "|=", "&=", "+", "-", "*", "/", "%", "=", "^", "|", "&", "<", ">", "!", "?", ":"
 					if(i == 0 || i == (sizeChaine - 1)){
 						//printf("string : %s detected : %c position : %d\n",string, singleOperators[y], i);
-						printf("string : %s detected : %c\n",string, singleOperators[y]);
+						// printf("string : %s detected : %c\n",string, singleOperators[y]);
 						fprintf(stdout, "Syntaxe error on line with operator : %c at line : %d\n", singleOperators[y], lineNumber + 1);
 					}else if(string[i - 1] != ' ' || string[i + 1] != ' '){
-						printf("string : %s detected : %c\n",string, singleOperators[y]);
+						// printf("string : %s detected : %c\n",string, singleOperators[y]);
 						switch(singleOperators[y]){
 							case '+':
 								if(string[i + 1] == '='){

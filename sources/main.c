@@ -3,6 +3,7 @@
 #include "numberLinesChar.h"
 #include "trailingSpace.h"
 #include "startComment.h"
+#include "indent.h"
 
 int main(){
 	//processOperators("../resources/testFileOperator");
@@ -36,6 +37,7 @@ int main(){
 	checkCharactersNumbers("../resources/testFileOperator", 10);
 	functionTestTrailingSpace("../resources/testFileOperator");
 	functionStartComment("../resources/testFileOperator");
+	functionTestIndent("../resources/testFileOperator");
 	
 	exit(EXIT_SUCCESS);
 }
