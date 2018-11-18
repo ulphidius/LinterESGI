@@ -1,4 +1,6 @@
 #include "operator.h"
+#include "commat.h"
+#include "numberLinesChar.h"
 
 int main(){
 	//processOperators("../resources/testFileOperator");
@@ -28,5 +30,7 @@ int main(){
 	// fclose(file);
 	processOperators("../resources/testFileOperator");
 	functionTestCommat("../resources/testFileOperator");
+	checkLinesNumbers("../resources/testFileOperator", 30);
+	checkCharactersNumbers("../resources/testFileOperator", 10);
 	exit(EXIT_SUCCESS);
 }

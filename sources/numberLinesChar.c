@@ -1,6 +1,6 @@
 /*
 	Creator : LAURENT Louis 20181111
-	Last change : LAURENT Louis 20181117
+	Last change : LAURENT Louis 20181118
 
 	Fichier pour les erreurs de nombre de lignes dans le fichier et de caractères par ligne.
 
@@ -25,8 +25,8 @@ void checkLinesNumbers(char* path, int limit){
 		}
 	}
 
-	if(result > limit){
-		printf("Erreur le nombre de lignes dans le fichier : %s est : %d et la limite est %d \n", path, result, limit);
+	if((result + 1) > limit){
+		printf("Erreur le nombre de lignes dans le fichier : %s est : %d et la limite est %d \n", path, result + 1, limit);
 	}
 
 	fclose(file);
@@ -34,8 +34,9 @@ void checkLinesNumbers(char* path, int limit){
 
 void checkCharactersNumbers(char* path, int limit){
 	FILE* file = NULL;
-	int result = 0;
-	char character = 0;
+	int lines = 0;
+	int i  = 0;
+	int* numberOfCharacters = NULL;
 
 	if(path == NULL || limit <= 0){
 		fprintf(stderr, "Erreur une des données en paramètre est vide \n");
@@ -44,18 +45,21 @@ void checkCharactersNumbers(char* path, int limit){
 
 	file = fopen(path, "rb");
 
-	while((character = fgetc(file)) != EOF){
-		result++;
-
-		if(result > limit){
-			printf("Erreur le nombre de caractères sur la ligne est : %d et la limite est : %d dans le fichier : %s", result, limit, path);
-		
-		}
-
-		if(character == '\n'){
-			result = 0;
-		}
+	if(file == NULL){
+		fprintf(stderr, "Erreur à l'allocation\n");
+		exit(EXIT_FAILURE);	
 	}
 
+	lines = countNumberLines(file);
+	numberOfCharacters = countNumberChar(file, lines);
+	for(i  = 0; i < lines; i++){
+		printf("%d\n", numberOfCharacters[i]);
+	}
+	for(i  = 0; i < lines; i++){
+		if(numberOfCharacters[i] > limit){
+			printf("Erreur le nombre de caractères sur la ligne est : %d et la limite est : %d dans le fichier : %s à la ligne : %d\n", numberOfCharacters[i], limit, path, i);
+		}	
+	}
+	free(numberOfCharacters);
 	fclose(file);
 }
