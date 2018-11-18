@@ -38,11 +38,18 @@ void functionTestTrailingSpace(char* path){
 }
 
 void checkTrailingSpaces(char* string, int sizeLine, int lineNumber, char* path){
-	
-	if(strlen(string) > 3){
+	int i = 0;
 
+	while(string[i] != '\0'){
+		if(strlen(string) > 3){
+			// printf("%c %ld\n", string[strlen(string) - 1], strlen(string));
+			if(string[strlen(string) - 1] == ' '){
+				printf("Erreur espace à la fin de la ligne : %d dans le fichier : %s\n", lineNumber + 1, path);
+				break;
+			}
+		}
+		i++;
 	}
-
 }
 
 void processTrailingSpace(char** strings, int* sizeLine, int numberLines, char* path){

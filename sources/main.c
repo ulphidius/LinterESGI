@@ -1,6 +1,7 @@
 #include "operator.h"
 #include "commat.h"
 #include "numberLinesChar.h"
+#include "trailingSpace.h"
 
 int main(){
 	//processOperators("../resources/testFileOperator");
@@ -32,5 +33,6 @@ int main(){
 	functionTestCommat("../resources/testFileOperator");
 	checkLinesNumbers("../resources/testFileOperator", 30);
 	checkCharactersNumbers("../resources/testFileOperator", 10);
+	functionTestTrailingSpace("../resources/testFileOperator");
 	exit(EXIT_SUCCESS);
 }
