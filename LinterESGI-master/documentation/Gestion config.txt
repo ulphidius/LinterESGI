@@ -1,0 +1,14 @@
+//If you don't want to load from a file, use "\n" or "\t" defined in myInput()
+/** Load Config **/
+ConfigKey *conf;
+conf = loadConfig("");
+
+/** Load Config2 **/
+ConfigKey *conf2;
+conf2 = loadConfig("");
+
+/** Put conf2 in conf **/
+if(fusionKey(conf, conf2)){
+	printConfig(conf);
+}
+
