@@ -31,28 +31,33 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="../sources/config.c">
+		<Unit filename="sources/config.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../sources/config.h" />
-		<Unit filename="../sources/fileUtils.c">
+		<Unit filename="sources/config.h" />
+		<Unit filename="sources/error.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../sources/fileUtils.h" />
-		<Unit filename="../sources/main.c">
+		<Unit filename="sources/error.h" />
+		<Unit filename="sources/file.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../sources/operator.c">
+		<Unit filename="sources/file.h" />
+		<Unit filename="sources/fileUtils.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../sources/operator.h" />
-		<Unit filename="../sources/stringUtils.c">
+		<Unit filename="sources/fileUtils.h" />
+		<Unit filename="sources/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../sources/stringUtils.h" />
-		<Unit filename="main.c">
+		<Unit filename="sources/operator.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="sources/operator.h" />
+		<Unit filename="sources/stringUtils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sources/stringUtils.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
