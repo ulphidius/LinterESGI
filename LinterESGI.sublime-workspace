@@ -4,12 +4,76 @@
 		"selected_items":
 		[
 			[
-				"cha",
-				"char"
+				"num",
+				"numberOfLines"
+			],
+			[
+				"fre",
+				"free"
 			],
 			[
 				"nu",
-				"numberOfSeparators"
+				"numberOfLines"
+			],
+			[
+				"numberO",
+				"numberOfLines"
+			],
+			[
+				"ca",
+				"caracter2"
+			],
+			[
+				"cara",
+				"caracter2"
+			],
+			[
+				"line",
+				"lineNumber"
+			],
+			[
+				"strin",
+				"string"
+			],
+			[
+				"check",
+				"checkTrailingSpaces"
+			],
+			[
+				"mul",
+				"multiCommentEnd"
+			],
+			[
+				"multi",
+				"multiCommentEnd"
+			],
+			[
+				"com",
+				"multiCommentEnd"
+			],
+			[
+				"str",
+				"stringLine"
+			],
+			[
+				"string",
+				"stringContent"
+			],
+			[
+				"st",
+				"startComment"
+			],
+			[
+				"mu",
+				"multiCommentEnd"
+			],
+			[
+				"m",
+				"multiComment"
+			],
+			[
+				"cha",
+				"character"
 			],
 			[
 				"cp",
@@ -32,10 +96,6 @@
 				"sizeChaine"
 			],
 			[
-				"num",
-				"numberCharacter"
-			],
-			[
 				"sin",
 				"singleOperators"
 			],
@@ -46,18 +106,6 @@
 			[
 				"ch",
 				"character"
-			],
-			[
-				"line",
-				"lineNumber"
-			],
-			[
-				"st",
-				"stockage"
-			],
-			[
-				"str",
-				"string"
 			],
 			[
 				"li",
@@ -108,10 +156,6 @@
 				"operators"
 			],
 			[
-				"fre",
-				"freeArray2"
-			],
-			[
 				"init",
 				"initArray2"
 			],
@@ -139,33 +183,6 @@
 	},
 	"buffers":
 	[
-		{
-			"contents": "{\n  \"fruits\": [\n    {\n      \"kiwis\": 3,\n      \"mangues\": 4,\n      \"pommes\": null\n    },\n    {\n      \"panier\": true\n    }\n  ],\n  \"legumes\": {\n    \"patates\": \"amandine\",\n    \"poireaux\": false\n  },\n  \"viandes\": [\n    \"poisson\",\n    \"poulet\",\n    \"boeuf\"\n  ]\n}",
-			"settings":
-			{
-				"buffer_size": 256,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/ulphidius/.config/sublime-text-3/Packages/Pretty JSON/Pretty JSON.sublime-settings",
-			"settings":
-			{
-				"buffer_size": 303,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "",
-			"file": "/home/ulphidius/.config/sublime-text-3/Packages/User/Pretty JSON.sublime-settings",
-			"file_size": -1,
-			"file_write_time": -1,
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -232,36 +249,42 @@
 	"expanded_folders":
 	[
 		"/home/ulphidius/Project/C/LinterESGI",
+		"/home/ulphidius/Project/C/LinterESGI/resources",
 		"/home/ulphidius/Project/C/LinterESGI/sources"
 	],
 	"file_history":
 	[
-		"/home/ulphidius/.config/sublime-text-3/Packages/Pretty JSON/Pretty JSON.sublime-settings",
-		"/home/ulphidius/Project/C/LinterESGI/sources/trailingSpace.h",
-		"/home/ulphidius/Project/C/LinterESGI/sources/operator.h",
-		"/home/ulphidius/Project/C/LinterESGI/sources/numberLinesChar.h",
-		"/home/ulphidius/Project/C/LinterESGI/sources/commat.h",
-		"/home/ulphidius/Project/C/LinterESGI/sources/fileUtils.h",
-		"/home/ulphidius/Project/C/LinterESGI/sources/trailingSpace.c",
-		"/home/ulphidius/Project/C/LinterESGI/sources/operator.c",
-		"/home/ulphidius/Project/C/LinterESGI/sources/numberLinesChar.c",
-		"/home/ulphidius/Project/C/LinterESGI/sources/main.c",
-		"/home/ulphidius/Project/C/LinterESGI/sources/fileUtils.c",
 		"/home/ulphidius/Project/C/LinterESGI/sources/commat.c",
-		"/home/ulphidius/Project/C/LinterESGI/sources/config.c",
+		"/home/ulphidius/Project/C/LinterESGI/sources/fileUtils.c",
+		"/home/ulphidius/Project/C/LinterESGI/sources/operator.c",
+		"/home/ulphidius/Project/C/LinterESGI/sources/stringUtils.c",
+		"/home/ulphidius/Project/C/LinterESGI/sources/main.c",
+		"/home/ulphidius/Project/C/LinterESGI/sources/commat.h",
 		"/home/ulphidius/Project/C/LinterESGI/resources/testFileOperator",
-		"/home/ulphidius/Project/C/LinterESGI/sources/config.h",
+		"/home/ulphidius/Project/C/LinterESGI/sources/trailingSpace.h",
+		"/home/ulphidius/Project/C/LinterESGI/sources/stringUtils.h",
+		"/home/ulphidius/Project/C/LinterESGI/sources/indent.h",
+		"/home/ulphidius/Project/C/LinterESGI/sources/indent.c",
+		"/home/ulphidius/Project/C/LinterESGI/sources/trailingSpace.c",
+		"/home/ulphidius/Project/C/LinterESGI/sources/numberLinesChar.h",
+		"/home/ulphidius/Project/C/LinterESGI/sources/numberLinesChar.c",
 		"/home/ulphidius/Documents/Cours/Théories des langages/Exercices/CFGgram.py",
+		"/home/ulphidius/Project/C/LinterESGI/sources/startComment.h",
+		"/home/ulphidius/Project/C/LinterESGI/sources/startComment.c",
+		"/home/ulphidius/.config/sublime-text-3/Packages/Pretty JSON/Pretty JSON.sublime-settings",
+		"/home/ulphidius/.config/sublime-text-3/Packages/User/Pretty JSON.sublime-settings",
+		"/home/ulphidius/Project/C/LinterESGI/sources/operator.h",
+		"/home/ulphidius/Project/C/LinterESGI/sources/fileUtils.h",
+		"/home/ulphidius/Project/C/LinterESGI/sources/config.c",
+		"/home/ulphidius/Project/C/LinterESGI/sources/config.h",
 		"/home/ulphidius/.config/sublime-text-3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
 		"/home/ulphidius/.config/sublime-text-3/Packages/User/SublimeLinter.sublime-settings",
 		"/home/ulphidius/Project/C/ESGITemplate/INSTALL/makefile",
 		"/home/ulphidius/Project/Python/exerciceTheorie.py",
 		"/home/ulphidius/.config/sublime-text-3/Packages/Package Control/Package Control.sublime-settings",
-		"/home/ulphidius/Project/C/LinterESGI/sources/stringUtils.c",
 		"/home/ulphidius/Project/C/LinterESGI/.gitignore",
 		"/home/ulphidius/Project/C/LinterESGI/sources/.h\"",
 		"/home/ulphidius/Documents/Cours/RO IA/cours1.txt",
-		"/home/ulphidius/Project/C/LinterESGI/sources/stringUtils.h",
 		"/home/ulphidius/Project/C/ESGITemplate/sources/libraries.h",
 		"/home/ulphidius/Project/C/ESGITemplate/sources/menu.c",
 		"/home/ulphidius/Project/C/ESGITemplate/sources/menu.h",
@@ -279,9 +302,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 102.0,
 		"where_history":
 		[
+			""
 		]
 	},
 	"find_state":
@@ -289,6 +313,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"processIndent"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -305,99 +330,6 @@
 	},
 	"groups":
 	[
-		{
-			"selected": 2,
-			"sheets":
-			[
-				{
-					"buffer": 0,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 256,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								148,
-								148
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/home/ulphidius/.config/sublime-text-3/Packages/Pretty JSON/Pretty JSON.sublime-settings",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 303,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/home/ulphidius/.config/sublime-text-3/Packages/User/Pretty JSON.sublime-settings",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
-			]
-		},
 		{
 			"sheets":
 			[
@@ -421,18 +353,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.596743469672,
 			1.0
 		],
 		"rows":
@@ -472,6 +397,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"",
+				"~/Project/C/LinterESGI/LinterESGI.sublime-project"
+			]
 		],
 		"width": 380.0
 	},

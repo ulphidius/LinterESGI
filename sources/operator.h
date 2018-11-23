@@ -16,8 +16,8 @@
 #include "stringUtils.h"
 #include "fileUtils.h"
 
-// Fonction de vérification de validité de la syntaxe pour les opérateurs pour une ligne, il prend en paramètreq la chaine de caractères à traiter, le nombre de caractères et le numéro de la ligne 
-void checkOperators(char*, int, int);
+// Fonction de vérification de validité de la syntaxe pour les opérateurs pour une ligne, il prend en paramètreq la chaine de caractères à traiter, le nombre de caractères, le numéro de la ligne et nom du fichier 
+void checkOperators(char*, int, int, char*);
 
 // Fonction de vérification des lignes d'un fichier, il prend en paramètre le path du fichier à vérifier.
 void processOperators(char*);

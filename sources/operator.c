@@ -8,7 +8,7 @@
 
 #include "operator.h"
 
-void checkOperators(char* string, int sizeChaine, int lineNumber){
+void checkOperators(char* string, int sizeChaine, int lineNumber, char* path){
 	int i = 0;
 	int y = 0;
 	int sizeSingle = 15;
@@ -25,59 +25,59 @@ void checkOperators(char* string, int sizeChaine, int lineNumber){
 					if(i == 0 || i == (sizeChaine - 1)){
 						//printf("string : %s detected : %c position : %d\n",string, singleOperators[y], i);
 						// printf("string : %s detected : %c\n",string, singleOperators[y]);
-						fprintf(stdout, "Syntaxe error on line with operator : %c at line : %d\n", singleOperators[y], lineNumber + 1);
+						fprintf(stdout, "Syntaxe error on line with operator : %c at line : %d inside file : %s\n", singleOperators[y], lineNumber + 1, path);
 					}else if(string[i - 1] != ' ' || string[i + 1] != ' '){
 						// printf("string : %s detected : %c\n",string, singleOperators[y]);
 						switch(singleOperators[y]){
 							case '+':
 								if(string[i + 1] == '='){
 									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : += at line : %d\n", lineNumber + 1);
+										fprintf(stdout, "Syntaxe error on line with operator : += at line : %d inside file : %s\n", lineNumber + 1, path);
 										i += 2;
 									}else{
 										i += 2;
 									}
 								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : + at line : %d\n", lineNumber + 1);
+									fprintf(stdout, "Syntaxe error on line with operator : + at line : %d inside file : %s\n ", lineNumber + 1, path);
 								}
 								break;
 							
 							case '-':
 								if(string[i + 1] == '='){
 									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : -= at line : %d\n", lineNumber + 1);
+										fprintf(stdout, "Syntaxe error on line with operator : -= at line : %d inside file : %s\n", lineNumber + 1, path);
 										i += 2;
 									}else{
 										i += 2;
 									}
 								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : - at line : %d\n", lineNumber + 1);
+									fprintf(stdout, "Syntaxe error on line with operator : - at line : %d inside file : %s\n", lineNumber + 1, path);
 								}
 								break;
 							
 							case '*':
 								if(string[i + 1] == '='){
 									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : *= at line : %d\n", lineNumber + 1);
+										fprintf(stdout, "Syntaxe error on line with operator : *= at line : %d inside file : %s\n", lineNumber + 1, path);
 										i += 2;
 									}else{
 										i += 2;
 									}
 								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : * at line : %d\n", lineNumber + 1);
+									fprintf(stdout, "Syntaxe error on line with operator : * at line : %d inside file : %s\n", lineNumber + 1, path);
 								}
 								break;
 							
 							case '/':
 								if(string[i + 1] == '='){
 									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : /= at line : %d\n", lineNumber + 1);
+										fprintf(stdout, "Syntaxe error on line with operator : /= at line : %d inside file : %s\n", lineNumber + 1, path);
 										i += 2;
 									}else{
 										i += 2;
 									}
 								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : / at line : %d\n", lineNumber + 1);
+									fprintf(stdout, "Syntaxe error on line with operator : / at line : %d inside file : %s\n", lineNumber + 1, path);
 								}
 								break;
 							
@@ -85,17 +85,17 @@ void checkOperators(char* string, int sizeChaine, int lineNumber){
 								if(string[i + 1] == '<'){
 									if(string[i + 2] == '='){
 										if(string[i - 1] != ' ' || string[i + 3] != ' '){
-											fprintf(stdout, "Syntaxe error on line with operator : <<= at line : %d\n", lineNumber + 1);
+											fprintf(stdout, "Syntaxe error on line with operator : <<= at line : %d inside file : %s\n", lineNumber + 1, path);
 										}
 										i += 3;
 									}else if(string[i - 1] != ' ' || (string[i + 2] != ' ' && string[i + 2] != '=')){
-										fprintf(stdout, "Syntaxe error on line with operator : << at line : %d\n", lineNumber + 1);
+										fprintf(stdout, "Syntaxe error on line with operator : << at line : %d inside file : %s\n", lineNumber + 1, path);
 										i += 2;
 									}else{
 										i += 2;
 									}
 								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : > at line : %d\n", lineNumber + 1);
+									fprintf(stdout, "Syntaxe error on line with operator : > at line : %d inside file : %s\n", lineNumber + 1, path);
 								}
 								break;
 							
@@ -103,109 +103,109 @@ void checkOperators(char* string, int sizeChaine, int lineNumber){
 								if(string[i + 1] == '>'){
 									if(string[i + 2] == '='){
 										if(string[i - 1] != ' ' || string[i + 3] != ' '){
-											fprintf(stdout, "Syntaxe error on line with operator : >>= at line : %d\n", lineNumber + 1);
+											fprintf(stdout, "Syntaxe error on line with operator : >>= at line : %d inside file : %s\n", lineNumber + 1, path);
 										}
 										i += 3;
 									}else if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : >> at line : %d\n", lineNumber + 1);
+										fprintf(stdout, "Syntaxe error on line with operator : >> at line : %d inside file : %s\n", lineNumber + 1, path);
 										i += 2;
 									}else{
 										i += 2;
 									}
 								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : > at line : %d\n", lineNumber + 1);
+									fprintf(stdout, "Syntaxe error on line with operator : > at line : %d inside file : %s\n", lineNumber + 1, path);
 								}
 								break;
 							
 							case '!':
 								if(string[i + 1] == '='){
 									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : != at line : %d\n", lineNumber + 1);
+										fprintf(stdout, "Syntaxe error on line with operator : != at line : %d inside file : %s\n", lineNumber + 1, path);
 										i += 2;
 									}else{
 										i += 2;
 									}
 								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : ! at line : %d\n", lineNumber + 1);
+									fprintf(stdout, "Syntaxe error on line with operator : ! at line : %d inside file : %s\n", lineNumber + 1, path);
 								}
 								break;
 
 							case '^':
 								if(string[i + 1] == '='){
 									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : ^= at line : %d\n", lineNumber + 1);
+										fprintf(stdout, "Syntaxe error on line with operator : ^= at line : %d inside file : %s\n", lineNumber + 1, path);
 										i += 2;
 									}else{
 										i += 2;
 									}
 								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : ^ at line : %d\n", lineNumber + 1);
+									fprintf(stdout, "Syntaxe error on line with operator : ^ at line : %d inside file : %s\n", lineNumber + 1, path);
 								}
 								break;
 							
 							case '=':
 								if(string[i + 1] == '='){
 									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : == at line : %d\n", lineNumber + 1);
+										fprintf(stdout, "Syntaxe error on line with operator : == at line : %d inside file : %s\n", lineNumber + 1, path);
 										i += 2;
 									}else{
 										i += 2;
 									}
 								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : = at line : %d\n", lineNumber + 1);
+									fprintf(stdout, "Syntaxe error on line with operator : = at line : %d inside file : %s\n", lineNumber + 1, path);
 								}
 								break;
 							
 							case '&':
 								if(string[i + 1] == '&'){
 									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : && at line : %d\n", lineNumber + 1);
+										fprintf(stdout, "Syntaxe error on line with operator : && at line : %d inside file : %s\n", lineNumber + 1, path);
 										i += 2;
 									}else{
 										i += 2;
 									}
 								}else if(string[i + 1] == '='){
 									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : &= at line : %d\n", lineNumber + 1);
+										fprintf(stdout, "Syntaxe error on line with operator : &= at line : %d inside file : %s\n", lineNumber + 1, path);
 										i += 2;
 									}else{
 										i += 2;
 									}
 								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : & at line : %d\n", lineNumber + 1);
+									fprintf(stdout, "Syntaxe error on line with operator : & at line : %d inside file : %s\n", lineNumber + 1, path);
 								}
 								break;
 							
 							case '|':
 								if(string[i + 1] == '|'){
 									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : || at line : %d\n", lineNumber + 1);
+										fprintf(stdout, "Syntaxe error on line with operator : || at line : %d inside file : %s\n", lineNumber + 1, path);
 										i += 2;
 									}else{
 										i += 2;
 									}
 								}else if(string[i + 1] == '='){
 									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : |= at line : %d\n", lineNumber + 1);
+										fprintf(stdout, "Syntaxe error on line with operator : |= at line : %d inside file : %s\n", lineNumber + 1, path);
 										i += 2;
 									}else{
 										i += 2;
 									}
 								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : | at line : %d\n", lineNumber + 1);
+									fprintf(stdout, "Syntaxe error on line with operator : | at line : %d inside file : %s\n", lineNumber + 1, path);
 								}
 								break;
 							
 							case '%':
 								if(string[i + 1] == '='){
 									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : %= at line : %d\n", lineNumber + 1);
+										fprintf(stdout, "Syntaxe error on line with operator : %s at line : %d inside file : %s\n", "%=", lineNumber + 1, path);
 										i += 2;
 									}else{
 										i += 2;
 									}
 								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : %c at line : %d\n", singleOperators[14], lineNumber + 1);
+									fprintf(stdout, "Syntaxe error on line with operator : %c at line : %d inside file : %s\n", singleOperators[14], lineNumber + 1, path);
 								}
 								break;
 						}
@@ -246,7 +246,7 @@ void processOperators(char* path){
 	// }
 
 	for(i = 0; i < numberOfLines; i++){
-		checkOperators(strings[i], numberCharacter[i], i);
+		checkOperators(strings[i], numberCharacter[i], i, path);
 	}
 
 	freeArray2((void**)strings, numberOfLines);

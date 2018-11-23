@@ -33,8 +33,8 @@ int main(){
 	// fclose(file);
 	processOperators("../resources/testFileOperator");
 	functionTestCommat("../resources/testFileOperator");
-	checkLinesNumbers("../resources/testFileOperator", 30);
-	checkCharactersNumbers("../resources/testFileOperator", 10);
+	checkLinesNumbers("../resources/testFileOperator", atoi("30"));
+	checkCharactersNumbers("../resources/testFileOperator", atoi("10"));
 	functionTestTrailingSpace("../resources/testFileOperator");
 	functionStartComment("../resources/testFileOperator");
 	functionTestIndent("../resources/testFileOperator");
