@@ -1,6 +1,6 @@
 /*
 	Creator : LAURENT Louis 20181015
-	Last change : LAURENT Louis 20181118
+	Last change : LAURENT Louis 20181125
 
 	Fichier pour la vérification de syntaxe des operateurs.
 
@@ -30,183 +30,51 @@ void checkOperators(char* string, int sizeChaine, int lineNumber, char* path){
 						// printf("string : %s detected : %c\n",string, singleOperators[y]);
 						switch(singleOperators[y]){
 							case '+':
-								if(string[i + 1] == '='){
-									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : += at line : %d inside file : %s\n", lineNumber + 1, path);
-										i += 2;
-									}else{
-										i += 2;
-									}
-								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : + at line : %d inside file : %s\n ", lineNumber + 1, path);
-								}
+								plusCase(string, &i, lineNumber, path);	
 								break;
 							
 							case '-':
-								if(string[i + 1] == '='){
-									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : -= at line : %d inside file : %s\n", lineNumber + 1, path);
-										i += 2;
-									}else{
-										i += 2;
-									}
-								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : - at line : %d inside file : %s\n", lineNumber + 1, path);
-								}
+								minusCase(string, &i, lineNumber, path);
 								break;
 							
 							case '*':
-								if(string[i + 1] == '='){
-									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : *= at line : %d inside file : %s\n", lineNumber + 1, path);
-										i += 2;
-									}else{
-										i += 2;
-									}
-								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : * at line : %d inside file : %s\n", lineNumber + 1, path);
-								}
+								timesCase(string, &i, lineNumber, path);							
 								break;
 							
 							case '/':
-								if(string[i + 1] == '='){
-									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : /= at line : %d inside file : %s\n", lineNumber + 1, path);
-										i += 2;
-									}else{
-										i += 2;
-									}
-								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : / at line : %d inside file : %s\n", lineNumber + 1, path);
-								}
+								divideCase(string, &i, lineNumber, path);
 								break;
 							
 							case '<':
-								if(string[i + 1] == '<'){
-									if(string[i + 2] == '='){
-										if(string[i - 1] != ' ' || string[i + 3] != ' '){
-											fprintf(stdout, "Syntaxe error on line with operator : <<= at line : %d inside file : %s\n", lineNumber + 1, path);
-										}
-										i += 3;
-									}else if(string[i - 1] != ' ' || (string[i + 2] != ' ' && string[i + 2] != '=')){
-										fprintf(stdout, "Syntaxe error on line with operator : << at line : %d inside file : %s\n", lineNumber + 1, path);
-										i += 2;
-									}else{
-										i += 2;
-									}
-								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : > at line : %d inside file : %s\n", lineNumber + 1, path);
-								}
+								lowerCase(string, &i, lineNumber, path);
 								break;
 							
 							case '>':
-								if(string[i + 1] == '>'){
-									if(string[i + 2] == '='){
-										if(string[i - 1] != ' ' || string[i + 3] != ' '){
-											fprintf(stdout, "Syntaxe error on line with operator : >>= at line : %d inside file : %s\n", lineNumber + 1, path);
-										}
-										i += 3;
-									}else if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : >> at line : %d inside file : %s\n", lineNumber + 1, path);
-										i += 2;
-									}else{
-										i += 2;
-									}
-								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : > at line : %d inside file : %s\n", lineNumber + 1, path);
-								}
+								greaterCase(string, &i, lineNumber, path);
 								break;
 							
 							case '!':
-								if(string[i + 1] == '='){
-									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : != at line : %d inside file : %s\n", lineNumber + 1, path);
-										i += 2;
-									}else{
-										i += 2;
-									}
-								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : ! at line : %d inside file : %s\n", lineNumber + 1, path);
-								}
+								exclamationMarkCase(string, &i, lineNumber, path);
 								break;
 
 							case '^':
-								if(string[i + 1] == '='){
-									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : ^= at line : %d inside file : %s\n", lineNumber + 1, path);
-										i += 2;
-									}else{
-										i += 2;
-									}
-								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : ^ at line : %d inside file : %s\n", lineNumber + 1, path);
-								}
+								squareCase(string, &i, lineNumber, path);
 								break;
 							
 							case '=':
-								if(string[i + 1] == '='){
-									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : == at line : %d inside file : %s\n", lineNumber + 1, path);
-										i += 2;
-									}else{
-										i += 2;
-									}
-								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : = at line : %d inside file : %s\n", lineNumber + 1, path);
-								}
+								equalCase(string, &i, lineNumber, path);
 								break;
 							
 							case '&':
-								if(string[i + 1] == '&'){
-									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : && at line : %d inside file : %s\n", lineNumber + 1, path);
-										i += 2;
-									}else{
-										i += 2;
-									}
-								}else if(string[i + 1] == '='){
-									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : &= at line : %d inside file : %s\n", lineNumber + 1, path);
-										i += 2;
-									}else{
-										i += 2;
-									}
-								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : & at line : %d inside file : %s\n", lineNumber + 1, path);
-								}
+								andCase(string, &i, lineNumber, path);								
 								break;
 							
 							case '|':
-								if(string[i + 1] == '|'){
-									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : || at line : %d inside file : %s\n", lineNumber + 1, path);
-										i += 2;
-									}else{
-										i += 2;
-									}
-								}else if(string[i + 1] == '='){
-									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : |= at line : %d inside file : %s\n", lineNumber + 1, path);
-										i += 2;
-									}else{
-										i += 2;
-									}
-								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : | at line : %d inside file : %s\n", lineNumber + 1, path);
-								}
+								orCase(string, &i, lineNumber, path);
 								break;
 							
 							case '%':
-								if(string[i + 1] == '='){
-									if(string[i - 1] != ' ' || string[i + 2] != ' '){
-										fprintf(stdout, "Syntaxe error on line with operator : %s at line : %d inside file : %s\n", "%=", lineNumber + 1, path);
-										i += 2;
-									}else{
-										i += 2;
-									}
-								}else{
-									fprintf(stdout, "Syntaxe error on line with operator : %c at line : %d inside file : %s\n", singleOperators[14], lineNumber + 1, path);
-								}
+								moduloCase(string, &i, lineNumber, path);
 								break;
 						}
 					}	
@@ -251,4 +119,203 @@ void processOperators(char* path){
 
 	freeArray2((void**)strings, numberOfLines);
 	free(numberCharacter);
+}
+
+void errorsGestionnary(char* operator, int lineNumber, char* path){
+	fprintf(stdout, "Syntaxe error on line with operator : %s at line : %d inside file : %s\n", operator, lineNumber, path);
+
+}
+
+void plusCase(char* string, int* position, int lineNumber, char* path){
+	if(string[*position + 1] == '='){
+		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
+			errorsGestionnary("+=", lineNumber + 1, path);
+			*position += 2;
+		}else{
+			*position += 2;
+		}
+	}else{
+		errorsGestionnary("+", lineNumber + 1, path);
+	}
+}
+
+void minusCase(char* string, int* position, int lineNumber, char* path){
+	if(string[*position + 1] == '='){
+		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
+			errorsGestionnary("-=", lineNumber + 1, path);
+			*position += 2;
+		}else{
+			*position += 2;
+		}
+	}else{
+		errorsGestionnary("-", lineNumber + 1, path);
+	}
+}
+
+void timesCase(char* string, int* position, int lineNumber, char* path){
+	if(string[*position + 1] == '='){
+		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
+			errorsGestionnary("*=", lineNumber + 1, path);
+			*position += 2;
+		}else{
+			*position += 2;
+		}
+	}else{
+		errorsGestionnary("*", lineNumber + 1, path);
+	}
+}
+
+void divideCase(char* string, int* position, int lineNumber, char* path){
+	if(string[*position + 1] == '='){
+		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
+			errorsGestionnary("/=", lineNumber + 1, path);
+			*position += 2;
+		}else{
+			*position += 2;
+		}
+	}else{
+		errorsGestionnary("/", lineNumber + 1, path);
+	}
+}
+
+void greaterCase(char* string, int* position, int lineNumber, char* path){
+	if(string[*position + 1] == '>'){
+		if(string[*position + 2] == '='){
+			if(string[*position - 1] != ' ' || string[*position + 3] != ' '){
+				errorsGestionnary(">>=", lineNumber + 1, path);
+			}
+			*position += 3;
+		}else if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
+			errorsGestionnary(">>", lineNumber + 1, path);
+			*position += 2;
+		}else{
+			*position += 2;
+		}
+	}else if(string[*position + 1] == '='){
+		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
+			errorsGestionnary(">=", lineNumber + 1, path);
+			*position += 2;
+		}else{
+			*position += 2;
+		}
+	}else{
+		errorsGestionnary(">", lineNumber + 1, path);
+	}
+}
+
+void lowerCase(char* string, int* position, int lineNumber, char* path){
+	if(string[*position + 1] == '<'){
+		if(string[*position + 2] == '='){
+			if(string[*position - 1] != ' ' || string[*position + 3] != ' '){
+				errorsGestionnary("<<=", lineNumber + 1, path);
+			}
+			*position += 3;
+		}else if(string[*position - 1] != ' ' || (string[*position + 2] != ' ')){
+			errorsGestionnary("<<", lineNumber + 1, path);
+			*position += 2;
+		}else{
+			*position += 2;
+		}
+	}else if(string[*position + 1] == '='){
+		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
+			errorsGestionnary("<=", lineNumber + 1, path);
+			*position += 2;
+		}else{
+			*position += 2;
+		}
+	}else{
+		errorsGestionnary("<", lineNumber + 1, path);
+	}	
+}
+
+void exclamationMarkCase(char* string, int* position, int lineNumber, char* path){
+	if(string[*position + 1] == '='){
+		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
+			errorsGestionnary("!=", lineNumber + 1, path);
+			*position += 2;
+		}else{
+			*position += 2;
+		}
+	}else{
+		errorsGestionnary("!", lineNumber + 1, path);
+	}
+}
+
+void squareCase(char* string, int* position, int lineNumber, char* path){
+	if(string[*position + 1] == '='){
+		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
+			errorsGestionnary("^⁼", lineNumber + 1, path);
+			*position += 2;
+		}else{
+			*position += 2;
+		}
+	}else{
+		errorsGestionnary("^", lineNumber + 1, path);
+	}
+}
+
+void equalCase(char* string, int* position, int lineNumber, char* path){
+	if(string[*position + 1] == '='){
+		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
+			errorsGestionnary("==", lineNumber + 1, path);
+			*position += 2;
+		}else{
+			*position += 2;
+		}
+	}else{
+		errorsGestionnary("=", lineNumber + 1, path);
+	}	
+}
+
+void andCase(char* string, int* position, int lineNumber, char* path){
+	if(string[*position + 1] == '&'){
+		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
+			errorsGestionnary("&&", lineNumber + 1, path);		
+			*position += 2;
+		}else{
+			*position += 2;
+		}
+	}else if(string[*position + 1] == '='){
+		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
+			errorsGestionnary("&=", lineNumber + 1, path);		
+			*position += 2;
+		}else{
+			*position += 2;
+		}
+	}else{
+		errorsGestionnary("&", lineNumber + 1, path);	
+	}
+}
+
+void orCase(char* string, int* position, int lineNumber, char* path){
+	if(string[*position + 1] == '|'){
+		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
+			errorsGestionnary("||", lineNumber + 1, path);
+			*position += 2;
+		}else{
+			*position += 2;
+		}
+	}else if(string[*position + 1] == '='){
+		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
+			errorsGestionnary("|=", lineNumber + 1, path);
+			*position += 2;
+		}else{
+			*position += 2;
+		}
+	}else{
+		errorsGestionnary("|", lineNumber + 1, path);
+	}
+}
+
+void moduloCase(char* string, int* position, int lineNumber, char* path){
+	if(string[*position + 1] == '='){
+		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
+			errorsGestionnary("%=", lineNumber + 1, path);
+			*position += 2;
+		}else{
+			*position += 2;
+		}
+	}else{
+		errorsGestionnary("%", lineNumber + 1, path);
+	}
 }
