@@ -43,10 +43,10 @@ void checkCommats(char* string, int sizeLine, int numberLines, char* path){
 
 	for(y = 0; y < sizeLine; y++){
 		if(y == (sizeLine - 1) && string[y] == toCheck){
-			fprintf(stdout, "Syntaxe error on line with operator : %c on file : %s at line : %d on character number : %d\n", toCheck, path, numberLines + 1, y + 1);
+			fprintf(stdout, "Syntaxe error on line with operator : %c at line : %d on file : %s on character number : %d\n", toCheck, numberLines + 1, path , y + 1);
 		}else{
 			if(string[y] == toCheck && string[y + 1] != ' '){
-				fprintf(stdout, "Syntaxe error on line with operator : %c on file : %s at line : %d on character number : %d\n", toCheck, path, numberLines + 1, y + 1);
+				fprintf(stdout, "Syntaxe error on line with operator : %c at line : %d on file : %s on character number : %d\n", toCheck, numberLines + 1, path, y + 1);
 			}
 		}
 	}
