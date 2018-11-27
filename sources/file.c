@@ -6,10 +6,11 @@
 **  Description : functions used to read .c files
 */
 #include "file.h"
+#include <dirent.h>
 
 int isExcludedFile(char *file, ConfigKey *conf){
     ConfigKey *current;
-    
+
     conf = conf->head;
     current = asConfigKeyName("excludedFiles", conf);
     if(current == NULL){
@@ -24,26 +25,31 @@ int isExcludedFile(char *file, ConfigKey *conf){
     }
     return FALSE;
 }
-/*
-void readFolder(char *name, int indent){
-    DIR *dir;
-    struct dirent *entry;
 
-    if (!(dir = opendir(name)))
-        return;
+void readFolder(char *name){
+    int i;
+    DIR *dp;
+    struct dirent *ep;
 
-    while ((entry = readdir(dir)) != NULL) {
-        if (entry->d_type == DT_DIR) {
-            char path[1024];
-            if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
-                continue;
-            snprintf(path, sizeof(path), "%s/%s", name, entry->d_name);
-            printf("%*s[%s]\n", indent, "", entry->d_name);
-            readFolder(path, indent + 2);
-        } else {
-            printf("%*s- %s\n", indent, "", entry->d_name);
+    dp = opendir (name);
+    if (dp != NULL)
+    {
+        i = 0;
+        while (ep = readdir (dp)){
+            //bvalue = bvalue->head;
+            while(bvalue->next != null){
+                if (strcmp(ep->d_name,current)){
+                    i = 1;
+                    break;
+                }
+                bvalue = bvalue->next;
+            }
+            puts (ep->d_name);
         }
+        (void) closedir (dp);
     }
-    closedir(dir);
+    else{
+        perror ("Couldn't open the directory");
+    }
+    return 0;
 }
-*/

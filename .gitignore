@@ -5,3 +5,4 @@ Linter.layout
 LinterESGI.sublime-project
 LinterESGI.sublime-workspace
 bin/*
+obj/Debug/*

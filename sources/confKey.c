@@ -12,6 +12,24 @@
 
 
 /**
+ * Initialisation of a classic configuration key
+ **/
+ConfigKey* initConfigKey(char* nameKey){
+	ConfigKey* ll;
+
+	ll = malloc(sizeof(ConfigKey));
+	ll->name = malloc(sizeof(char) * (strlen(nameKey) + 2));
+	sprintf(ll->name, "%s", nameKey);
+    ll->bValue = NULL;
+    ll->value = NULL;
+    ll->cValue = NULL;
+    ll->next = NULL;
+    ll->head = NULL;
+
+    return ll;
+}
+
+/**
  * get a specific configuration parameter
  **/
 ConfigKey* getConfiguration(char* ctext){
@@ -327,24 +345,6 @@ void freeConfig(ConfigKey* key){
     if(key != key->head)
         free(key);
     //printf(": done !\n");
-}
-
-/**
- * Initialisation of a classic configuration key
- **/
-ConfigKey* initConfigKey(char* nameKey){
-	ConfigKey* ll;
-
-	ll = malloc(sizeof(ConfigKey));
-	ll->name = malloc(sizeof(char) * (strlen(nameKey) + 2));
-	sprintf(ll->name, "%s", nameKey);
-    ll->bValue = NULL;
-    ll->value = NULL;
-    ll->cValue = NULL;
-    ll->next = NULL;
-    ll->head = NULL;
-
-    return ll;
 }
 
 

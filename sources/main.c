@@ -1,43 +1,38 @@
-#include "operator.h"
+
 #include "commat.h"
+#include "config.h"
+#include "confKey.h"
+#include "error.h"
+#include "file.h"
 #include "numberLinesChar.h"
 #include "trailingSpace.h"
 #include "startComment.h"
 #include "indent.h"
 
 int main(){
-	//processOperators("../resources/testFileOperator");
-	// FILE* file = NULL;
-	// char character = 0;
-	// file = fopen("../resources/testFileOperator", "rb");
-	// if(file == NULL){
-	// 	fprintf(stderr, "Erreur ouverture du fichier \n");
-	// }
-	// fseek(file, 0, SEEK_SET);
-	// while(fgetc(file) != EOF){
-		
-	// 	printf("%ld\n", ftell(file));
-	// 	fgetc(file);
-	// 	printf("%ld\n", ftell(file));
-	// 	fseek(file, -1, ftell(file));
-	// 	printf("%ld\n", ftell(file));
-	// }
 
-	// fclose(file);
-	// char * string = "../resources/testFileOperator";
-	// int test1 = 0;
+int i;
 
-	// test1 = countNumberLines(file);
-	// countNumberChar(file, test1);
+    ConfigKey *conf;
+    conf = loadConfig("\n");
 
-	// fclose(file);
-	processOperators("../resources/testFileOperator");
-	functionTestCommat("../resources/testFileOperator");
-	checkLinesNumbers("../resources/testFileOperator", atoi("30"));
-	checkCharactersNumbers("../resources/testFileOperator", atoi("10"));
-	functionTestTrailingSpace("../resources/testFileOperator");
-	functionStartComment("../resources/testFileOperator");
-	functionTestIndent("../resources/testFileOperator");
-	
-	exit(EXIT_SUCCESS);
+    char **tab_excluded = malloc(sizeof(char*)*5);
+    for(i = 0; i < 5; i ++){
+        tab_excluded[i] = malloc(sizeof(char) * 200);
+    }
+    sprintf(tab_excluded[0], ".git");
+    sprintf(tab_excluded[1], "INSTALL");
+    sprintf(tab_excluded[2], "aikongroi.c");
+    sprintf(tab_excluded[3], "gigeegt.c");
+    sprintf(tab_excluded[4], "ssssf.c");
+
+    readFolder(".");
+
+
+    for(i = 0; i < 5; i ++){
+        free(tab_excluded[i]);
+    }
+    free(tab_excluded);
+
+	return 0;
 }

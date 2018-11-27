@@ -10,6 +10,9 @@
 #include <stdlib.h>
 #include "config.h"
 
+char *strtok_r(char * n , const char * c , char ** ce){
+return NULL;}
+
 /**
  * Use as FILE* .lconf for test
  **/
@@ -37,6 +40,50 @@ int getFileSize(FILE *fp){
     size = ftell(fp);
     fseek(fp, 0, SEEK_SET);
     return (int)size;
+}
+
+/**
+ * Initialisation of a basic value (as VALUE)
+ **/
+ConfigBasicValue* initConfigBasicValue(char* name){
+	ConfigBasicValue* ll;
+
+	ll = malloc(sizeof(ConfigBasicValue));
+	ll->content = malloc(strlen(name));
+	sprintf(ll->content, "%s", name);
+	ll->next = NULL;
+    ll->head = NULL;
+    return ll;
+}
+
+/**
+ * Initialisation of a basic value (as - VALUE)
+ **/
+ConfigValue* initConfigValue(char* name){
+	ConfigValue* ll;
+
+	ll = malloc(sizeof(ConfigValue));
+	ll->content = malloc(strlen(name));
+	sprintf(ll->content, "%s", name);
+	ll->next = NULL;
+    ll->head = NULL;
+    return ll;
+}
+
+/**
+ * Initialisation of a content value (as - CONTENT = VALUE)
+ **/
+ConfigContentValue* initConfigContentValue(char* name, char* value){
+	ConfigContentValue* ll;
+
+	ll = malloc(sizeof(ConfigContentValue));
+	ll->content = malloc(strlen(name));
+	sprintf(ll->content, "%s", name);
+	ll->value = malloc(strlen(value));
+	sprintf(ll->value, "%s", value);
+	ll->next = NULL;
+    ll->head = NULL;
+    return ll;
 }
 
 /**
@@ -322,50 +369,6 @@ void freeConfigContentValue(ConfigContentValue* val){
     }
     free(val);
     //printf("-c-");
-}
-
-/**
- * Initialisation of a basic value (as VALUE)
- **/
-ConfigBasicValue* initConfigBasicValue(char* name){
-	ConfigBasicValue* ll;
-
-	ll = malloc(sizeof(ConfigBasicValue));
-	ll->content = malloc(strlen(name));
-	sprintf(ll->content, "%s", name);
-	ll->next = NULL;
-    ll->head = NULL;
-    return ll;
-}
-
-/**
- * Initialisation of a basic value (as - VALUE)
- **/
-ConfigValue* initConfigValue(char* name){
-	ConfigValue* ll;
-
-	ll = malloc(sizeof(ConfigValue));
-	ll->content = malloc(strlen(name));
-	sprintf(ll->content, "%s", name);
-	ll->next = NULL;
-    ll->head = NULL;
-    return ll;
-}
-
-/**
- * Initialisation of a content value (as - CONTENT = VALUE)
- **/
-ConfigContentValue* initConfigContentValue(char* name, char* value){
-	ConfigContentValue* ll;
-
-	ll = malloc(sizeof(ConfigContentValue));
-	ll->content = malloc(strlen(name));
-	sprintf(ll->content, "%s", name);
-	ll->value = malloc(strlen(value));
-	sprintf(ll->value, "%s", value);
-	ll->next = NULL;
-    ll->head = NULL;
-    return ll;
 }
 
 /**

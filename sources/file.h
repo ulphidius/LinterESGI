@@ -9,25 +9,24 @@
 /**
  * Lib
  **/
- 
+
 #include "config.h"
-#include <dirent.h>
- 
- 
+
+
 /**
  * Define
  **/
 #define TRUE 1
 #define FALSE 0
- 
+
 /**
  * Structure
  **/
- 
- 
- 
+
+
+
 /**
  * Functions
  **/
 int isExcludedFile(char *file, ConfigKey *conf);
-void readFolder(char *name, int indent);
+void readFolder(char *name);
