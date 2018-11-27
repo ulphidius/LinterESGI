@@ -1,8 +1,8 @@
 gmon.out
 Linter.cbp
 Linter.depend
-Linter.layout
 LinterESGI.sublime-project
 LinterESGI.sublime-workspace
 bin/*
 obj/Debug/*
+*.layout

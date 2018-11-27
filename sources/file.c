@@ -36,15 +36,17 @@ void readFolder(char *name){
     {
         i = 0;
         while (ep = readdir (dp)){
-            //bvalue = bvalue->head;
+            /*bvalue = bvalue->head;
             while(bvalue->next != null){
                 if (strcmp(ep->d_name,current)){
                     i = 1;
                     break;
                 }
                 bvalue = bvalue->next;
+            }*/
+            if(i != 1){
+                puts (ep->d_name);
             }
-            puts (ep->d_name);
         }
         (void) closedir (dp);
     }
