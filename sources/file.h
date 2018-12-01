@@ -12,7 +12,6 @@
 
 #include "config.h"
 
-
 /**
  * Define
  **/
@@ -23,10 +22,18 @@
  * Structure
  **/
 
-
+typedef struct checkFile{
+    char *name;
+    struct checkFile *next;
+    struct checkFile *head;
+} CheckFile;
 
 /**
  * Functions
  **/
+CheckFile* initCheckFile(char* nameKey);
+void freeCheckFile(CheckFile* val);
+void printCheckFile(CheckFile* key);
+int isCFile(char *file);
 int isExcludedFile(char *file, ConfigKey *conf);
-void readFolder(char *name);
+void readFolder(char *name, ConfigKey * key, CheckFile ** file);

@@ -15,9 +15,6 @@
 #ifndef CONFKEY_H_INCLUDED
 #define CONFKEY_H_INCLUDED
 
-
-extern char *strtok_r(char *, const char *, char **);
-
 /**
  * Define
 **/

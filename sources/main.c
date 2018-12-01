@@ -1,4 +1,3 @@
-
 #include "commat.h"
 #include "config.h"
 #include "confKey.h"
@@ -16,23 +15,15 @@ int i;
     ConfigKey *conf;
     conf = loadConfig("\n");
 
-    char **tab_excluded = malloc(sizeof(char*)*5);
-    for(i = 0; i < 5; i ++){
-        tab_excluded[i] = malloc(sizeof(char) * 200);
-    }
-    sprintf(tab_excluded[0], ".git");
-    sprintf(tab_excluded[1], "INSTALL");
-    sprintf(tab_excluded[2], "aikongroi.c");
-    sprintf(tab_excluded[3], "gigeegt.c");
-    sprintf(tab_excluded[4], "ssssf.c");
+    CheckFile * list;
+/*
+    list = initCheckFile("ok");
 
-    readFolder(".");
+    printf("key : %s", list->name);*/
 
+    readFolder(".",conf,&list);
 
-    for(i = 0; i < 5; i ++){
-        free(tab_excluded[i]);
-    }
-    free(tab_excluded);
+    printCheckFile(list);
 
 	return 0;
 }

@@ -10,8 +10,34 @@
 #include <stdlib.h>
 #include "config.h"
 
-char *strtok_r(char * n , const char * c , char ** ce){
-return NULL;}
+char *strtok_r(char *s, const char *delim, char **save_ptr){
+  char *end;
+  if (s == NULL)
+    s = *save_ptr;
+  if (*s == '\0')
+    {
+      *save_ptr = s;
+      return NULL;
+    }
+  /* Scan leading delimiters.  */
+  s += strspn (s, delim);
+  if (*s == '\0')
+    {
+      *save_ptr = s;
+      return NULL;
+    }
+  /* Find the end of the token.  */
+  end = s + strcspn (s, delim);
+  if (*end == '\0')
+    {
+      *save_ptr = end;
+      return s;
+    }
+  /* Terminate the token and make *SAVE_PTR point past it.  */
+  *end = '\0';
+  *save_ptr = end + 1;
+  return s;
+}
 
 /**
  * Use as FILE* .lconf for test
@@ -21,11 +47,11 @@ char* myInput(int choice){
     val = malloc(sizeof(char) * 200);
         switch(choice){
             case 1 :
-                sprintf(val, "=rules\n- rule4 = on\n- rule5 = off\n- rule6 = 50\n\n=excludedFiles\n- bonjour.c\n- test.c\n\n=recursive\nfalse");
+                sprintf(val, "=rules\n- rule4 = on\n- rule5 = off\n- rule6 = 50\n\n=excludedFiles\n- bonjour.c\n- config.c\n\n=recursive\nfalse");
                 break;
 
             default :
-                sprintf(val, "=extends\nmain.lconf\n\n=rules\n- rule1 = on\n- rule2 = off\n- rule3 = 50\n\n=excludedFiles\n- bonjour.c\n- test.c\n\n=recursive\ntrue");
+                sprintf(val, "=extends\nmain.lconf\n\n=rules\n- rule1 = on\n- rule2 = off\n- rule3 = 50\n\n=excludedFiles\n- bonjour.c\n- config.c\n\n=recursive\ntrue");
                 break;
     }
     return val;
