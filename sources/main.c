@@ -16,11 +16,6 @@ int i;
     conf = loadConfig("\n");
 
     CheckFile * list;
-/*
-    list = initCheckFile("ok");
-
-    printf("key : %s", list->name);*/
-
     readFolder(".",conf,&list);
 
     printCheckFile(list);

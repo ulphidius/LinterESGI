@@ -94,6 +94,7 @@ void readFolder(char *name, ConfigKey * key, CheckFile ** file){
     DIR *dp;
     struct dirent *ep;
     char path[4096];
+    char temp[4096];
     int i = 0;
     dp = opendir (name);
     if (dp != NULL)
@@ -109,13 +110,12 @@ void readFolder(char *name, ConfigKey * key, CheckFile ** file){
             }else{
                 if(strcmp(ep->d_name, ".")!=0 && strcmp(ep->d_name, "..")!=0  ){
                     if(isExcludedFile(ep->d_name, key) == FALSE){
+                        snprintf(temp, sizeof temp, "%s\/%s", name, ep->d_name);
                         if(i == 0){
-                        printf("t");
-                            (*file) = initCheckFile(ep->d_name);
+                            (*file) = initCheckFile(temp);
                             (*file)->head = (*file);
                         }else{
-                        printf("r");
-                            (*file)->next = initCheckFile(ep->d_name);
+                            (*file)->next = initCheckFile(temp);
                             (*file)->next->head = (*file)->head;
                             (*file) = (*file)->next;
                         }
