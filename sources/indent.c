@@ -43,8 +43,6 @@ void processIndent(char** lines, int numberOfLines, int* numberOfCharacters, cha
     int indent;
     char indent_over;
     int level = 0;
-
-    // printf("lol\n");
     
     for(i  = 0; i < numberOfLines; i++){
         indent = 0;

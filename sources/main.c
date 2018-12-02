@@ -4,6 +4,7 @@
 #include "trailingSpace.h"
 #include "startComment.h"
 #include "indent.h"
+#include "chainListUtils.h"
 
 int main(){
 	//processOperators("../resources/testFileOperator");
@@ -31,13 +32,13 @@ int main(){
 	// countNumberChar(file, test1);
 
 	// fclose(file);
-	processOperators("../resources/testFileOperator");
-	functionTestCommat("../resources/testFileOperator");
-	checkLinesNumbers("../resources/testFileOperator", atoi("30"));
-	checkCharactersNumbers("../resources/testFileOperator", atoi("10"));
-	functionTestTrailingSpace("../resources/testFileOperator");
-	functionStartComment("../resources/testFileOperator");
-	functionTestIndent("../resources/testFileOperator");
+	// processOperators("../resources/testFileOperator");
+	// functionTestCommat("../resources/testFileOperator");
+	// checkLinesNumbers("../resources/testFileOperator", atoi("30"));
+	// checkCharactersNumbers("../resources/testFileOperator", atoi("10"));
+	// functionTestTrailingSpace("../resources/testFileOperator");
+	// functionStartComment("../resources/testFileOperator");
+	// functionTestIndent("../resources/testFileOperator");
 	
 	exit(EXIT_SUCCESS);
 }
