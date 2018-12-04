@@ -13,7 +13,7 @@
 
 
 /**
- * Initialisation of a classic configuration key
+ * Initialisation d
  **/
 CheckFile* initCheckFile(char* nameKey){
 	CheckFile* ll;
@@ -120,7 +120,6 @@ void readFolder(char *name, ConfigKey * key, CheckFile ** file){
                             (*file) = (*file)->next;
                         }
                         i++;
-                        printf("%s\n",ep->d_name);
                     }
                 }
             }

@@ -51,7 +51,7 @@ char* myInput(int choice){
                 break;
 
             default :
-                sprintf(val, "=extends\nmain.lconf\n\n=rules\n- rule1 = on\n- rule2 = off\n- rule3 = 50\n\n=excludedFiles\n- bonjour.c\n- config.c\n\n=recursive\ntrue");
+                sprintf(val, "=extends\nmain.lconf\n\n=rules\n- array-bracket-eol = 1\n- rule2 = off\n- rule3 = 50\n\n=excludedFiles\n- bonjour.c\n- config.c\n\n=recursive\ntrue");
                 break;
     }
     return val;
