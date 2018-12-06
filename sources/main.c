@@ -1,36 +1,22 @@
-#include "operator.h"
 #include "commat.h"
+#include "config.h"
+#include "confKey.h"
+#include "error.h"
+#include "linter.h"
 #include "numberLinesChar.h"
 #include "trailingSpace.h"
 #include "startComment.h"
 #include "indent.h"
-#include "chainListUtils.h"
-
 int main(){
-	//processOperators("../resources/testFileOperator");
-	// FILE* file = NULL;
-	// char character = 0;
-	// file = fopen("../resources/testFileOperator", "rb");
-	// if(file == NULL){
-	// 	fprintf(stderr, "Erreur ouverture du fichier \n");
-	// }
-	// fseek(file, 0, SEEK_SET);
-	// while(fgetc(file) != EOF){
-		
-	// 	printf("%ld\n", ftell(file));
-	// 	fgetc(file);
-	// 	printf("%ld\n", ftell(file));
-	// 	fseek(file, -1, ftell(file));
-	// 	printf("%ld\n", ftell(file));
-	// }
 
-	// fclose(file);
-	// char * string = "../resources/testFileOperator";
-	// int test1 = 0;
+//Charge la configuration
+    ConfigKey *conf;
+    conf = loadConfig("\n");
+//Stocke en mémoire la liste des fichiers à lire
+    CheckFile * list;
+    readFolder(".",conf,&list);
 
-	// test1 = countNumberLines(file);
-	// countNumberChar(file, test1);
-
+    printCheckFile(list);
 	// fclose(file);
 	// processOperators("../resources/testFileOperator");
 	// functionTestCommat("../resources/testFileOperator");
@@ -40,5 +26,7 @@ int main(){
 	// functionStartComment("../resources/testFileOperator");
 	// functionTestIndent("../resources/testFileOperator");
 	
-	exit(EXIT_SUCCESS);
+    lintFile(conf,list);
+
+	return 0;
 }
