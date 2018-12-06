@@ -69,15 +69,15 @@ void lintFile(ConfigKey *conf, CheckFile *list)
 
                 //case no-prototype
                 case 8:
-                    if(strcmp(rules->cValue->value,"yourString") == 0){
-                        //func
+                    if(strcmp(rules->cValue->value,"true") == 0){
+                        error += checkFunction(list->name, 1);
                     }
                     break;
 
                 //case unused-function
                 case 9:
                     if(strcmp(rules->cValue->value,"true") == 0){
-                        error += unusedFunction(list->name);
+                        error += checkFunction(list->name, 0);
                     }
                     break;
 

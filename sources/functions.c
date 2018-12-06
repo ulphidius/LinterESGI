@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include "functions.h"
 
-
-int unusedFunction(char* fp){
+int checkFunction(char* fp,int cas){
     FILE *f = fopen(fp, "r");
     if(f == NULL)
-        return 2;
+        return -1;
     char line[2000];
     char search[2000];
     char type[2000];
@@ -16,7 +15,8 @@ int unusedFunction(char* fp){
     int find = 0;
     int findR = 0;
     long int linenb = 0;
-
+    char **prototype;
+    int size = 1;
 
     while(fgets(line, 1999, f) != NULL){
         linenb++;
@@ -27,24 +27,36 @@ int unusedFunction(char* fp){
         if(tmp != NULL){
             strcpy(name, tmp);
             if(checkDeclaration(type, name)){
-                find = 0;
-                //printf("\n------------------------------------------------\nfind : %s\n------------------------------------------------\n",name);
-                //avance d'une ligne pour boucler à partir de n+1
-                fgets(search, 1999, f);
-                seek = ftell(f);
-                while(fgets(search, 1999, f)){
-                    trimline = trim(search);
-                    if(checkName(search, name)){
-                        printf("[x]%s|%s\n",name,search);
-                        find++;
+                if(cas == 1){
+                    if(strchr(name, ';') != NULL){
+                        prototype = arrayP(prototype, size, mysubstr(name, '('));
+                        size++;
+                    }else{
+                        if(!asPrototype(name, prototype, size)){
+                            printf("Erreur ligne %ld, la fonction %s n'a pas de prototype\n", linenb, mysubstr(name, '('));
+                            findR ++;
+                        }
                     }
-                    //printf("(%d)(%d) |%s|\n",seek, ftell(f),search);
-                    //getchar();
-                }
-                fseek(f, seek, SEEK_SET);
-                if(find == 0){
-                    printf("Erreur ligne %ld, la fonction %s n'est pas utilisee\n", linenb, mysubstr(name, '('));
-                    findR ++;
+                }else{
+                    find = 0;
+                    //printf("\n------------------------------------------------\nfind : %s\n------------------------------------------------\n",name);
+                    //avance d'une ligne pour boucler à partir de n+1
+                    fgets(search, 1999, f);
+                    seek = ftell(f);
+                    while(fgets(search, 1999, f)){
+                        trimline = trim(search);
+                        if(checkName(search, name)){
+                            printf("[x]%s|%s\n",name,search);
+                            find++;
+                        }
+                        //printf("(%d)(%d) |%s|\n",seek, ftell(f),search);
+                        //getchar();
+                    }
+                    fseek(f, seek, SEEK_SET);
+                    if(find == 0){
+                        printf("Erreur ligne %ld, la fonction %s n'est pas utilisee\n", linenb, mysubstr(name, '('));
+                        findR ++;
+                    }
                 }
             }
         }
@@ -53,6 +65,36 @@ int unusedFunction(char* fp){
     }
     fclose(f);
     return findR;
+}
+
+char ** arrayP(char** in, int size, char *add){
+
+    int i,j;
+    char **out;
+
+    out = malloc(sizeof(char*) * size);
+    for(i = 0; i < size; i ++){
+        if(i == size-1){
+            out[i] = malloc(sizeof(char) * (strlen(add)+1));
+            strcpy(out[i], add);
+        }else{
+            out[i] = malloc(sizeof(char) * (strlen(in[i])+1));
+            strcpy(out[i], in[i]);
+        }
+    }
+    free(in);
+    return out;
+}
+
+int asPrototype(char* name, char** list,int size){
+    int i = 0;
+    for(i = 0; i < size; i ++){
+        if(!strcmp(list[i], mysubstr(name, '('))){
+            return 1;
+        }
+    }
+
+    return 0;
 }
 
 char *mysubstr(char *src,char pos) {
@@ -69,7 +111,7 @@ char *mysubstr(char *src,char pos) {
 }
 
 int checkType(char* line){
-    if(strstr(line,"int") != NULL || strstr(line,"char") != NULL || strstr(line,"long") != NULL || strstr(line,"short") != NULL)
+    if(strstr(line,"int") != NULL || strstr(line,"char") != NULL || strstr(line,"long") != NULL || strstr(line,"short") != NULL || strstr(line,"void") != NULL)
         return 1;
     return 0;
 }

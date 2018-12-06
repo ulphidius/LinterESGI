@@ -2,7 +2,9 @@
 #define FUNCTIONS_H_INCLUDED
 
 
-int unusedfunction(char *fp);
+int checkFunction(char *fp,int cas);
+char ** arrayP(char** in, int size, char *add);
+int asPrototype(char* name, char** list, int size);
 int checkType(char* line);
 int checkFunc(char* line);
 char *mysubstr(char *src,char pos);

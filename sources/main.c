@@ -11,7 +11,6 @@
 
 int main(){
 
-
 //Charge la configuration
     ConfigKey *conf;
     conf = loadConfig("\n");
