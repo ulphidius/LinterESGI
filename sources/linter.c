@@ -1,8 +1,10 @@
 
 #include "linter.h"
+#include "functions.h"
 
 void lintFile(ConfigKey *conf, CheckFile *list)
 {
+    int error = 0;
     list = list->head;
     ConfigKey *rules = getConfigKey("rules", conf);
 
@@ -74,8 +76,8 @@ void lintFile(ConfigKey *conf, CheckFile *list)
 
                 //case unused-function
                 case 9:
-                    if(strcmp(rules->cValue->value,"yourString") == 0){
-                        //func
+                    if(strcmp(rules->cValue->value,"true") == 0){
+                        error += unusedFunction(list->name);
                     }
                     break;
 
@@ -136,6 +138,13 @@ void lintFile(ConfigKey *conf, CheckFile *list)
             rules->cValue = rules->cValue->next;
         }
         list = list->next;
+    }
+
+    if(error == 0){
+        printf(
+". . .-. .-. .-. .-.   .-. .-. .-. .-.   .-. .-. .-.   .-. .-. . . .-.   .-. .-. .-. .   .   .-.   . \n"
+"| | | |  |  |(  |-    |   | | |  )|-    |-  `-.  |    `-. |-| |\| `-.   |-  |-|  |  |   |   |-    | \n"
+"`.' `-'  '  ' ' `-'   `-' `-' `-' `-'   `-' `-'  '    `-' ` ' ' ` `-'   '   ` ' `-' `-' `-' `-'   . \n");
     }
 
 }

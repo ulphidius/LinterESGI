@@ -7,10 +7,10 @@
 #include "trailingSpace.h"
 #include "startComment.h"
 #include "indent.h"
+#include "functions.h"
 
 int main(){
 
-int i;
 
 //Charge la configuration
     ConfigKey *conf;
