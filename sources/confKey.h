@@ -66,6 +66,7 @@ ConfigKey *copyKey(ConfigKey *conf);
 void freeConfigKey(ConfigKey *key);
 void freeConfig(ConfigKey *key);
 ConfigKey *loadConfig(char *fp);
+ConfigKey *loadAll(char *fp);
 
 
 #endif // CONFKEY_H_INCLUDED

@@ -14,6 +14,7 @@ int main(){
 //Charge la configuration
     ConfigKey *conf;
     conf = loadConfig("\n");
+    //conf = loadAll(conf);
 //Stocke en mémoire la liste des fichiers à lire
     CheckFile * list;
     readFolder(".",conf,&list);

@@ -382,3 +382,34 @@ ConfigKey *loadConfig(char *fp){
 	return conf;
 }
 
+ConfigKey *loadAll(char *fp){
+    ConfigKey* conf;
+    ConfigKey* temp;
+    int i = 0;
+    int n = 0;
+
+    temp = loadConfig(fp);
+    if(temp == NULL){
+        printf("Le fichier %s n'existe pas",fp);
+        return NULL;
+    }
+    conf = getConfigKey("extends", temp);
+    if(conf == NULL)
+        return conf;
+    while(conf->bValue != NULL){
+        for(i = 0; i < n; i ++){
+            if(conf->bValue == NULL)
+                break;
+            conf->bValue = conf->bValue->next;
+        }
+        if(conf->bValue == NULL)
+            break;
+        temp = loadConfig(conf->bValue->content);
+        if(temp == NULL)
+            break;
+        conf = fusionKey(conf,temp);
+
+        conf = getConfigKey("extends", conf);
+    }
+    return temp;
+}
