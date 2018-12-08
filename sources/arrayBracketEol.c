@@ -22,15 +22,14 @@ void functionTestBracket(char* path){
 		exit(EXIT_FAILURE);
 	}
 
+	checkBracket(file, path);
 
 	fclose(file);
 }
 
-void checkBracket(FILE* file){
+void checkBracket(FILE* file, char* path){
 	int lines = 0;
 	int i = 0;
-	int y = 0;
-	int* numberCharacters = NULL;
 	char** content = NULL;
 
 	if(file == NULL){
@@ -39,18 +38,22 @@ void checkBracket(FILE* file){
 	}
 
 	lines = countNumberLines(file);
-	numberCharacters = countNumberChar(file, lines);
 	content = readLines(file, lines);
 
 	for(i = 0; i < lines; i++){
-		for(y = 0; y < numberCharacters[i]; y++){
-
-		}
+		isTarget(content[i], i, path);
 	}
 
+	freeArray2((void**)content, lines);
 
 }
 
-int isTarget(char* line){
+void isTarget(char* line, int lineNumber, char* path){
+	char* positionEOL = 0;
 
+	if((positionEOL = strchr(line, '{')) != NULL){
+		if(*(positionEOL + 1) != '\n' || *(positionEOL + 1) != '\0'){
+			fprintf(stdout, "The { is not at end of line on line : %d inside the file : %s\n", lineNumber, line);
+		}
+	}
 }

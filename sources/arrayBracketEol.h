@@ -13,4 +13,8 @@
 
 // Fonction de vérification des {, elle prend en paramètre le nom du fichier à tester
 void functionTestBracket(char*);
+
+void checkBracket(FILE*, char*);
+
+void isTarget(char*, int, char*);
 #endif

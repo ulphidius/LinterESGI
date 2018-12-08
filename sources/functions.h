@@ -1,6 +1,8 @@
 #ifndef FUNCTIONS_H_INCLUDED
 #define FUNCTIONS_H_INCLUDED
 
+#include <string.h>
+#include <stdlib.h>
 
 int checkFunction(char *fp,int cas);
 char ** arrayP(char** in, int size, char *add);

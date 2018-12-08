@@ -1,22 +1,24 @@
 #include "commat.h"
-#include "config.h"
-#include "confKey.h"
-#include "error.h"
-#include "linter.h"
+// #include "config.h"
+// #include "confKey.h"
+// #include "error.h"
+// #include "linter.h"
 #include "numberLinesChar.h"
 #include "trailingSpace.h"
 #include "startComment.h"
 #include "indent.h"
+// #include "functions.h"
+
 int main(){
 
 //Charge la configuration
-    ConfigKey *conf;
-    conf = loadConfig("\n");
+    // ConfigKey *conf;
+    // conf = loadConfig("\n");
 //Stocke en mémoire la liste des fichiers à lire
-    CheckFile * list;
-    readFolder(".",conf,&list);
+    // CheckFile * list;
+    // readFolder(".",conf,&list);
 
-    printCheckFile(list);
+    // printCheckFile(list);
 	// fclose(file);
 	// processOperators("../resources/testFileOperator");
 	// functionTestCommat("../resources/testFileOperator");
@@ -26,7 +28,7 @@ int main(){
 	// functionStartComment("../resources/testFileOperator");
 	// functionTestIndent("../resources/testFileOperator");
 	
-    lintFile(conf,list);
+    // lintFile(conf,list);
 
 	return 0;
 }

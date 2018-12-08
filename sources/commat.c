@@ -26,10 +26,6 @@ void functionTestCommat(char* path){
 	numberCharacter = countNumberChar(file, numberOfLines);
 	strings = readLines(file, numberOfLines);
 
-	for(i = 0; i < numberOfLines; i++){
-		//printf("%s\n", strings[i]);
-	}
-
 	processCommats(strings, numberCharacter, numberOfLines, path);
 
 	freeArray2((void**)strings, numberOfLines);
