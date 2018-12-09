@@ -37,7 +37,7 @@ void checkTrailingSpaces(char* string, int sizeLine, int lineNumber, char* path)
 	while(string[i] != '\0'){
 		if(strlen(string) > 3){
 			if(string[strlen(string) - 1] == ' '){
-				printf("Erreur espace à la fin de la ligne : %d dans le fichier : %s\n", lineNumber + 1, path);
+				printf("[Trailling-Space] %s : l.%d\n", path, lineNumber + 1);
 				break;
 			}
 		}

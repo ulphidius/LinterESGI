@@ -28,7 +28,7 @@ void functionStartComment(char* path){
 	caracter1 =  fgetc(file);
 	caracter2 =  fgetc(file);
 	if(caracter1 != '/' || caracter2 != '*'){
-		fprintf(stdout, "Il n'y a aucun commentaire en début du fichier : %s\n", path);
+		fprintf(stdout, "[Comments_Header] %s l.1\n", path);
 	}
 
 	fclose(file);

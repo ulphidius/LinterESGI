@@ -26,7 +26,7 @@ void checkLinesNumbers(char* path, int limit){
 	}
 
 	if((result + 1) > limit){
-		printf("Erreur le nombre de lignes dans le fichier : %s est : %d et la limite est %d \n", path, result + 1, limit);
+		printf("[Max-File-Line-Numbers] %s : %d (Suppérieur à %d) \n", path, result + 1, limit);
 	}
 
 	fclose(file);
@@ -55,7 +55,7 @@ void checkCharactersNumbers(char* path, int limit){
 
 	for(i  = 0; i < lines; i++){
 		if(numberOfCharacters[i] > limit){
-			printf("Erreur le nombre de caractères sur la ligne est : %d et la limite est : %d dans le fichier : %s à la ligne : %d\n", numberOfCharacters[i], limit, path, i);
+			printf("[Max-Line-Numbers] %s : l.%d\n", path, i + 1);
 		}	
 	}
 	free(numberOfCharacters);

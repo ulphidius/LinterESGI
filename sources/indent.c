@@ -45,12 +45,12 @@ int processIndent(char** lines, int numberOfLines, int* numberOfCharacters, char
     int i;
     int y;
     int indent;
-    char indent_over;
+    char indentOver;
     int level = 0;
 
     for(i  = 0; i < numberOfLines; i++){
         indent = 0;
-        indent_over = 0;
+        indentOver = 0;
         for(y = 0; y < numberOfCharacters[i]; y++){
             switch(lines[i][y]){
                 case '{':
@@ -60,12 +60,12 @@ int processIndent(char** lines, int numberOfLines, int* numberOfCharacters, char
                     level--;
                     break;
                 case '\t':
-                    if (!indent_over)
+                    if (!indentOver)
                         indent++;
                     break;
                  default:
-                    if (!indent_over && indent != level) {
-                        indent_over = 1;
+                    if (!indentOver && indent != level) {
+                        indentOver = 1;
                         printf("[indent] %s : l.%d\n", path, i + 1);
 						err ++;
                     }

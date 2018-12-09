@@ -19,10 +19,8 @@ void checkOperators(char* string, int sizeChaine, int lineNumber, char* path){
 		if(strlen(string) > 3){
 			for(y = 0; y < sizeSingle; y++){
 				if(string[i] == singleOperators[y]){
-					// '+', '-', '*', '/', '<', '>', '!', '?', ':', '~', '^', '=', '&', '|', '%'
-					// "<<=", ">>=", "||", "&&", "+=", "-=", "*=", "/=", "%=", "==", "^=", "<<", ">>", "|=", "&=", "+", "-", "*", "/", "%", "=", "^", "|", "&", "<", ">", "!", "?", ":"
 					if(i == 0 || i == (sizeChaine - 1)){
-						fprintf(stdout, "Syntaxe error on line with operator : %c at line : %d inside file : %s\n", singleOperators[y], lineNumber + 1, path);
+						fprintf(stdout, "[Operators-Spacing] %s on : %c l.%d\n", path, singleOperators[y], lineNumber + 1);
 					}else if(string[i - 1] != ' ' || string[i + 1] != ' '){
 						switch(singleOperators[y]){
 							case '+':
@@ -108,7 +106,7 @@ void processOperators(char* path){
 }
 
 void errorsGestionnary(char* operator, int lineNumber, char* path){
-	fprintf(stdout, "Syntaxe error on line with operator : %s at line : %d inside file : %s\n", operator, lineNumber, path);
+	fprintf(stdout, "[Operators-Spacing] %s on : %s l.%d \n", path, operator, lineNumber);
 
 }
 
