@@ -1,4 +1,3 @@
-
 #include "linter.h"
 #include "functions.h"
 
