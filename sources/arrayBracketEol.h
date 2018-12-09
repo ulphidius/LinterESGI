@@ -14,7 +14,9 @@
 // Fonction de vérification des {, elle prend en paramètre le nom du fichier à tester
 void functionTestBracket(char*);
 
+// Fonction de vérification de chaque ligne du fichier chargé en mémoire, elle prend en paramètre le fichier
 void checkBracket(FILE*, char*);
 
+// Fonction de vérification d'une ligne du fichier, elle prend en paramètres la ligne, le numéro de la ligne et pour finir le nom du fichier
 void isTarget(char*, int, char*);
 #endif
