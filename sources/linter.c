@@ -2,13 +2,17 @@
 #include "linter.h"
 #include "functions.h"
 
-void lintFile(ConfigKey *conf, CheckFile *list)
+void lintFile(ConfigKey *conf, CheckFile *list, int debug)
 {
     int error = 0;
     list = list->head;
     ConfigKey *rules = getConfigKey("rules", conf);
 
-    printKey(rules);
+    if(debug == 1){
+        printf("Liste des regles appliques :\n");
+        printKey(rules);
+    }
+
     rules->cValue = rules->cValue->head;
 
     while(list != NULL){
@@ -132,6 +136,7 @@ void lintFile(ConfigKey *conf, CheckFile *list)
 
                 default :
                     printf("Erreur : la regle \"%s\" est inconnue.\n", rules->cValue->content);
+                    error++;
                     break;
 
             }
@@ -141,10 +146,7 @@ void lintFile(ConfigKey *conf, CheckFile *list)
     }
 
     if(error == 0){
-        printf(
-". . .-. .-. .-. .-.   .-. .-. .-. .-.   .-. .-. .-.   .-. .-. . . .-.   .-. .-. .-. .   .   .-.   . \n"
-"| | | |  |  |(  |-    |   | | |  )|-    |-  `-.  |    `-. |-| |\| `-.   |-  |-|  |  |   |   |-    | \n"
-"`.' `-'  '  ' ' `-'   `-' `-' `-' `-'   `-' `-'  '    `-' ` ' ' ` `-'   '   ` ' `-' `-' `-' `-'   . \n");
+        printf(" ________________________\n|Votre code est propre !\n|________________________\n");
     }
 
 }

@@ -1,0 +1,14 @@
+=extends
+resources/ext.lconf
+
+=rules
+- array-bracket-eol = 1
+- rule2 = off
+- rule3 = 50
+
+=excludedFiles
+- bonjour.c
+- config.c
+
+=recursive
+true

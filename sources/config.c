@@ -430,6 +430,8 @@ void printKey(ConfigKey* key){
 
     printf("|=%s\n", key->name);
     bvHead = key->bValue;
+    if(bvHead != NULL)
+        bvHead = key->bValue->head;
     while(key->bValue != NULL){ //bValue
         printf("|%s\n", key->bValue->content);
         key->bValue = key->bValue->next;
@@ -438,6 +440,8 @@ void printKey(ConfigKey* key){
         key->bValue = bvHead;
     }
     vHead = key->value;
+    if(vHead != NULL)
+        vHead = key->value->head;
     while(key->value != NULL){ //value
         printf("|- %s\n", key->value->content);
         key->value = key->value->next;
@@ -446,6 +450,8 @@ void printKey(ConfigKey* key){
         key->value = vHead;
     }
     cvHead = key->cValue;
+    if(cvHead != NULL)
+        cvHead = key->cValue->head;
     while(key->cValue != NULL){ //cValue
         printf("|- %s = %s\n", key->cValue->content, key->cValue->value);
         key->cValue = key->cValue->next;

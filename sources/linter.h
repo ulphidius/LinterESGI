@@ -3,6 +3,6 @@
 
 #include "file.h"
 
-void lintFile(ConfigKey *conf, CheckFile *list);
+void lintFile(ConfigKey *conf, CheckFile *list, int debug);
 
 #endif // LINTER_H_INCLUDED

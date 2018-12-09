@@ -352,8 +352,9 @@ ConfigKey *loadConfig(char *fp){
     ConfigKey* conf;
     char *ctext;
     char *text;
+    int size;
     FILE *configFile;
-    //
+    /*
     if(fp[0] == '\n'){ //debug
         text = myInput(0);
         ctext = malloc(sizeof(char) * (strlen(text) + 3));
@@ -368,11 +369,13 @@ ConfigKey *loadConfig(char *fp){
 	    conf = getConfiguration(ctext);
 	    return conf;
     }
-    //
+    */
     configFile = fopen(fp, "r");
-    text = malloc(sizeof(char) * (getFileSize(configFile) + 1));
-    fgets(text, strlen(text) ,configFile);
-    ctext = malloc(sizeof(char) * (strlen(text) + 3));
+    size = getFileSize(configFile);
+    text = calloc(sizeof(char), (size + 1));
+    fread(text, size, sizeof(char) ,configFile);
+	//printf("(%s) :\n %s\n",fp,text);
+    ctext = calloc(sizeof(char), (size + 3));
 	sprintf(ctext, "\n\n%s", text);
 	conf = getConfiguration(ctext);
 	fclose(configFile);
@@ -393,9 +396,14 @@ ConfigKey *loadAll(char *fp){
         printf("Le fichier %s n'existe pas",fp);
         return NULL;
     }
-    conf = getConfigKey("extends", temp);
-    if(conf == NULL)
+    conf = temp;
+    temp = getConfigKey("extends", temp);
+    if(temp == NULL){
+        printf("extends null\n");
         return conf;
+    }
+    conf = temp;
+    //printKey(conf);
     while(conf->bValue != NULL){
         for(i = 0; i < n; i ++){
             if(conf->bValue == NULL)
@@ -405,11 +413,13 @@ ConfigKey *loadAll(char *fp){
         if(conf->bValue == NULL)
             break;
         temp = loadConfig(conf->bValue->content);
+        //printf("bvc : %s\n",conf->bValue->content);
         if(temp == NULL)
             break;
-        conf = fusionKey(conf,temp);
+        fusionKey(conf,temp);
 
         conf = getConfigKey("extends", conf);
+        n++;
     }
-    return temp;
+    return conf;
 }
