@@ -10,11 +10,9 @@
 
 void functionTestCommat(char* path){
 	FILE* file = NULL;
-	// char* path = "../resources/testFileOperator";
 	char** strings = NULL;
 	int numberOfLines = 0;
 	int* numberCharacter = NULL;
-	int i = 0;
 
 	file = fopen(path, "rb");
 	if(file == NULL){

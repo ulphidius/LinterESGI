@@ -10,11 +10,9 @@
 
 void functionTestTrailingSpace(char* path){
 	FILE* file = NULL;
-	// char* path = "../resources/testFileOperator";
 	char** strings = NULL;
 	int numberOfLines = 0;
 	int* numberCharacter = NULL;
-	int i = 0;
 
 	file = fopen(path, "rb");
 	if(file == NULL){
@@ -25,10 +23,6 @@ void functionTestTrailingSpace(char* path){
 	numberOfLines = countNumberLines(file);
 	numberCharacter = countNumberChar(file, numberOfLines);
 	strings = readLines(file, numberOfLines);
-
-	for(i = 0; i < numberOfLines; i++){
-		//printf("%s\n", strings[i]);
-	}
 
 	processTrailingSpace(strings, numberCharacter, numberOfLines, path);
 
@@ -42,7 +36,6 @@ void checkTrailingSpaces(char* string, int sizeLine, int lineNumber, char* path)
 
 	while(string[i] != '\0'){
 		if(strlen(string) > 3){
-			// printf("%c %ld\n", string[strlen(string) - 1], strlen(string));
 			if(string[strlen(string) - 1] == ' '){
 				printf("Erreur espace à la fin de la ligne : %d dans le fichier : %s\n", lineNumber + 1, path);
 				break;

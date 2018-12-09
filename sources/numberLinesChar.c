@@ -52,9 +52,7 @@ void checkCharactersNumbers(char* path, int limit){
 
 	lines = countNumberLines(file);
 	numberOfCharacters = countNumberChar(file, lines);
-	// for(i  = 0; i < lines; i++){
-	// 	printf("%d\n", numberOfCharacters[i]);
-	// }
+
 	for(i  = 0; i < lines; i++){
 		if(numberOfCharacters[i] > limit){
 			printf("Erreur le nombre de caractères sur la ligne est : %d et la limite est : %d dans le fichier : %s à la ligne : %d\n", numberOfCharacters[i], limit, path, i);
