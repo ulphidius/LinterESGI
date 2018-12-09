@@ -7,9 +7,10 @@
 */
 #include "indent.h"
 
-void functionTestIndent(char* path){
+int functionTestIndent(char* path){
 	FILE* file = NULL;
 	int numberOfLines = 0;
+	int err = 0;
 	int* numberOfCharacters = NULL;
 	char** lines = NULL;
 
@@ -27,23 +28,26 @@ void functionTestIndent(char* path){
 
 	numberOfLines = countNumberLines(file);
 	numberOfCharacters = countNumberChar(file, numberOfLines);
-	
+
 	lines = readLines(file, numberOfLines);
-	
-	processIndent(lines, numberOfLines, numberOfCharacters, path);
+
+	err = processIndent(lines, numberOfLines, numberOfCharacters, path);
 
 	freeArray2((void**)lines, numberOfLines);
 	free(numberOfCharacters);
 	fclose(file);
+
+	return err;
 }
 
-void processIndent(char** lines, int numberOfLines, int* numberOfCharacters, char* path){
+int processIndent(char** lines, int numberOfLines, int* numberOfCharacters, char* path){
+    int err = 0;
     int i;
     int y;
     int indent;
     char indent_over;
     int level = 0;
-    
+
     for(i  = 0; i < numberOfLines; i++){
         indent = 0;
         indent_over = 0;
@@ -62,10 +66,12 @@ void processIndent(char** lines, int numberOfLines, int* numberOfCharacters, cha
                  default:
                     if (!indent_over && indent != level) {
                         indent_over = 1;
-                        printf("Erreur d'indentation à la ligne : %d dans le fichier : %s\n", i + 1, path);
+                        printf("[indent] %s : l.%d\n", path, i + 1);
+						err ++;
                     }
                     break;
             }
         }
     }
+    return err;
 }

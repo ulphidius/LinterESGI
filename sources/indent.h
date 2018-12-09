@@ -12,8 +12,8 @@
 #include "fileUtils.h"
 
 // Fonction de vérification de l'indentation au sein du fichier, il prend en paramètre le chemin du fichier
-void functionTestIndent(char*);
+int functionTestIndent(char*);
 
-void processIndent(char** lines, int numberOfLines, int* numberOfCharacters, char* path);
+int processIndent(char** lines, int numberOfLines, int* numberOfCharacters, char* path);
 
 #endif
