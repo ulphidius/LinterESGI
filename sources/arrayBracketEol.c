@@ -52,8 +52,8 @@ void isTarget(char* line, int lineNumber, char* path){
 	char* positionEOL = 0;
 
 	if((positionEOL = strchr(line, '{')) != NULL){
-		if(*(positionEOL + 1) != '\n' || *(positionEOL + 1) != '\0'){
-			fprintf(stdout, "The { is not at end of line on line : %d inside the file : %s\n", lineNumber, line);
+		if((*(positionEOL + 1) != '\n' && *(positionEOL + 1) != '\0') || strlen(line) < 5){
+			fprintf(stdout, "The { is not at the end of line on line : %d inside the file : %s\n", lineNumber, line);
 		}
 	}
 }

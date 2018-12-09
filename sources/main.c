@@ -7,6 +7,8 @@
 #include "trailingSpace.h"
 #include "startComment.h"
 #include "indent.h"
+#include "operator.h"
+#include "arrayBracketEol.h"
 // #include "functions.h"
 
 int main(){
@@ -20,14 +22,14 @@ int main(){
 
     // printCheckFile(list);
 	// fclose(file);
-	// processOperators("../resources/testFileOperator");
-	// functionTestCommat("../resources/testFileOperator");
-	// checkLinesNumbers("../resources/testFileOperator", atoi("30"));
-	// checkCharactersNumbers("../resources/testFileOperator", atoi("10"));
-	// functionTestTrailingSpace("../resources/testFileOperator");
-	// functionStartComment("../resources/testFileOperator");
-	// functionTestIndent("../resources/testFileOperator");
-	
+	processOperators("../resources/testFileOperator");
+	functionTestCommat("../resources/testFileOperator");
+	checkLinesNumbers("../resources/testFileOperator", atoi("30"));
+	checkCharactersNumbers("../resources/testFileOperator", atoi("10"));
+	functionTestTrailingSpace("../resources/testFileOperator");
+	functionStartComment("../resources/testFileOperator");
+	functionTestIndent("../resources/testFileOperator");
+	functionTestBracket("../resources/testFileOperator");
     // lintFile(conf,list);
 
 	return 0;
