@@ -119,14 +119,14 @@ void lintFile(ConfigKey *conf, CheckFile *list)
                 //case max-line-numbers
                 case 15:
                     if(strcmp(rules->cValue->value,"yourString") == 0){
-                        checkCharactersNumbers(list->name, atoi());
+                        checkCharactersNumbers(list->name, atoi(rules->cValue->value));
                     }
                     break;
 
                 //case max-file-line-numbers
                 case 16:
                     if(strcmp(rules->cValue->value,"yourString") == 0){
-                        checkLinesNumbers(list->name, atoi());
+                        checkLinesNumbers(list->name, atoi(rules->cValue->value));
                     }
                     break;
 
