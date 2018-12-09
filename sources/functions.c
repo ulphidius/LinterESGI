@@ -33,7 +33,7 @@ int checkFunction(char* fp,int cas){
                         size++;
                     }else{
                         if(!asPrototype(name, prototype, size)){
-                            printf("Erreur ligne %ld, la fonction %s n'a pas de prototype\n", linenb, mysubstr(name, '('));
+                            printf("[no-prototype] %s : %ld (%s)\n",fp, linenb, mysubstr(name, '('));
                             findR ++;
                         }
                     }
@@ -54,7 +54,7 @@ int checkFunction(char* fp,int cas){
                     }
                     fseek(f, seek, SEEK_SET);
                     if(find == 0){
-                        printf("Erreur ligne %ld, la fonction %s n'est pas utilisee\n", linenb, mysubstr(name, '('));
+                        printf("[unused-function] %s : %ld (%s)\n",fp, linenb, mysubstr(name, '('));
                         findR ++;
                     }
                 }
