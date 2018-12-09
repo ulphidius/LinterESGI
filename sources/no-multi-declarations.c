@@ -1,6 +1,6 @@
-int noMultiDeclarations(){
+/*int noMultiDeclarations(){
 
-int err = 0, err2 = 0;
+    int err = 0, err2 = 0;
     int pointVirgule = 0;
     int lineN = 1;
     char* line = malloc(sizeof(char) * 50);
@@ -52,3 +52,4 @@ int err = 0, err2 = 0;
     return err;
     return 0;
 }
+*/
