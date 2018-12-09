@@ -28,21 +28,21 @@ void lintFile(ConfigKey *conf, CheckFile *list)
                 //case indent
                 case 2:
                     if(strcmp(rules->cValue->value,"yourString") == 0){
-                        //func
+                        functionTestIndent(list->name);
                     }
                     break;
 
                 //case comments-header
                 case 3:
                     if(strcmp(rules->cValue->value,"yourString") == 0){
-                        //func
+                        functionStartComment(list->name);
                     }
                     break;
 
                 //case no-trailing-spaces
                 case 4:
                     if(strcmp(rules->cValue->value,"yourString") == 0){
-                        //func
+                        functionTestTrailingSpace(list->name);
                     }
                     break;
 
@@ -105,28 +105,28 @@ void lintFile(ConfigKey *conf, CheckFile *list)
                 //case operators-spacing
                 case 13:
                     if(strcmp(rules->cValue->value,"yourString") == 0){
-                        //func
+                        processOperators(list->name);
                     }
                     break;
 
                 //case comma-spacing
                 case 14:
                     if(strcmp(rules->cValue->value,"yourString") == 0){
-                        //func
+                        functionTestCommat(list->name);
                     }
                     break;
 
                 //case max-line-numbers
                 case 15:
                     if(strcmp(rules->cValue->value,"yourString") == 0){
-                        //func
+                        checkCharactersNumbers(list->name, atoi());
                     }
                     break;
 
                 //case max-file-line-numbers
                 case 16:
                     if(strcmp(rules->cValue->value,"yourString") == 0){
-                        //func
+                        checkLinesNumbers(list->name, atoi());
                     }
                     break;
 
