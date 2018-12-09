@@ -16,37 +16,36 @@ void lintFile(ConfigKey *conf, CheckFile *list, int debug)
     rules->cValue = rules->cValue->head;
 
     while(list != NULL){
-        //list->name : "chemin du fichier"
+        //list->name            :   "chemin du fichier"
+        //rules->cValue->value  :   "valeur de la cval"
         while(rules->cValue != NULL){
             switch(choiceRule(rules->cValue->content)){
 
                 //case array-bracket-eol
                 case 1:
                     if(strcmp(rules->cValue->value,"yourString") == 0){
-                        printf("[x]cVal : %s\n",rules->cValue->value);
-                    }else{
-                        printf("[-]cVal : %s\n",rules->cValue->value);
+                        //printf("[x]cVal : %s\n",rules->cValue->value);
                     }
                     break;
 
                 //case indent
                 case 2:
                     if(strcmp(rules->cValue->value,"yourString") == 0){
-                        functionTestIndent(list->name);
+                        error += functionTestIndent(list->name);
                     }
                     break;
 
                 //case comments-header
                 case 3:
                     if(strcmp(rules->cValue->value,"yourString") == 0){
-                        functionStartComment(list->name);
+                        error += functionStartComment(list->name);
                     }
                     break;
 
                 //case no-trailing-spaces
                 case 4:
                     if(strcmp(rules->cValue->value,"yourString") == 0){
-                        functionTestTrailingSpace(list->name);
+                        error += functionTestTrailingSpace(list->name);
                     }
                     break;
 
@@ -109,28 +108,28 @@ void lintFile(ConfigKey *conf, CheckFile *list, int debug)
                 //case operators-spacing
                 case 13:
                     if(strcmp(rules->cValue->value,"yourString") == 0){
-                        processOperators(list->name);
+                        error += processOperators(list->name);
                     }
                     break;
 
                 //case comma-spacing
                 case 14:
                     if(strcmp(rules->cValue->value,"yourString") == 0){
-                        functionTestCommat(list->name);
+                        error += functionTestCommat(list->name);
                     }
                     break;
 
                 //case max-line-numbers
                 case 15:
                     if(strcmp(rules->cValue->value,"yourString") == 0){
-                        checkCharactersNumbers(list->name, atoi(rules->cValue->value));
+                        error += checkCharactersNumbers(list->name, atoi(rules->cValue->value));
                     }
                     break;
 
                 //case max-file-line-numbers
                 case 16:
                     if(strcmp(rules->cValue->value,"yourString") == 0){
-                        checkLinesNumbers(list->name, atoi(rules->cValue->value));
+                        error += checkLinesNumbers(list->name, atoi(rules->cValue->value));
                     }
                     break;
 
@@ -147,6 +146,8 @@ void lintFile(ConfigKey *conf, CheckFile *list, int debug)
 
     if(error == 0){
         printf(" ________________________\n|Votre code est propre !\n|________________________\n");
+    }else{
+        printf(" ___________________________\n|Il vous reste %d erreurs dans votre code !\n|___________________________\n",error);
     }
 
 }
