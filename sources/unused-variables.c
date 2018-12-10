@@ -43,43 +43,15 @@ int unusedVariables(char* filePath){
 
 	FILE* f = fopen(filePath, "r");
 
-	while(fgets(line, 500, f)){
+	while(fgets(line, 2000, f)){
 		word = strtok(line, " ");
 		while(word != NULL){
 
                 j = updateNodes(j, allNodes, word);
                 k = getVar(k, word, varName, &noSpace);
 
+                assignVariableUnused(&i, allVariables, varName, &declaration, word, &k, &j, &h, &lineN, varNodes, filePath, errorLine);
 
-    			//Boucle pour la déclaration de variables || Utilisation de la variable
-    			while(allVariables[i] && i < 200){
-                        if(isVar(varName)){
-                        declaration = 1;
-    			        break;
-    			    }
-    			    //Commenté pour le if:   && allNodes[i] == node
-    			    if(strcmp(varName, allVariables[i][0]) == 0 && word[k] != '(' && varNodes[i][0] == j){
-    			        allVariables[i][1] = "used";
-    			        errorLine[i] = -1;
-    			        break;
-    			    }
-
-    			    if(strcmp(allVariables[i][0], "0") == 0 && word[k] != '(' && declaration == 1){
-    			        h = 0;
-    			        declaration = 0;
-    			        varNodes[i][0] = j;
-    			        while(varName[h]){
-    			            allVariables[i][0][h] = varName[h];
-    			            h++;
-    			        }
-    			        errorLine[i] = lineN;
-    			        break;
-    			    }
-
-    			    if(word[k] == '{')
-                        break;
-    			    i++;
-    			}
     			i = 0;
     			h = 0;
     			if(noSpace == 0){
@@ -115,4 +87,36 @@ int unusedVariables(char* filePath){
 	free(varNodes);
 	free(allNodes);
     return err;
+}
+
+
+void assignVariableUnused(int* i, char*** allVariables, char* varName, int* declaration, char* word, int* k, int* j, int* h, int* lineN, int** varNodes, char* filePath, int* errorLine){
+    while(allVariables[*i] && (*i) < 200){
+        if(isVar(varName)){
+            (*declaration) = 1;
+            break;
+        }
+
+        if(strcmp(varName, allVariables[*i][0]) == 0 && word[*k] != '(' && varNodes[*i][0] == (*j)){
+            allVariables[*i][1] = "used";
+            errorLine[*i] = -1;
+            break;
+        }
+
+        if(strcmp(allVariables[*i][0], "0") == 0 && word[*k] != '(' && (*declaration) == 1){
+            (*h) = 0;
+            (*declaration) = 0;
+            varNodes[*i][0] = (*j);
+            while(varName[*h]){
+                allVariables[*i][0][*h] = varName[*h];
+                (*h)++;
+            }
+            errorLine[*i] = (*lineN);
+            break;
+        }
+
+        if(word[*k] == '{')
+            break;
+        (*i)++;
+    }
 }
