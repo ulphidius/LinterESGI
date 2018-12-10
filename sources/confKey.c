@@ -9,6 +9,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "confKey.h"
+#include "config.h"
 
 
 /**
@@ -374,7 +375,7 @@ ConfigKey *loadConfig(char *fp){
     size = getFileSize(configFile);
     text = calloc(sizeof(char), (size + 1));
     fread(text, size, sizeof(char) ,configFile);
-	//printf("(%s) :\n %s\n",fp,text);
+    //printf("(%s) :\n %s\n",fp,text);
     ctext = calloc(sizeof(char), (size + 3));
 	sprintf(ctext, "\n\n%s", text);
 	conf = getConfiguration(ctext);
@@ -391,17 +392,21 @@ ConfigKey *loadAll(char *fp){
     int i = 0;
     int n = 0;
 
+    printf("test\n");
     temp = loadConfig(fp);
+    printf("test\n");
     if(temp == NULL){
         printf("Le fichier %s n'existe pas",fp);
         return NULL;
     }
+    printf("test\n");
     conf = temp;
     temp = getConfigKey("extends", temp);
     if(temp == NULL){
         printf("extends null\n");
         return conf;
     }
+    printf("test\n");
     conf = temp;
     //printKey(conf);
     while(conf->bValue != NULL){
