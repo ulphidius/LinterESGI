@@ -39,19 +39,53 @@ int undeclaredVariables(char *filePath){
     h = 0;
     noSpace = 0;
 
-	FILE* f = fopen(filePath, "r");
+	FILE* f = fopen("test.c", "w");
+	fprintf(f, "void test(){\nint a;\nint b;\nint d\nb=a+d;\nchar c;\nb += b;\n}\nint newTest(){\nint a;\n int b;\nb = d + b;\n}");
+	fclose(f);
+	f = fopen("test.c", "r");
+
+	//FILE* f = fopen(filePath, "r");
 
 
 
-	while(fgets(line, 2000, f)){
+	while(fgets(line, 50, f)){
 		word = strtok(line, " ");
 		while(word != NULL){
 
             j = updateNodes(j, allNodes, word);
             k = getVar(k, word, varName, &noSpace);
 
-            assignVariableUndeclared(&i, allVariables, varName, &declaration, word, &k, &j, &h, &lineN, allErrors, error, varNodes, filePath, &l);
+            //Boucle pour la déclaration de variables || Utilisation de la variable
+            while(allVariables[i] && i < 200){
+                if(isVar(varName)){
+                    declaration = 1;
+                    break;
+                }
+                if(strcmp(varName, allVariables[i][0]) == 0 && word[k] != '(' && varNodes[i][0] == j){
+                    allVariables[i][1] = "used";
+                    break;
+                }
 
+                if(strcmp(allVariables[i][0], "0") == 0 && word[k] != '(' && declaration == 1){
+                    h = 0;
+                    declaration = 0;
+                    varNodes[i][0] = j;
+                    while(varName[h]){
+                        allVariables[i][0][h] = varName[h];
+                        h++;
+                    }
+                    break;
+                }else if(strcmp(allVariables[i][0], "0") == 0 && word[k] != '(' && declaration == 0 && varName[0] <= 122 && varName[0] >= 97){
+                    sprintf(error, "\n[undeclared-variables] %s : l.%d (Erreur, la variable %s n\'est pas declaree)", filePath, lineN, varName);
+                    strcpy(allErrors[l], error);
+                    l++;
+                    break;
+                }
+
+                if(word[k] == '{')
+                    break;
+                i++;
+            }
             i = 0;
             h = 0;
 
@@ -74,7 +108,6 @@ int undeclaredVariables(char *filePath){
         printf("%s", allErrors[i]);
         i++;
     }
-    printf("\n");
 
 	fclose(f);
 	free(allVariables);
@@ -87,40 +120,6 @@ int undeclaredVariables(char *filePath){
 	return err;
 }
 
-void assignVariableUndeclared(int* i, char*** allVariables, char* varName, int* declaration, char* word, int* k, int* j, int* h, int* lineN, char** allErrors, char* error, int** varNodes, char* filePath, int* l){
-    while(allVariables[*i] && (*i) < 200){
-        if(isVar(varName)){
-            (*declaration) = 1;
-            break;
-        }
-        if(strcmp(varName, allVariables[*i][0]) == 0 && word[*k] != '(' && varNodes[*i][0] == (*j)){
-            allVariables[*i][1] = "used";
-            break;
-        }
-
-        if(strcmp(allVariables[*i][0], "0") == 0 && word[*k] != '(' && (*declaration) == 1){
-            (*h) = 0;
-            (*declaration) = 0;
-            varNodes[*i][0] = (*j);
-            while(varName[*h]){
-                allVariables[*i][0][*h] = varName[*h];
-                (*h)++;
-            }
-            break;
-        }else if(strcmp(allVariables[*i][0], "0") == 0 && word[*k] != '(' && (*declaration) == 0 && varName[0] <= 122 && varName[0] >= 97){
-            sprintf(error, "\n[undeclared-variables] %s : l.%d (Erreur, la variable %s n\'est pas declaree)", filePath, *lineN, varName);
-            strcpy(allErrors[*l], error);
-            (*l)++;
-            break;
-        }
-
-        if(word[*k] == '{')
-            break;
-        (*i)++;
-    }
-
-
-}
 
 int isVar(char* varName){
     if(strcmp(varName, "int") == 0 || strcmp(varName, "char") == 0 ||strcmp(varName, "float") == 0 ||strcmp(varName, "double") == 0 ||strcmp(varName, "long") == 0 ||strcmp(varName, "short") == 0 || strcmp(varName, "void") == 0)
