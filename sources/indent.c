@@ -63,10 +63,6 @@ int processIndent(char** lines, int numberOfLines, int* numberOfCharacters, char
                     if (!indentOver)
                         indent++;
                     break;
-                case '\r':
-                    if (!indentOver)
-                        indent++;
-                    break;
                  default:
                     if (!indentOver && indent != level) {
                         indentOver = 1;
