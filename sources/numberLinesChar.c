@@ -7,9 +7,10 @@
 */
 #include "numberLinesChar.h"
 
-void checkLinesNumbers(char* path, int limit){
+int checkLinesNumbers(char* path, int limit){
 	FILE* file = NULL;
 	int result = 0;
+	int cpt = 0;
 	char character = 0;
 
 	if(path == NULL || limit <= 0){
@@ -27,15 +28,18 @@ void checkLinesNumbers(char* path, int limit){
 
 	if((result + 1) > limit){
 		printf("[Max-File-Line-Numbers] %s : %d (Suppérieur à %d) \n", path, result + 1, limit);
+		cpt++;
 	}
 
 	fclose(file);
+	return cpt;
 }
 
-void checkCharactersNumbers(char* path, int limit){
+int checkCharactersNumbers(char* path, int limit){
 	FILE* file = NULL;
 	int lines = 0;
 	int i  = 0;
+	int cpt = 0;
 	int* numberOfCharacters = NULL;
 
 	if(path == NULL || limit <= 0){
@@ -56,6 +60,7 @@ void checkCharactersNumbers(char* path, int limit){
 	for(i  = 0; i < lines; i++){
 		if(numberOfCharacters[i] > limit){
 			printf("[Max-Line-Numbers] %s : l.%d\n", path, i + 1);
+			cpt++;
 		}	
 	}
 	free(numberOfCharacters);

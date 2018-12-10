@@ -7,10 +7,11 @@
 */
 #include "startComment.h"
 
-void functionStartComment(char* path){
+int functionStartComment(char* path){
 	FILE* file = NULL;
 	char caracter1 = 0;
 	char caracter2 = 0;
+	int cpt = 0;
 
 	if(path == NULL){
 		fprintf(stderr, "Erreur path NULL\n");
@@ -29,7 +30,9 @@ void functionStartComment(char* path){
 	caracter2 =  fgetc(file);
 	if(caracter1 != '/' || caracter2 != '*'){
 		fprintf(stdout, "[Comments_Header] %s l.1\n", path);
+		cpt++;
 	}
 
 	fclose(file);
+	return cpt;
 }

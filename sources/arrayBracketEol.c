@@ -8,8 +8,9 @@
 
 #include "arrayBracketEol.h"
 
-void functionTestBracket(char* path){
+int functionTestBracket(char* path){
 	FILE* file = NULL;
+	int cpt = 0;
 
 	if(path == NULL){
 		fprintf(stderr, "Le chemin en paramètre est NULL\n");
@@ -22,14 +23,17 @@ void functionTestBracket(char* path){
 		exit(EXIT_FAILURE);
 	}
 
-	checkBracket(file, path);
+	cpt = checkBracket(file, path);
 
 	fclose(file);
+
+	return cpt;
 }
 
-void checkBracket(FILE* file, char* path){
+int checkBracket(FILE* file, char* path){
 	int lines = 0;
 	int i = 0;
+	int cpt = 0;
 	char** content = NULL;
 
 	if(file == NULL){
@@ -41,19 +45,21 @@ void checkBracket(FILE* file, char* path){
 	content = readLines(file, lines);
 
 	for(i = 0; i < lines; i++){
-		isTarget(content[i], i, path);
+		cpt += isTarget(content[i], i, path);
 	}
 
 	freeArray2((void**)content, lines);
-
+	return cpt;
 }
 
-void isTarget(char* line, int lineNumber, char* path){
+int isTarget(char* line, int lineNumber, char* path){
 	char* positionEOL = 0;
-
+	int cpt = 0;
 	if((positionEOL = strchr(line, '{')) != NULL){
 		if((*(positionEOL + 1) != '\n' && *(positionEOL + 1) != '\0') || strlen(line) < 5){
 			fprintf(stdout, "[Array-Bracket-EOL] %s : l.%d\n", path, lineNumber + 1);
+			cpt++;
 		}
 	}
+	return cpt;
 }

@@ -12,8 +12,8 @@
 #include "fileUtils.h"
 
 // Foction de vérification du nombre de lignes dans le fichier, elle prend en paramètres le path du fichier et la limite à ne pas dépasser.
-void checkLinesNumbers(char*, int);
+int checkLinesNumbers(char*, int);
 // Fonction de vérification du nombre de caractères par lignes, elle prend en paramètres le path du fichier et la limite à ne pas dépasser.
-void checkCharactersNumbers(char*, int);
+int checkCharactersNumbers(char*, int);
 
 #endif

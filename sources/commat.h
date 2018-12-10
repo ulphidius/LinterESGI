@@ -13,12 +13,12 @@
 #include "fileUtils.h"
 
 // Fonction de vérification des espaces entre les opérateurs, il prend en paramètre le nom du fichier
-void functionTestCommat(char*);
+int functionTestCommat(char*);
 
 // Fonction de vérification de la syntaxe des virgules pour une ligne, elle prend en paramètres la ligne, la taille de la ligne, le numéro de la ligne et le nom du fichier
-void checkCommats(char*, int, int, char*);
+int checkCommats(char*, int, int, char*);
 
 // Fonction de vérification de la syntaxe des virgules pour toutes les lignes du fichier, elle prend en paramètres toutes les lignes du fichier, un tableau avec le nombre de charactères pour chaque ligne, le nombre de lignes et le nom du fichier
-void processCommats(char**, int*, int, char*);
+int processCommats(char**, int*, int, char*);
 
 #endif

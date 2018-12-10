@@ -8,9 +8,10 @@
 
 #include "operator.h"
 
-void checkOperators(char* string, int sizeChaine, int lineNumber, char* path){
+int checkOperators(char* string, int sizeChaine, int lineNumber, char* path){
 	int i = 0;
 	int y = 0;
+	int cpt = 0;
 	int sizeSingle = 15;
 	
 	const char singleOperators[] = {'+', '-', '*', '/', '<', '>', '!', '?', ':', '~', '^', '=', '&', '|', '%'};
@@ -21,54 +22,55 @@ void checkOperators(char* string, int sizeChaine, int lineNumber, char* path){
 				if(string[i] == singleOperators[y]){
 					if(i == 0 || i == (sizeChaine - 1)){
 						fprintf(stdout, "[Operators-Spacing] %s on : %c l.%d\n", path, singleOperators[y], lineNumber + 1);
+						cpt++;
 					}else if(string[i - 1] != ' ' || string[i + 1] != ' '){
 						switch(singleOperators[y]){
 							case '+':
-								plusCase(string, &i, lineNumber, path);	
+								cpt += plusCase(string, &i, lineNumber, path);	
 								break;
 							
 							case '-':
-								minusCase(string, &i, lineNumber, path);
+								cpt += minusCase(string, &i, lineNumber, path);
 								break;
 							
 							case '*':
-								timesCase(string, &i, lineNumber, path);							
+								cpt += timesCase(string, &i, lineNumber, path);							
 								break;
 							
 							case '/':
-								divideCase(string, &i, lineNumber, path);
+								cpt += divideCase(string, &i, lineNumber, path);
 								break;
 							
 							case '<':
-								lowerCase(string, &i, lineNumber, path);
+								cpt += lowerCase(string, &i, lineNumber, path);
 								break;
 							
 							case '>':
-								greaterCase(string, &i, lineNumber, path);
+								cpt += greaterCase(string, &i, lineNumber, path);
 								break;
 							
 							case '!':
-								exclamationMarkCase(string, &i, lineNumber, path);
+								cpt += exclamationMarkCase(string, &i, lineNumber, path);
 								break;
 
 							case '^':
-								squareCase(string, &i, lineNumber, path);
+								cpt += squareCase(string, &i, lineNumber, path);
 								break;
 							
 							case '=':
-								equalCase(string, &i, lineNumber, path);
+								cpt += equalCase(string, &i, lineNumber, path);
 								break;
 							
 							case '&':
-								andCase(string, &i, lineNumber, path);								
+								cpt += andCase(string, &i, lineNumber, path);								
 								break;
 							
 							case '|':
-								orCase(string, &i, lineNumber, path);
+								cpt += orCase(string, &i, lineNumber, path);
 								break;
 							
 							case '%':
-								moduloCase(string, &i, lineNumber, path);
+								cpt += moduloCase(string, &i, lineNumber, path);
 								break;
 						}
 					}	
@@ -76,14 +78,17 @@ void checkOperators(char* string, int sizeChaine, int lineNumber, char* path){
 			}
 		}
 	}
+
+	return cpt;
 }
 
-void processOperators(char* path){
+int processOperators(char* path){
 	
 	FILE* file = NULL;
 	char** strings = NULL;
 	int numberOfLines = 0;
 	int i = 0;
+	int cpt = 0;
 	int* numberCharacter = NULL;
 
 	file = fopen(path, "rb");
@@ -98,80 +103,103 @@ void processOperators(char* path){
 
 
 	for(i = 0; i < numberOfLines; i++){
-		checkOperators(strings[i], numberCharacter[i], i, path);
+		cpt += checkOperators(strings[i], numberCharacter[i], i, path);
 	}
 
 	freeArray2((void**)strings, numberOfLines);
 	free(numberCharacter);
+	return cpt;
 }
 
 void errorsGestionnary(char* operator, int lineNumber, char* path){
 	fprintf(stdout, "[Operators-Spacing] %s on : %s l.%d \n", path, operator, lineNumber);
 
+
 }
 
-void plusCase(char* string, int* position, int lineNumber, char* path){
+int plusCase(char* string, int* position, int lineNumber, char* path){
+	int cpt = 0;
 	if(string[*position + 1] == '='){
 		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
 			errorsGestionnary("+=", lineNumber + 1, path);
 			*position += 2;
+			cpt++;
 		}else{
 			*position += 2;
 		}
 	}else{
 		errorsGestionnary("+", lineNumber + 1, path);
+		cpt++;
 	}
+	return cpt;
 }
 
-void minusCase(char* string, int* position, int lineNumber, char* path){
+int minusCase(char* string, int* position, int lineNumber, char* path){
+	int cpt = 0;
 	if(string[*position + 1] == '='){
 		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
 			errorsGestionnary("-=", lineNumber + 1, path);
 			*position += 2;
+			cpt++;
 		}else{
 			*position += 2;
 		}
 	}else{
 		errorsGestionnary("-", lineNumber + 1, path);
+		cpt++;
 	}
+
+	return cpt;
 }
 
-void timesCase(char* string, int* position, int lineNumber, char* path){
+int timesCase(char* string, int* position, int lineNumber, char* path){
+	int cpt = 0;
 	if(string[*position + 1] == '='){
 		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
 			errorsGestionnary("*=", lineNumber + 1, path);
 			*position += 2;
+			cpt++;
 		}else{
 			*position += 2;
 		}
 	}else{
 		errorsGestionnary("*", lineNumber + 1, path);
+		cpt++;
 	}
+	return cpt;
 }
 
-void divideCase(char* string, int* position, int lineNumber, char* path){
+int divideCase(char* string, int* position, int lineNumber, char* path){
+	int cpt = 0;
 	if(string[*position + 1] == '='){
 		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
 			errorsGestionnary("/=", lineNumber + 1, path);
 			*position += 2;
+			cpt++;
 		}else{
 			*position += 2;
 		}
 	}else{
 		errorsGestionnary("/", lineNumber + 1, path);
+		cpt++;
 	}
+
+	return cpt;
 }
 
-void greaterCase(char* string, int* position, int lineNumber, char* path){
+int greaterCase(char* string, int* position, int lineNumber, char* path){
+	int cpt = 0;
 	if(string[*position + 1] == '>'){
 		if(string[*position + 2] == '='){
 			if(string[*position - 1] != ' ' || string[*position + 3] != ' '){
 				errorsGestionnary(">>=", lineNumber + 1, path);
+				cpt++;
 			}
 			*position += 3;
 		}else if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
 			errorsGestionnary(">>", lineNumber + 1, path);
 			*position += 2;
+			cpt++;
 		}else{
 			*position += 2;
 		}
@@ -179,24 +207,31 @@ void greaterCase(char* string, int* position, int lineNumber, char* path){
 		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
 			errorsGestionnary(">=", lineNumber + 1, path);
 			*position += 2;
+			cpt++;
 		}else{
 			*position += 2;
 		}
 	}else{
 		errorsGestionnary(">", lineNumber + 1, path);
+		cpt++;
 	}
+
+	return cpt;
 }
 
-void lowerCase(char* string, int* position, int lineNumber, char* path){
+int lowerCase(char* string, int* position, int lineNumber, char* path){
+	int cpt = 0;
 	if(string[*position + 1] == '<'){
 		if(string[*position + 2] == '='){
 			if(string[*position - 1] != ' ' || string[*position + 3] != ' '){
 				errorsGestionnary("<<=", lineNumber + 1, path);
+				cpt++;
 			}
 			*position += 3;
 		}else if(string[*position - 1] != ' ' || (string[*position + 2] != ' ')){
 			errorsGestionnary("<<", lineNumber + 1, path);
 			*position += 2;
+			cpt++;
 		}else{
 			*position += 2;
 		}
@@ -204,58 +239,82 @@ void lowerCase(char* string, int* position, int lineNumber, char* path){
 		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
 			errorsGestionnary("<=", lineNumber + 1, path);
 			*position += 2;
+			cpt++;
 		}else{
 			*position += 2;
 		}
 	}else{
 		errorsGestionnary("<", lineNumber + 1, path);
-	}	
+		cpt++;
+	}
+
+	return cpt;
 }
 
-void exclamationMarkCase(char* string, int* position, int lineNumber, char* path){
+int exclamationMarkCase(char* string, int* position, int lineNumber, char* path){
+	int cpt = 0;
 	if(string[*position + 1] == '='){
 		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
 			errorsGestionnary("!=", lineNumber + 1, path);
 			*position += 2;
+			cpt++;
 		}else{
 			*position += 2;
 		}
 	}else{
 		errorsGestionnary("!", lineNumber + 1, path);
+		cpt++;
 	}
+
+	return cpt;
 }
 
-void squareCase(char* string, int* position, int lineNumber, char* path){
+int squareCase(char* string, int* position, int lineNumber, char* path){
+	int cpt = 0;
+
 	if(string[*position + 1] == '='){
 		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
 			errorsGestionnary("^⁼", lineNumber + 1, path);
 			*position += 2;
+			cpt++;
 		}else{
 			*position += 2;
 		}
 	}else{
 		errorsGestionnary("^", lineNumber + 1, path);
+		cpt++;
 	}
+
+	return cpt;
 }
 
-void equalCase(char* string, int* position, int lineNumber, char* path){
+int equalCase(char* string, int* position, int lineNumber, char* path){
+	int cpt = 0;
+
 	if(string[*position + 1] == '='){
 		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
 			errorsGestionnary("==", lineNumber + 1, path);
 			*position += 2;
+			cpt++;
 		}else{
 			*position += 2;
 		}
 	}else{
 		errorsGestionnary("=", lineNumber + 1, path);
-	}	
+		cpt++;
+	}
+
+	return cpt;
 }
 
-void andCase(char* string, int* position, int lineNumber, char* path){
+int andCase(char* string, int* position, int lineNumber, char* path){
+	int cpt = 0;
+
 	if(string[*position + 1] == '&'){
 		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
 			errorsGestionnary("&&", lineNumber + 1, path);		
 			*position += 2;
+			cpt++;
 		}else{
 			*position += 2;
 		}
@@ -263,19 +322,26 @@ void andCase(char* string, int* position, int lineNumber, char* path){
 		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
 			errorsGestionnary("&=", lineNumber + 1, path);		
 			*position += 2;
+			cpt++;
 		}else{
 			*position += 2;
 		}
 	}else{
 		errorsGestionnary("&", lineNumber + 1, path);	
+		cpt++;
 	}
+
+	return cpt;
 }
 
-void orCase(char* string, int* position, int lineNumber, char* path){
+int orCase(char* string, int* position, int lineNumber, char* path){
+	int cpt = 0;
+
 	if(string[*position + 1] == '|'){
 		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
 			errorsGestionnary("||", lineNumber + 1, path);
 			*position += 2;
+			cpt++;
 		}else{
 			*position += 2;
 		}
@@ -283,23 +349,33 @@ void orCase(char* string, int* position, int lineNumber, char* path){
 		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
 			errorsGestionnary("|=", lineNumber + 1, path);
 			*position += 2;
+			cpt++;
 		}else{
 			*position += 2;
 		}
 	}else{
 		errorsGestionnary("|", lineNumber + 1, path);
+		cpt++;
 	}
+
+	return cpt;
 }
 
-void moduloCase(char* string, int* position, int lineNumber, char* path){
+int moduloCase(char* string, int* position, int lineNumber, char* path){
+	int cpt = 0;
+
 	if(string[*position + 1] == '='){
 		if(string[*position - 1] != ' ' || string[*position + 2] != ' '){
 			errorsGestionnary("%=", lineNumber + 1, path);
 			*position += 2;
+			cpt++;
 		}else{
 			*position += 2;
 		}
 	}else{
 		errorsGestionnary("%", lineNumber + 1, path);
+		cpt++;
 	}
+
+	return cpt;
 }

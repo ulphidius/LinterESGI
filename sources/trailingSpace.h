@@ -11,12 +11,12 @@
 #include "fileUtils.h"
 
 // Fonction de vérification des espaces en fin de lignes, il prend en paramètre le chemin du fichier à tester
-void functionTestTrailingSpace(char*);
+int functionTestTrailingSpace(char*);
 
 // Fonction de vérification de la syntaxe des espaces pour une ligne, elle prend en paramètres la ligne, la taille de la ligne, le numéro de la ligne et le nom du fichier
-void checkTrailingSpaces(char*, int, int, char*);
+int checkTrailingSpaces(char*, int, int, char*);
 
 // Fonction de vérification de la syntaxe des espaces pour toutes les lignes du fichier, elle prend en paramètres toutes les lignes du fichier, un tableau avec le nombre de charactères pour chaque ligne, le nombre de lignes et le nom du fichier
-void processTrailingSpace(char**, int*, int, char*);
+int processTrailingSpace(char**, int*, int, char*);
 
 #endif

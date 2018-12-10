@@ -12,6 +12,6 @@
 #include <stdlib.h>
 
 // Fonction de vérification de l'existance d'un commentaire en début de fichier, il prend en paramètre le chemin du fichier à tester
-void functionStartComment(char*);
+int functionStartComment(char*);
 
 #endif
