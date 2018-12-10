@@ -77,11 +77,6 @@ int noMultiDeclarations(char* filePath){
         i++;
     }
     fclose(f);
-    free(line);
-    free(word);
-    free(error);
-    free(varName);
-    free(allErrors);
     return err;
 }
 

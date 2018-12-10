@@ -57,7 +57,7 @@ void lintFile(ConfigKey *conf, CheckFile *list, int debug)
                 //case unused-variable
                 case 6:
                     if(strcmp(rules->cValue->value,"on") == 0){
-                        error += undeclaredVariables(list->name);
+                        error += unusedVariables(list->name);
                     }
                     break;
 

@@ -80,12 +80,6 @@ int unusedVariables(char* filePath){
     }
 
 	fclose(f);
-	free(allVariables);
-	free(line);
-	free(word);
-	free(errorLine);
-	free(varNodes);
-	free(allNodes);
     return err;
 }
 

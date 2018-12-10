@@ -14,6 +14,7 @@ int main(){
     ConfigKey *conf;
     //conf = loadConfig("\n");
     conf = loadAll("resources/main.lconf");
+    //printConfig(conf);
     //Stocke en mémoire la liste des fichiers à lire
     CheckFile * list;
     if(conf == NULL){
@@ -24,7 +25,6 @@ int main(){
     readFolder(".",conf,&list);
 
     printCheckFile(list);
-
     lintFile(conf,list,0);
 
 

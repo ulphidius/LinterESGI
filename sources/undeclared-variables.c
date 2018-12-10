@@ -77,13 +77,6 @@ int undeclaredVariables(char *filePath){
     printf("\n");
 
 	fclose(f);
-	free(allVariables);
-	free(line);
-	free(word);
-	free(varName);
-	free(allNodes);
-	free(allErrors);
-    free(varNodes);
 	return err;
 }
 
