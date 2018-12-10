@@ -24,8 +24,8 @@ int unusedVariables(char* filePath){
 	    varNodes[j] = malloc(sizeof(int) * 1);
 	    varNodes[j][0] = 0;
 	}
-	char* line = malloc(sizeof(char) * 50);
-	char* word = malloc(sizeof(char) * 50);
+	char* line = malloc(sizeof(char) * 500);
+	char* word = malloc(sizeof(char) * 500);
 	char*** allVariables = malloc(sizeof(char**) * 200);
 	for(j = 0; j < 200; j++){
 	    allVariables[j] = malloc(sizeof(char*) * 2);
@@ -41,50 +41,20 @@ int unusedVariables(char* filePath){
     j = 0;
     h = 0;
 
-	FILE* f = fopen("test.c", "w");
-	fprintf(f, "void test(){\nint a;\nint b;\nb=a+10;\nchar c;\nb += b;\n}\nint newTest(){\nint a;\n int b;\nb += b;\n}");
-	fclose(f);
-	f = fopen("test.c", "r");
+	FILE* f = fopen(filePath, "r");
 
-	while(fgets(line, 50, f)){
+	while(fgets(line, 500, f)){
 		word = strtok(line, " ");
 		while(word != NULL){
-		        if(strchr(word, '{') != NULL){
-		            if(allNodes[j][0] == 0){
-		                j++;
-		                allNodes[j][0]++;
-		            }else if(allNodes[j][0] > 0){
-		                allNodes[j][0]++;
-		            }
-		        }
 
-		        if(strchr(word, '}') != NULL){
-		            if(allNodes[j][0] > 0){
-		                allNodes[j][0]--;
-		            }
-		        }
+                j = updateNodes(j, allNodes, word);
+                k = getVar(k, word, varName, &noSpace);
 
-    		    //Récupération du mot de la variable
-    			while(word[k]){
-    			    if((word[k] <= 122 && word[k] >= 97) || (word[k] >= 65 && word[k] <= 95 && k >= 1) || (word[k] >= 48 && word[k] <= 57 && k >= 1)){
-    			        varName[k] = word[k];
-    			    }else if((word[k] == ',' || word[k] == '+' || word[k] == '-' || word[k] == '*' || word[k] == '/' || word[k] == '%' || word[k] == '=') && k >= 1){
-    			        noSpace = 1;
-    			        break;
-    			    }else{
-    			        break;
-    			    }
-    				k++;
-    			}
-    			if(k >= 1){
-    			    varName[k] = '\0';
-    			}
 
-    			printf("\nvarName: %s\n", varName);
     			//Boucle pour la déclaration de variables || Utilisation de la variable
     			while(allVariables[i] && i < 200){
-    			    if(strcmp(varName, "int") == 0 || strcmp(varName, "char") == 0 ||strcmp(varName, "float") == 0 ||strcmp(varName, "double") == 0 ||strcmp(varName, "long") == 0 ||strcmp(varName, "short") == 0 || strcmp(varName, "void") == 0){
-    			        declaration = 1;
+                        if(isVar(varName)){
+                        declaration = 1;
     			        break;
     			    }
     			    //Commenté pour le if:   && allNodes[i] == node
@@ -129,10 +99,8 @@ int unusedVariables(char* filePath){
     i = 0;
     while(strcmp(allVariables[i][0], "0") != 0){
         if(allVariables[i][0][0] <= 122 && allVariables[i][0][0] >= 97){
-            printf("\nNom de variable: %s\nUtilisation: %s\n", allVariables[i][0], allVariables[i][1]);
-
             if(strcmp(allVariables[i][1], "unused") == 0){
-                printf("Erreur ligne %d: la variable %s n'est pas utilisee\n\n", errorLine[i], allVariables[i][0]);
+                printf("\n[unused-variables] %s : l.%d (Erreur, la variable %s n'est pas utilisee)", filePath, errorLine[i], allVariables[i][0]);
                 err++;
             }
         }
@@ -143,5 +111,8 @@ int unusedVariables(char* filePath){
 	free(allVariables);
 	free(line);
 	free(word);
-	return err;
+	free(errorLine);
+	free(varNodes);
+	free(allNodes);
+    return err;
 }

@@ -32,8 +32,12 @@
 /**
  * Functions
  **/
-int unusedVariables();
-int noMultiDeclarations();
-int undeclaredVariables();
+int unusedVariables(char* filePath);
+int noMultiDeclarations(char* filePath);
+int undeclaredVariables(char* filePath);
+int updateNodes(int j, int** allNodes, char* word);
+int getVar(int k, char* word, char* varName, int* noSpace);
+int isVar(char* varName);
+
 
 #endif // VARIABLES_H_INCLUDED
