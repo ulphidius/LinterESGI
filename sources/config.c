@@ -62,9 +62,9 @@ char* myInput(int choice){
  **/
 int getFileSize(FILE *fp){
     long size;
-    fseek(fp, 0, SEEK_END);
+    fseek(fp, 0, 2);
     size = ftell(fp);
-    fseek(fp, 0, SEEK_SET);
+    fseek(fp, 0, 0);
     return (int)size;
 }
 

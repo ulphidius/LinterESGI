@@ -65,4 +65,6 @@ int checkCharactersNumbers(char* path, int limit){
 	}
 	free(numberOfCharacters);
 	fclose(file);
+
+	return cpt;
 }

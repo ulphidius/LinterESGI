@@ -56,7 +56,7 @@ int isTarget(char* line, int lineNumber, char* path){
 	char* positionEOL = 0;
 	int cpt = 0;
 	if((positionEOL = strchr(line, '{')) != NULL){
-		if((*(positionEOL + 1) != '\n' && *(positionEOL + 1) != '\0') || strlen(line) < 5){
+		if(((*(positionEOL + 1) != '\n' || (*(positionEOL + 1)) != '\r') && *(positionEOL + 1) != '\0') || strlen(line) < 5){
 			fprintf(stdout, "[Array-Bracket-EOL] %s : l.%d\n", path, lineNumber + 1);
 			cpt++;
 		}
