@@ -1,5 +1,5 @@
 =extends
-resources/ext.lconf
+.resources/ext.lconf
 
 =rules
 - array-bracket-eol = off
@@ -20,8 +20,8 @@ resources/ext.lconf
 - function-parameters-type = off
 
 =excludedFiles
-- bonjour.c
+- .bonjour.c
 - config.c
 
 =recursive
-true
+false

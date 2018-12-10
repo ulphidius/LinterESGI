@@ -12,38 +12,37 @@ void lintFile(ConfigKey *conf, CheckFile *list, int debug)
         printKey(rules);
     }
 
-    rules->cValue = rules->cValue->head;
 
     while(list != NULL){
         //list->name            :   "chemin du fichier"
         //rules->cValue->value  :   "valeur de la cval"
+        rules->cValue = rules->cValue->head;
         while(rules->cValue != NULL){
             switch(choiceRule(rules->cValue->content)){
-
                 //case array-bracket-eol
                 case 1:
-                    if(strcmp(rules->cValue->value,"yourString") == 0){
-                        //printf("[x]cVal : %s\n",rules->cValue->value);
+                    if(strcmp(rules->cValue->value,"on") == 0){
+                        error += functionTestBracket(list->name);
                     }
                     break;
 
                 //case indent
                 case 2:
-                    if(strcmp(rules->cValue->value,"yourString") == 0){
+                    if(strcmp(rules->cValue->value,"on") == 0){
                         error += functionTestIndent(list->name);
                     }
                     break;
 
                 //case comments-header
                 case 3:
-                    if(strcmp(rules->cValue->value,"yourString") == 0){
+                    if(strcmp(rules->cValue->value,"on") == 0){
                         error += functionStartComment(list->name);
                     }
                     break;
 
                 //case no-trailing-spaces
                 case 4:
-                    if(strcmp(rules->cValue->value,"yourString") == 0){
+                    if(strcmp(rules->cValue->value,"on") == 0){
                         error += functionTestTrailingSpace(list->name);
                     }
                     break;
@@ -71,63 +70,63 @@ void lintFile(ConfigKey *conf, CheckFile *list, int debug)
 
                 //case no-prototype
                 case 8:
-                    if(strcmp(rules->cValue->value,"true") == 0){
+                    if(strcmp(rules->cValue->value,"on") == 0){
                         error += checkFunction(list->name, 1);
                     }
                     break;
 
                 //case unused-function
                 case 9:
-                    if(strcmp(rules->cValue->value,"true") == 0){
+                    if(strcmp(rules->cValue->value,"on") == 0){
                         error += checkFunction(list->name, 0);
                     }
                     break;
 
                 //case undeclared-function
                 case 10:
-                    if(strcmp(rules->cValue->value,"yourString") == 0){
+                    if(strcmp(rules->cValue->value,"on") == 0){
                         //func
                     }
                     break;
 
                 //case variable-assignment-type
                 case 11:
-                    if(strcmp(rules->cValue->value,"yourString") == 0){
+                    if(strcmp(rules->cValue->value,"on") == 0){
                         //func
                     }
                     break;
 
                 //case function-parameters-type
                 case 12:
-                    if(strcmp(rules->cValue->value,"yourString") == 0){
+                    if(strcmp(rules->cValue->value,"on") == 0){
                         //func
                     }
                     break;
 
                 //case operators-spacing
                 case 13:
-                    if(strcmp(rules->cValue->value,"yourString") == 0){
+                    if(strcmp(rules->cValue->value,"on") == 0){
                         error += processOperators(list->name);
                     }
                     break;
 
                 //case comma-spacing
                 case 14:
-                    if(strcmp(rules->cValue->value,"yourString") == 0){
+                    if(strcmp(rules->cValue->value,"on") == 0){
                         error += functionTestCommat(list->name);
                     }
                     break;
 
                 //case max-line-numbers
                 case 15:
-                    if(strcmp(rules->cValue->value,"yourString") == 0){
+                    if(!strcmp(rules->cValue->value,"off") == 0){
                         error += checkCharactersNumbers(list->name, atoi(rules->cValue->value));
                     }
                     break;
 
                 //case max-file-line-numbers
                 case 16:
-                    if(strcmp(rules->cValue->value,"yourString") == 0){
+                    if(!strcmp(rules->cValue->value,"off") == 0){
                         error += checkLinesNumbers(list->name, atoi(rules->cValue->value));
                     }
                     break;
@@ -138,7 +137,10 @@ void lintFile(ConfigKey *conf, CheckFile *list, int debug)
                     break;
 
             }
-            rules->cValue = rules->cValue->next;
+            if(rules->cValue->next != NULL)
+                rules->cValue = rules->cValue->next;
+            else
+                break;
         }
         list = list->next;
     }
