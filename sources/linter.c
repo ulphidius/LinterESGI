@@ -50,22 +50,22 @@ void lintFile(ConfigKey *conf, CheckFile *list, int debug)
 
                 //case no-multi-declaration
                 case 5:
-                    if(strcmp(rules->cValue->value,"yourString") == 0){
-                        //func
+                    if(strcmp(rules->cValue->value,"on") == 0){
+                        error += noMultiDeclarations(list->name);
                     }
                     break;
 
                 //case unused-variable
                 case 6:
-                    if(strcmp(rules->cValue->value,"yourString") == 0){
-                        //func
+                    if(strcmp(rules->cValue->value,"on") == 0){
+                        error += undeclaredVariables(list->name);
                     }
                     break;
 
                 //case undeclared-variable
                 case 7:
-                    if(strcmp(rules->cValue->value,"yourString") == 0){
-                        //func
+                    if(strcmp(rules->cValue->value,"on") == 0){
+                        error += undeclaredVariables(list->name);
                     }
                     break;
 

@@ -1,7 +1,6 @@
 #include "commat.h"
 #include "config.h"
 #include "confKey.h"
-#include "error.h"
 #include "linter.h"
 #include "numberLinesChar.h"
 #include "trailingSpace.h"
