@@ -30,6 +30,8 @@ int functionTestTrailingSpace(char* path){
 	freeArray2((void**)strings, numberOfLines);
 	free(numberCharacter);
 
+	fclose(file);
+
 	return cpt;
 }
 
