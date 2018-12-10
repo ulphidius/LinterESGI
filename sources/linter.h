@@ -11,6 +11,7 @@
 #include "indent.h"
 #include "operator.h"
 #include "arrayBracketEol.h"
+#include "variables.h"
 
 void lintFile(ConfigKey *conf, CheckFile *list, int debug);
 
