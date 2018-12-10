@@ -39,7 +39,7 @@ int checkTrailingSpaces(char* string, int sizeLine, int lineNumber, char* path){
 
 	while(string[i] != '\0'){
 		if(strlen(string) > 3){
-			if(string[strlen(string) - 1] == ' '){
+			if(string[strlen(string) - 2] == ' '){
 				fprintf(stdout, "[Trailling-Space] %s : l.%d\n", path, lineNumber + 1);
 				cpt++;
 				break;
