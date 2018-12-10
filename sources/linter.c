@@ -6,6 +6,8 @@ void lintFile(ConfigKey *conf, CheckFile *list, int debug)
     int error = 0;
     list = list->head;
     ConfigKey *rules = getConfigKey("rules", conf);
+    if(rules == NULL)
+        return;
 
     if(debug == 1){
         printf("Liste des regles appliques :\n");
