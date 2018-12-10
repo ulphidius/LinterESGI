@@ -23,7 +23,7 @@ int main(){
     //printConfig(conf);
     readFolder(".",conf,&list);
 
-    //printCheckFile(list);
+    printCheckFile(list);
 
     lintFile(conf,list,0);
 

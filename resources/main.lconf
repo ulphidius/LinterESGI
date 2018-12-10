@@ -2,9 +2,22 @@
 resources/ext.lconf
 
 =rules
-- array-bracket-eol = 1
-- rule2 = off
-- rule3 = 50
+- array-bracket-eol = off
+- operators-spacing = off
+- comma-spacing = off
+- indent = off
+- comments-header = off
+- max-line-numbers = off
+- max-file-line-numbers = off
+- no-trailing-spaces = off
+- no-multi-declaration = off
+- unused-variable = off
+- undeclared-variable = off
+- no-prototype = off
+- unused-function = off
+- undeclared-function = off
+- variable-assignment-type = off
+- function-parameters-type = off
 
 =excludedFiles
 - bonjour.c

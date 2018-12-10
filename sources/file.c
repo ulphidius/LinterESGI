@@ -91,6 +91,24 @@ int isExcludedFile(char *file, ConfigKey *conf){
 }
 
 void readFolder(char *name, ConfigKey * key, CheckFile ** file){
+    ConfigKey *recursive;
+    int rec;
+    recursive = getConfigKey("recursive", key);
+    if(recursive != NULL){
+        if(recursive->bValue->content != NULL){
+            if(strcmp(recursive->bValue->content, "true") == 0){
+                rec = 1;
+            }else{
+                rec = 0;
+            }
+        }else{
+            rec = 0;
+        }
+    }else{
+        rec = 0;
+    }
+    printf("\n");
+
     DIR *dp;
     struct dirent *ep;
     char path[4096];
@@ -100,7 +118,7 @@ void readFolder(char *name, ConfigKey * key, CheckFile ** file){
     if (dp != NULL)
     {
         while (ep = readdir (dp)){
-            if(isDir(ep->d_name)==1){
+            if(isDir(ep->d_name) == 1 && rec == 1){
                 if(strcmp(ep->d_name, ".")!=0 && strcmp(ep->d_name, "..")!=0  ){
                     strcpy(path, name);
                     strcat(path, "/");
