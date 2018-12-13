@@ -105,6 +105,7 @@ void processOperators(char* path){
 
 	freeArray2((void**)strings, numberOfLines);
 	free(numberCharacter);
+	fclose(file);
 }
 
 void errorsGestionnary(char* operator, int lineNumber, char* path){

@@ -1,29 +1,22 @@
-// #include "config.h"
-// #include "confKey.h"
-// #include "error.h"
-// #include "linter.h"
-// #include "functions.h"
+#include "arrayBracketEol.h"
+#include "indent.h"
+#include "startComment.h"
+#include "trailingSpace.h"
+#include "numberLinesChar.h"
+#include "commat.h"
+#include "operator.h"
 
 int main(){
 
-//Charge la configuration
-    // ConfigKey *conf;
-    // conf = loadConfig("\n");
-//Stocke en mémoire la liste des fichiers à lire
-    // CheckFile * list;
-    // readFolder(".",conf,&list);
-
-    // printCheckFile(list);
-	// fclose(file);
-	// processOperators("../resources/testFileOperator");
-	// functionTestCommat("../resources/testFileOperator");
-	// checkLinesNumbers("../resources/testFileOperator", atoi("30"));
-	// checkCharactersNumbers("../resources/testFileOperator", atoi("10"));
-	// functionTestTrailingSpace("../resources/testFileOperator");
-	// functionStartComment("../resources/testFileOperator");
-	// functionTestIndent("../resources/testFileOperator");
-	// functionTestBracket("../resources/testFileOperator");
-    // lintFile(conf,list);
+	
+	processOperators("../resources/testFileOperator");
+	functionTestCommat("../resources/testFileOperator");
+	checkLinesNumbers("../resources/testFileOperator", atoi("30"));
+	checkCharactersNumbers("../resources/testFileOperator", atoi("10"));
+	functionTestTrailingSpace("../resources/testFileOperator");
+	functionStartComment("../resources/testFileOperator");
+	functionTestIndent("../resources/testFileOperator");
+	functionTestBracket("../resources/testFileOperator");
 
 	return 0;
 }

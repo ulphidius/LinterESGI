@@ -28,7 +28,7 @@ void functionTestCommat(char* path){
 
 	freeArray2((void**)strings, numberOfLines);
 	free(numberCharacter);
-
+	fclose(file);
 }
 
 void checkCommats(char* string, int sizeLine, int numberLines, char* path){
