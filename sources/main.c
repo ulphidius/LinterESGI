@@ -8,15 +8,15 @@
 
 int main(){
 
-	
-	processOperators("../resources/testFileOperator");
-	functionTestCommat("../resources/testFileOperator");
-	checkLinesNumbers("../resources/testFileOperator", atoi("30"));
-	checkCharactersNumbers("../resources/testFileOperator", atoi("10"));
-	functionTestTrailingSpace("../resources/testFileOperator");
-	functionStartComment("../resources/testFileOperator");
-	functionTestIndent("../resources/testFileOperator");
-	functionTestBracket("../resources/testFileOperator");
+	char* name = "../resources/testFileOperator";
+	processOperators(name);
+	functionTestCommat(name);
+	checkLinesNumbers(name, atoi("30"));
+	checkCharactersNumbers(name, atoi("10"));
+	functionTestTrailingSpace(name);
+	functionStartComment(name);
+	functionTestIndent(name);
+	functionTestBracket(name);
 
 	return 0;
 }
