@@ -73,7 +73,7 @@ char ** arrayP(char** in, int size, char *add){
     char **out;
 
     out = malloc(sizeof(char*) * size);
-    for(i = 0; i < size; i ++){
+    for(i = 0; i < size-1; i ++){
         if(i == size-1){
             out[i] = malloc(sizeof(char) * (strlen(add)+1));
             strcpy(out[i], add);
