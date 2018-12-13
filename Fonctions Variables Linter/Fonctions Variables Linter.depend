@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1544712979 source:d:\3ème année esgi\c\linter\soutenance - tests variables\fonctions variables linter\no-multi-declarations.c
+	"variables.h"
+
+1544712324 d:\3ème année esgi\c\linter\soutenance - tests variables\fonctions variables linter\variables.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1544713584 source:d:\3ème année esgi\c\linter\soutenance - tests variables\fonctions variables linter\undeclared-variables.c
+	"variables.h"
+
+1544713695 source:d:\3ème année esgi\c\linter\soutenance - tests variables\fonctions variables linter\unused-variables.c
+	"variables.h"
+
+1544713611 source:d:\3ème année esgi\c\linter\soutenance - tests variables\fonctions variables linter\main.c
+	<stdio.h>
+	<stdlib.h>
+
