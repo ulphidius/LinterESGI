@@ -1,0 +1,11 @@
+=rules
+- rule4 = on
+- rule5 = off
+- rule6 = 50
+
+=excludedFiles
+- bonjour.c
+- config.c
+
+=recursive
+false

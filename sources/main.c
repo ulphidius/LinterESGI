@@ -24,8 +24,11 @@ int main(){
     //printConfig(conf);
     readFolder(".",conf,&list);
 
+
+
     printCheckFile(list);
-    lintFile(conf,list,0);
+    //lintFile(conf,list,0);
+    lintFile(conf,initCheckFile("resources/test_variable.c"),0);
 
 
     //processOperators("../resources/testFileOperator");
