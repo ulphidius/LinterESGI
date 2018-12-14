@@ -392,21 +392,17 @@ ConfigKey *loadAll(char *fp){
     int i = 0;
     int n = 0;
 
-    printf("test\n");
     temp = loadConfig(fp);
-    printf("test\n");
     if(temp == NULL){
         printf("Le fichier %s n'existe pas",fp);
         return NULL;
     }
-    printf("test\n");
     conf = temp;
     temp = getConfigKey("extends", temp);
     if(temp == NULL){
         printf("extends null\n");
         return conf;
     }
-    printf("test\n");
     conf = temp;
     //printKey(conf);
     while(conf->bValue != NULL){
